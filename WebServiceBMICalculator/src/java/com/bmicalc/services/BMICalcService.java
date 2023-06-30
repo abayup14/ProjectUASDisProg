@@ -70,5 +70,4 @@ public class BMICalcService {
         bmi.insertData();
         return true;
     }
-    
 }
