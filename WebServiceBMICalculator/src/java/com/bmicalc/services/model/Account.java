@@ -16,6 +16,7 @@ public class Account extends MyModel {
     private int id;
     private String email;
     private String password;
+    private String jenis_kelamin;
 
     public int getId() {
         return id;
@@ -40,16 +41,26 @@ public class Account extends MyModel {
     public void setPassword(String password) {
         this.password = password;
     }
-
-    public Account(String email, String password) {
-        this.email = email;
-        this.password = password;
+    
+    public String getJenis_kelamin() {
+        return jenis_kelamin;
     }
 
-    public Account(int id, String email, String password) {
+    public void setJenis_kelamin(String jenis_kelamin) {
+        this.jenis_kelamin = jenis_kelamin;
+    }
+    
+    public Account(String email, String password, String jenis_kelamin) {
+        this.email = email;
+        this.password = password;
+        this.jenis_kelamin = jenis_kelamin;
+    }
+
+    public Account(int id, String email, String password, String jenis_kelamin) {
         this.id = id;
         this.email = email;
         this.password = password;
+        this.jenis_kelamin = jenis_kelamin;
     }
 
     public Account(String email) {
@@ -59,9 +70,10 @@ public class Account extends MyModel {
     public void insertAccount() {
         try {
             if (!MyModel.conn.isClosed()) {
-                PreparedStatement sql = (PreparedStatement) MyModel.conn.prepareStatement("insert into account(email, password) values(?, ?)");
+                PreparedStatement sql = (PreparedStatement) MyModel.conn.prepareStatement("insert into account(email, password, jenis_kelamin) values(?, ?, ?)");
                 sql.setString(1, this.email);
                 sql.setString(2, this.password);
+                sql.setString(3, this.jenis_kelamin);
                 sql.executeUpdate();
                 sql.close();
             }
@@ -96,7 +108,7 @@ public class Account extends MyModel {
             sql.setString(2, this.password);
             this.result = sql.executeQuery();
             while (this.result.next()) {
-                Account acc = new Account(this.email, this.password);
+                Account acc = new Account(this.result.getString("email"), this.result.getString("password"), this.result.getString("jenis_kelamin"));
                 coll.add(acc);
             }
         } catch (Exception e) {

@@ -11,18 +11,19 @@ import java.sql.*;
  * @author Andreas Bayu P
  */
 public class HistoryBMI extends MyModel{
-    private int id;
+    private int id_bmi;
     private Timestamp tanggal;
     private double berat_badan;
     private double tinggi_badan;
+    private double hasil_bmi;
     private int acc_id;
     
-    public int getId() {
-        return id;
+    public int getId_bmi() {
+        return id_bmi;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setId_bmi(int id_bmi) {
+        this.id_bmi = id_bmi;
     }
 
     public Timestamp getTanggal() {
@@ -49,6 +50,14 @@ public class HistoryBMI extends MyModel{
         this.tinggi_badan = tinggi_badan;
     }
     
+    public double getHasil_bmi() {
+        return hasil_bmi;
+    }
+
+    public void setHasil_bmi(double hasil_bmi) {
+        this.hasil_bmi = hasil_bmi;
+    }
+    
     public int getAcc_id() {
         return acc_id;
     }
@@ -57,26 +66,29 @@ public class HistoryBMI extends MyModel{
         this.acc_id = acc_id;
     }
 
-    public HistoryBMI(double berat_badan, double tinggi_badan, int acc_id) {
+    public HistoryBMI(double berat_badan, double tinggi_badan, double hasil_bmi, int acc_id) {
         this.berat_badan = berat_badan;
         this.tinggi_badan = tinggi_badan;
+        this.hasil_bmi = hasil_bmi;
         this.acc_id = acc_id;
     }
 
-    public HistoryBMI(int id, Timestamp tanggal, double berat_badan, double tinggi_badan) {
-        this.id = id;
+    public HistoryBMI(int id_bmi, Timestamp tanggal, double berat_badan, double tinggi_badan, double hasil_bmi, int acc_id) {
+        this.id_bmi = id_bmi;
         this.tanggal = tanggal;
         this.berat_badan = berat_badan;
         this.tinggi_badan = tinggi_badan;
+        this.acc_id = acc_id;
     }
     
     public void insertData() {
         try {
             if (!MyModel.conn.isClosed()) {
-                PreparedStatement sql = (PreparedStatement)MyModel.conn.prepareStatement("insert into history_bmi(berat_badan, tinggi_badan, account_id) values(?, ?, ?)");
+                PreparedStatement sql = (PreparedStatement)MyModel.conn.prepareStatement("insert into history_bmi(berat_badan, tinggi_badan, hasil_bmi, account_id) values(?, ?, ?, ?)");
                 sql.setDouble(1, this.berat_badan);
                 sql.setDouble(2, this.tinggi_badan);
-                sql.setInt(3, this.acc_id);
+                sql.setDouble(3, this.hasil_bmi);
+                sql.setInt(4, this.acc_id);
                 sql.executeUpdate();
                 sql.close();
             }

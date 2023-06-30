@@ -35,7 +35,7 @@ public class BMICalcService {
     public boolean insertAccount(@WebParam(name = "email") String email, @WebParam(name = "password") String password) {
         //TODO write your implementation code here:
         coll = new ArrayList<>();
-        acc = new Account(email, password);
+        acc = new Account(email);
         coll = acc.cekEmail(email);
         if (coll.isEmpty()) {
             acc.insertAccount();
@@ -49,10 +49,10 @@ public class BMICalcService {
      * Web service operation
      */
     @WebMethod(operationName = "cekLogin")
-    public boolean cekLogin(@WebParam(name = "email") String email, @WebParam(name = "password") String password) {
+    public boolean cekLogin(@WebParam(name = "email") String email, @WebParam(name = "password") String password, @WebParam(name = "jenis_kelamin") String jenis_kelamin) {
         //TODO write your implementation code here:
         coll = new ArrayList<>();
-        acc = new Account(email, password);
+        acc = new Account(email, password, jenis_kelamin);
         coll = acc.cekLogin();
         if (!coll.isEmpty()) {
             return true;
@@ -65,11 +65,10 @@ public class BMICalcService {
      * Web service operation
      */
     @WebMethod(operationName = "insertData")
-    public boolean insertData(@WebParam(name = "berat_badan") double berat_badan, @WebParam(name = "tinggi_badan") double tinggi_badan, @WebParam(name = "account_id") int account_id) {
-        bmi = new HistoryBMI(berat_badan, tinggi_badan, account_id);
+    public boolean insertData(@WebParam(name = "berat_badan") double berat_badan, @WebParam(name = "tinggi_badan") double tinggi_badan, @WebParam(name = "hasil_bmi") double hasil_bmi, @WebParam(name = "account_id") int account_id) {
+        bmi = new HistoryBMI(berat_badan, tinggi_badan, hasil_bmi, account_id);
         bmi.insertData();
         return true;
     }
-    
     
 }
