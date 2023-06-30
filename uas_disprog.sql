@@ -25,10 +25,11 @@ DROP TABLE IF EXISTS `account`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `account` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `email` varchar(45) NOT NULL,
+  `id_account` int(11) NOT NULL AUTO_INCREMENT,
+  `username` varchar(45) NOT NULL,
   `password` varchar(45) NOT NULL,
-  PRIMARY KEY (`id`)
+  `jenis_kelamin` enum('L','P') NOT NULL,
+  PRIMARY KEY (`id_account`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -49,14 +50,15 @@ DROP TABLE IF EXISTS `history_bmi`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `history_bmi` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id_bmi` int(11) NOT NULL AUTO_INCREMENT,
   `tanggal` timestamp NOT NULL DEFAULT current_timestamp(),
   `berat_badan` double NOT NULL,
-  `tinggi_badan` varchar(45) NOT NULL,
+  `tinggi_badan` double NOT NULL,
+  `hasil_bmi` double NOT NULL,
   `account_id` int(11) NOT NULL,
-  PRIMARY KEY (`id`),
+  PRIMARY KEY (`id_bmi`),
   KEY `fk_history_bmi_account_idx` (`account_id`),
-  CONSTRAINT `fk_history_bmi_account` FOREIGN KEY (`account_id`) REFERENCES `account` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  CONSTRAINT `fk_history_bmi_account` FOREIGN KEY (`account_id`) REFERENCES `account` (`id_account`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -68,6 +70,34 @@ LOCK TABLES `history_bmi` WRITE;
 /*!40000 ALTER TABLE `history_bmi` DISABLE KEYS */;
 /*!40000 ALTER TABLE `history_bmi` ENABLE KEYS */;
 UNLOCK TABLES;
+
+--
+-- Table structure for table `history_hitung_ideal`
+--
+
+DROP TABLE IF EXISTS `history_hitung_ideal`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `history_hitung_ideal` (
+  `id_hitung_ideal` int(11) NOT NULL AUTO_INCREMENT,
+  `tanggal` timestamp NOT NULL DEFAULT current_timestamp(),
+  `tinggi_badan` double NOT NULL,
+  `berat_ideal` double NOT NULL,
+  `account_id` int(11) NOT NULL,
+  PRIMARY KEY (`id_hitung_ideal`),
+  KEY `fk_history_hitung_ideal_account1_idx` (`account_id`),
+  CONSTRAINT `fk_history_hitung_ideal_account1` FOREIGN KEY (`account_id`) REFERENCES `account` (`id_account`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `history_hitung_ideal`
+--
+
+LOCK TABLES `history_hitung_ideal` WRITE;
+/*!40000 ALTER TABLE `history_hitung_ideal` DISABLE KEYS */;
+/*!40000 ALTER TABLE `history_hitung_ideal` ENABLE KEYS */;
+UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -78,4 +108,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-06-30 18:47:42
+-- Dump completed on 2023-06-30 20:57:47
