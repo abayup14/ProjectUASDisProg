@@ -7,7 +7,6 @@ package com.bmicalc.services;
 import com.bmicalc.services.model.Account;
 import com.bmicalc.services.model.HistoryBMI;
 import java.util.ArrayList;
-import javax.jws.Oneway;
 import javax.jws.WebService;
 import javax.jws.WebMethod;
 import javax.jws.WebParam;
@@ -66,10 +65,11 @@ public class BMICalcService {
      * Web service operation
      */
     @WebMethod(operationName = "insertData")
-    @Oneway
-    public void insertData(@WebParam(name = "berat_badan") double berat_badan, @WebParam(name = "tinggi_badan") double tinggi_badan, @WebParam(name = "account_id") int account_id) {
+    public boolean insertData(@WebParam(name = "berat_badan") double berat_badan, @WebParam(name = "tinggi_badan") double tinggi_badan, @WebParam(name = "account_id") int account_id) {
         bmi = new HistoryBMI(berat_badan, tinggi_badan, account_id);
         bmi.insertData();
+        return true;
     }
+    
     
 }
