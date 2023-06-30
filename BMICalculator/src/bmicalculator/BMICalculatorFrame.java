@@ -32,13 +32,13 @@ public class BMICalculatorFrame extends javax.swing.JFrame {
         panelJudul = new javax.swing.JPanel();
         labelJudul = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTextArea2 = new javax.swing.JTextArea();
+        textAreaHasil = new javax.swing.JTextArea();
         labelTinggiBadan = new javax.swing.JLabel();
         textFieldEmail = new javax.swing.JTextField();
         textFieldPassword = new javax.swing.JTextField();
         labelBeratBadan = new javax.swing.JLabel();
-        jRadioButton1 = new javax.swing.JRadioButton();
-        jRadioButton2 = new javax.swing.JRadioButton();
+        radioButtonBeratBadanIdeal = new javax.swing.JRadioButton();
+        radioButtonBMI = new javax.swing.JRadioButton();
         buttonHitung = new javax.swing.JButton();
         buttonChat = new javax.swing.JButton();
 
@@ -71,17 +71,19 @@ public class BMICalculatorFrame extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jTextArea2.setColumns(20);
-        jTextArea2.setRows(5);
-        jScrollPane2.setViewportView(jTextArea2);
+        textAreaHasil.setColumns(20);
+        textAreaHasil.setRows(5);
+        jScrollPane2.setViewportView(textAreaHasil);
 
         labelTinggiBadan.setText("email :");
 
         labelBeratBadan.setText("password :");
 
-        jRadioButton1.setText("Hitung Berat Badan Ideal");
+        buttonGroup1.add(radioButtonBeratBadanIdeal);
+        radioButtonBeratBadanIdeal.setText("Hitung Berat Badan Ideal");
 
-        jRadioButton2.setText("Hitung BMI");
+        buttonGroup1.add(radioButtonBMI);
+        radioButtonBMI.setText("Hitung BMI");
 
         buttonHitung.setBackground(new java.awt.Color(0, 0, 102));
         buttonHitung.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
@@ -120,9 +122,9 @@ public class BMICalculatorFrame extends javax.swing.JFrame {
                         .addContainerGap())
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 29, Short.MAX_VALUE)
-                        .addComponent(jRadioButton2)
+                        .addComponent(radioButtonBMI)
                         .addGap(18, 18, 18)
-                        .addComponent(jRadioButton1)
+                        .addComponent(radioButtonBeratBadanIdeal)
                         .addGap(31, 31, 31))))
         );
         layout.setVerticalGroup(
@@ -133,8 +135,8 @@ public class BMICalculatorFrame extends javax.swing.JFrame {
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jRadioButton1)
-                    .addComponent(jRadioButton2))
+                    .addComponent(radioButtonBeratBadanIdeal)
+                    .addComponent(radioButtonBMI))
                 .addGap(11, 11, 11)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelTinggiBadan)
@@ -192,16 +194,16 @@ public class BMICalculatorFrame extends javax.swing.JFrame {
     private javax.swing.JButton buttonChat;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JButton buttonHitung;
-    private javax.swing.JRadioButton jRadioButton1;
-    private javax.swing.JRadioButton jRadioButton2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JTextArea jTextArea2;
     private javax.swing.JLabel labelBeratBadan;
     private javax.swing.JLabel labelJudul;
     private javax.swing.JLabel labelTinggiBadan;
     private javax.swing.JPanel panelJudul;
+    private javax.swing.JRadioButton radioButtonBMI;
+    private javax.swing.JRadioButton radioButtonBeratBadanIdeal;
+    private javax.swing.JTextArea textAreaHasil;
     private javax.swing.JTextField textFieldEmail;
     private javax.swing.JTextField textFieldPassword;
     // End of variables declaration//GEN-END:variables
