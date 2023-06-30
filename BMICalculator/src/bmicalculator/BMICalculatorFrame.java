@@ -39,8 +39,9 @@ public class BMICalculatorFrame extends javax.swing.JFrame {
         labelBeratBadan = new javax.swing.JLabel();
         radioButtonBeratBadanIdeal = new javax.swing.JRadioButton();
         radioButtonBMI = new javax.swing.JRadioButton();
-        buttonHitung = new javax.swing.JButton();
+        buttonHistori = new javax.swing.JButton();
         buttonChat = new javax.swing.JButton();
+        buttonHitung = new javax.swing.JButton();
 
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
@@ -85,14 +86,19 @@ public class BMICalculatorFrame extends javax.swing.JFrame {
         buttonGroup1.add(radioButtonBMI);
         radioButtonBMI.setText("Hitung BMI");
 
-        buttonHitung.setBackground(new java.awt.Color(0, 0, 102));
-        buttonHitung.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
-        buttonHitung.setForeground(new java.awt.Color(255, 255, 255));
-        buttonHitung.setText("Hitung");
+        buttonHistori.setBackground(new java.awt.Color(0, 0, 102));
+        buttonHistori.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
+        buttonHistori.setForeground(new java.awt.Color(255, 255, 255));
+        buttonHistori.setText("Histori");
 
         buttonChat.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
         buttonChat.setForeground(new java.awt.Color(0, 0, 102));
         buttonChat.setText("Chat Group");
+
+        buttonHitung.setBackground(new java.awt.Color(0, 0, 102));
+        buttonHitung.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
+        buttonHitung.setForeground(new java.awt.Color(255, 255, 255));
+        buttonHitung.setText("Hitung");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -115,17 +121,24 @@ public class BMICalculatorFrame extends javax.swing.JFrame {
                             .addComponent(textFieldEmail)
                             .addComponent(textFieldPassword))
                         .addContainerGap())
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(buttonHitung, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(buttonChat)
-                        .addContainerGap())
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 29, Short.MAX_VALUE)
-                        .addComponent(radioButtonBMI)
-                        .addGap(18, 18, 18)
-                        .addComponent(radioButtonBeratBadanIdeal)
-                        .addGap(31, 31, 31))))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(buttonHistori)
+                                .addGap(28, 28, 28)
+                                .addComponent(buttonChat)
+                                .addContainerGap())
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(radioButtonBMI)
+                                .addGap(18, 18, 18)
+                                .addComponent(radioButtonBeratBadanIdeal)
+                                .addGap(31, 31, 31))))))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(30, 30, 30)
+                    .addComponent(buttonHitung)
+                    .addContainerGap(280, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -147,9 +160,14 @@ public class BMICalculatorFrame extends javax.swing.JFrame {
                     .addComponent(textFieldPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(buttonHitung)
+                    .addComponent(buttonHistori)
                     .addComponent(buttonChat))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                    .addContainerGap(388, Short.MAX_VALUE)
+                    .addComponent(buttonHitung)
+                    .addContainerGap()))
         );
 
         pack();
@@ -193,6 +211,7 @@ public class BMICalculatorFrame extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buttonChat;
     private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.JButton buttonHistori;
     private javax.swing.JButton buttonHitung;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
