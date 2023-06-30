@@ -11,11 +11,12 @@ import java.util.ArrayList;
  *
  * @author Andreas Bayu P
  */
-public class Account extends MyModel{
+public class Account extends MyModel {
+
     private int id;
     private String email;
     private String password;
-    
+
     public int getId() {
         return id;
     }
@@ -39,22 +40,26 @@ public class Account extends MyModel{
     public void setPassword(String password) {
         this.password = password;
     }
-    
+
     public Account(String email, String password) {
         this.email = email;
         this.password = password;
     }
-    
+
     public Account(int id, String email, String password) {
         this.id = id;
         this.email = email;
         this.password = password;
     }
-    
+
+    public Account(String email) {
+        this.email = email;
+    }
+
     public void insertAccount() {
         try {
             if (!MyModel.conn.isClosed()) {
-                PreparedStatement sql = (PreparedStatement)MyModel.conn.prepareStatement("insert into account(email, password) values(?, ?)");
+                PreparedStatement sql = (PreparedStatement) MyModel.conn.prepareStatement("insert into account(email, password) values(?, ?)");
                 sql.setString(1, this.email);
                 sql.setString(2, this.password);
                 sql.executeUpdate();
@@ -64,7 +69,23 @@ public class Account extends MyModel{
             System.out.println("Error di insertAccount" + e);
         }
     }
-    
+
+    public ArrayList<Object> cekEmail(String email) {
+        ArrayList<Object> collections = new ArrayList<Object>();
+        try {
+            PreparedStatement sql = (PreparedStatement) MyModel.conn.prepareStatement("SELECT * from account where email = ?");
+            sql.setString(1, email);
+            this.result = sql.executeQuery();
+            while (this.result.next()) {
+                Account temp = new Account(this.result.getString("email"));
+                collections.add(temp);
+            }
+        } catch (Exception ex) {
+            System.out.println("Error di cekEmail " + ex);
+        }
+        return collections;
+    }
+
     public ArrayList<Object> cekLogin() {
         ArrayList<Object> coll = new ArrayList<>();
         try {
@@ -81,7 +102,7 @@ public class Account extends MyModel{
         } catch (Exception e) {
             System.out.println("Error di ceklogin " + e);
         }
-        
+
         return coll;
     }
 }

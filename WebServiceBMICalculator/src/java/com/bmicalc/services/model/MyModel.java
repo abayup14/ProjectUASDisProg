@@ -24,7 +24,7 @@ public class MyModel {
         if (MyModel.conn == null) {
             try {
                 Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
-                return DriverManager.getConnection("jdbc:mysql://localhost/uas_disprog", "root", "");
+                return DriverManager.getConnection("jdbc:mysql://localhost/uas_disprog", "abayup", "mysql");
             } catch (Exception e) {
                 System.out.println("Error di getConnection " + e);
             }

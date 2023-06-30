@@ -15,6 +15,7 @@ public class HistoryBMI extends MyModel{
     private Timestamp tanggal;
     private double berat_badan;
     private double tinggi_badan;
+    private int acc_id;
     
     public int getId() {
         return id;
@@ -47,10 +48,19 @@ public class HistoryBMI extends MyModel{
     public void setTinggi_badan(double tinggi_badan) {
         this.tinggi_badan = tinggi_badan;
     }
+    
+    public int getAcc_id() {
+        return acc_id;
+    }
 
-    public HistoryBMI(double berat_badan, double tinggi_badan) {
+    public void setAcc_id(int acc_id) {
+        this.acc_id = acc_id;
+    }
+
+    public HistoryBMI(double berat_badan, double tinggi_badan, int acc_id) {
         this.berat_badan = berat_badan;
         this.tinggi_badan = tinggi_badan;
+        this.acc_id = acc_id;
     }
 
     public HistoryBMI(int id, Timestamp tanggal, double berat_badan, double tinggi_badan) {
@@ -63,14 +73,15 @@ public class HistoryBMI extends MyModel{
     public void insertData() {
         try {
             if (!MyModel.conn.isClosed()) {
-                PreparedStatement sql = (PreparedStatement)MyModel.conn.prepareStatement("insert into history_bmi(berat_badan, tinggi_badan) values(?, ?)");
+                PreparedStatement sql = (PreparedStatement)MyModel.conn.prepareStatement("insert into history_bmi(berat_badan, tinggi_badan, account_id) values(?, ?, ?)");
                 sql.setDouble(1, this.berat_badan);
                 sql.setDouble(2, this.tinggi_badan);
+                sql.setInt(3, this.acc_id);
                 sql.executeUpdate();
                 sql.close();
             }
         } catch (Exception e) {
-            System.out.println("Error di insertData" + e);
+            System.out.println("Error di insertData " + e);
         }
     }
 }
