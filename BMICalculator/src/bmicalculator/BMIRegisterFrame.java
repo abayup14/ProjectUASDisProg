@@ -26,6 +26,7 @@ public class BMIRegisterFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroupGender = new javax.swing.ButtonGroup();
         textFieldPassword = new javax.swing.JTextField();
         textFieldEmail = new javax.swing.JTextField();
         buttonLogin = new javax.swing.JButton();
@@ -36,6 +37,9 @@ public class BMIRegisterFrame extends javax.swing.JFrame {
         labelBeratBadan = new javax.swing.JLabel();
         labelBeratBadan1 = new javax.swing.JLabel();
         textFieldRetypePassword = new javax.swing.JTextField();
+        radioButtonPria = new javax.swing.JRadioButton();
+        radioButtonWanita = new javax.swing.JRadioButton();
+        labelTinggiBadan1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -77,6 +81,14 @@ public class BMIRegisterFrame extends javax.swing.JFrame {
 
         labelBeratBadan1.setText("retype password :");
 
+        buttonGroupGender.add(radioButtonPria);
+        radioButtonPria.setText("pria");
+
+        buttonGroupGender.add(radioButtonWanita);
+        radioButtonWanita.setText("Wanita");
+
+        labelTinggiBadan1.setText("Gender :");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -103,9 +115,18 @@ public class BMIRegisterFrame extends javax.swing.JFrame {
                                 .addComponent(buttonLogin))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(11, 11, 11)
-                                .addComponent(labelBeratBadan1)
-                                .addGap(18, 18, 18)
-                                .addComponent(textFieldRetypePassword, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(labelTinggiBadan1)
+                                    .addComponent(labelBeratBadan1))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(18, 18, 18)
+                                        .addComponent(textFieldRetypePassword, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(68, 68, 68)
+                                        .addComponent(radioButtonPria)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(radioButtonWanita)))))
                         .addGap(0, 26, Short.MAX_VALUE)))
                 .addContainerGap(6, Short.MAX_VALUE))
         );
@@ -125,7 +146,12 @@ public class BMIRegisterFrame extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelBeratBadan1)
                     .addComponent(textFieldRetypePassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(radioButtonPria)
+                    .addComponent(radioButtonWanita)
+                    .addComponent(labelTinggiBadan1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(buttonBack)
                     .addComponent(buttonLogin))
@@ -172,12 +198,16 @@ public class BMIRegisterFrame extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buttonBack;
+    private javax.swing.ButtonGroup buttonGroupGender;
     private javax.swing.JButton buttonLogin;
     private javax.swing.JLabel labelBeratBadan;
     private javax.swing.JLabel labelBeratBadan1;
     private javax.swing.JLabel labelJudul;
     private javax.swing.JLabel labelTinggiBadan;
+    private javax.swing.JLabel labelTinggiBadan1;
     private javax.swing.JPanel panelJudul;
+    private javax.swing.JRadioButton radioButtonPria;
+    private javax.swing.JRadioButton radioButtonWanita;
     private javax.swing.JTextField textFieldEmail;
     private javax.swing.JTextField textFieldPassword;
     private javax.swing.JTextField textFieldRetypePassword;
