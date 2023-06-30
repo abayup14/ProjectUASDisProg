@@ -55,8 +55,8 @@ public class Account extends MyModel{
         try {
             if (!MyModel.conn.isClosed()) {
                 PreparedStatement sql = (PreparedStatement)MyModel.conn.prepareStatement("insert into account(email, password) values(?, ?)");
-                sql.setString(2, this.email);
-                sql.setString(3, this.password);
+                sql.setString(1, this.email);
+                sql.setString(2, this.password);
                 sql.executeUpdate();
                 sql.close();
             }
