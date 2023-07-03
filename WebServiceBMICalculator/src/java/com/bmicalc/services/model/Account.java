@@ -114,7 +114,7 @@ public class Account extends MyModel {
             sql.setString(2, this.password);
             this.result = sql.executeQuery();
             while (this.result.next()) {
-                Account acc = new Account(this.result.getString("email"), this.result.getString("password"), this.result.getString("jenis_kelamin"));
+                Account acc = new Account(this.result.getInt("id_account"), this.result.getString("email"), this.result.getString("password"), this.result.getString("jenis_kelamin"));
                 coll.add(acc);
                 break;
             }
