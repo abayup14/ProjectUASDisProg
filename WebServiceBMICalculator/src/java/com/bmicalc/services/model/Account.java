@@ -17,6 +17,7 @@ public class Account extends MyModel {
     private String email;
     private String password;
     private String jenis_kelamin;
+    ArrayList<Object> coll;
 
     public int getId() {
         return id;
@@ -87,23 +88,24 @@ public class Account extends MyModel {
     }
 
     public ArrayList<Object> cekEmail(String email) {
-        ArrayList<Object> collections = new ArrayList<Object>();
+        coll = new ArrayList<Object>();
         try {
             PreparedStatement sql = (PreparedStatement) MyModel.conn.prepareStatement("SELECT * from account where email = ?");
             sql.setString(1, email);
             this.result = sql.executeQuery();
             while (this.result.next()) {
                 Account temp = new Account(this.result.getString("email"));
-                collections.add(temp);
+                coll.add(temp);
+                break;
             }
         } catch (Exception ex) {
             System.out.println("Error di cekEmail " + ex);
         }
-        return collections;
+        return coll;
     }
 
     public ArrayList<Object> cekLogin() {
-        ArrayList<Object> coll = new ArrayList<>();
+        coll = new ArrayList<Object>();
         try {
             //this.statement = (Statement) MyModel.conn.createStatement();
             //this.result = this.statement.executeQuery("SELECT * from account WHERE email = " + this.email + " AND password = " + this.password);
@@ -114,6 +116,7 @@ public class Account extends MyModel {
             while (this.result.next()) {
                 Account acc = new Account(this.result.getString("email"), this.result.getString("password"), this.result.getString("jenis_kelamin"));
                 coll.add(acc);
+                break;
             }
         } catch (Exception e) {
             System.out.println("Error di ceklogin " + e);
