@@ -235,10 +235,4 @@ public class BMILoginFrame extends javax.swing.JFrame implements Runnable{
     private javax.swing.JTextField textFieldPassword;
     // End of variables declaration//GEN-END:variables
 
-    private static boolean cekLogin(java.lang.String email, java.lang.String password) {
-        bmicalculator.BMICalcService_Service service = new bmicalculator.BMICalcService_Service();
-        bmicalculator.BMICalcService port = service.getBMICalcServicePort();
-        return port.cekLogin(email, password);
-    }
-
 }
