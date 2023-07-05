@@ -36,7 +36,7 @@ public class BMICalcService {
     @WebMethod(operationName = "insertAccount")
     public boolean insertAccount(@WebParam(name = "email") String email, @WebParam(name = "password") String password, @WebParam(name = "jenis_kelamin") String jenis_kelamin) {
         //TODO write your implementation code here:
-        coll = new ArrayList<>();
+        coll = new ArrayList<Object>();
         acc = new Account();
         coll = acc.cekEmail(email);
         if (coll.isEmpty()) {
