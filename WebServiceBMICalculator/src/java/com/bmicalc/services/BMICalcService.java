@@ -67,7 +67,7 @@ public class BMICalcService {
     /**
      * Web service operation
      */
-    @WebMethod(operationName = "insertData")
+    @WebMethod(operationName = "insertDataBMI")
     public boolean insertDataBMI(@WebParam(name = "berat_badan") double berat_badan, @WebParam(name = "tinggi_badan") double tinggi_badan, @WebParam(name = "hasil_bmi") double hasil_bmi, @WebParam(name = "account_id") int account_id) {
         bmi = new HistoryBMI(berat_badan, tinggi_badan, hasil_bmi, account_id);
         bmi.insertData();
