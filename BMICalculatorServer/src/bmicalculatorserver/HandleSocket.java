@@ -11,7 +11,7 @@ import java.io.InputStreamReader;
 import java.net.Socket;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
+import 
 /**
  *
  * @author asus
@@ -23,6 +23,7 @@ public class HandleSocket extends Thread {
     FormServer server;
     //GUI_Server parent;
     String message;
+    Account acc;
     
     public HandleSocket(FormServer _parent, Socket s) {
         try {
@@ -40,14 +41,21 @@ public class HandleSocket extends Thread {
         String[] part = message.split("~");
         try {
             if(part[0].equals("login")) {
-                u = new User();
-                u = u.CekLogin(part[1], part[2]);
-                if(u != null) {
+                //u = new User();
+                //u = u.CekLogin(part[1], part[2]);
+                boolean isTrue = cekLogin(part[1], part[2]);
+                
+                if (isTrue == true) {
+                    
+                } else {
+                    
+                }
+                /*if(u != null) {
                     output.writeBytes("Berhasil Login!\n");
                 }
                 else {
                     output.writeBytes("Gagal Login!\n");
-                }
+                }*/
             }
             else if (part[0].equals("register")) {
                 String email = part[1];
@@ -93,6 +101,12 @@ public class HandleSocket extends Thread {
                 Logger.getLogger(HandleSocket.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
+    }
+
+    private static boolean cekLogin(java.lang.String email, java.lang.String password) {
+        bmicalculatorserver.BMICalcService_Service service = new bmicalculatorserver.BMICalcService_Service();
+        bmicalculatorserver.BMICalcService port = service.getBMICalcServicePort();
+        return port.cekLogin(email, password);
     }
     
     
