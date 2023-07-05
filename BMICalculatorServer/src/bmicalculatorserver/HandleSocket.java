@@ -11,7 +11,7 @@ import java.io.InputStreamReader;
 import java.net.Socket;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import 
+
 /**
  *
  * @author asus
@@ -46,9 +46,9 @@ public class HandleSocket extends Thread {
                 boolean isTrue = cekLogin(part[1], part[2]);
                 
                 if (isTrue == true) {
-                    
+                    output.writeBytes("Berhasil Login\n");
                 } else {
-                    
+                    output.writeBytes("Gagal Login\n");
                 }
                 /*if(u != null) {
                     output.writeBytes("Berhasil Login!\n");
@@ -62,28 +62,28 @@ public class HandleSocket extends Thread {
                 String name = part[2];
                 String pass = part[3];
                 String answer = part[4];
-                u = new User(name, pass, email, answer);
+                /*u = new User(name, pass, email, answer);
                 if(u.viewListData(u) == null) {
                     u.insert();
                     output.writeBytes("Registrasi berhasil!\n");
                 }
                 else {
                     output.writeBytes("Email telah digunakan\n");
-                }
+                }*/
             }
             else if(part[0].equals("verif")) {
-                u = new User();
+                /*u = new User();
                 if(u.Verification(part[1], part[2]) == true) {
                     output.writeBytes("jawabanBenar\n");
                 }
                 else {
                     output.writeBytes("jawabanSalah\n");
-                }
+                }*/
             }
             else if(part[0].equals("change")) {
-                u = new User("", part[1], part[2], "");
+                /*u = new User("", part[1], part[2], "");
                 u.update();
-                output.writeBytes("sukses\n");
+                output.writeBytes("sukses\n");*/
             }
         } catch (IOException ex) {
             Logger.getLogger(HandleSocket.class.getName()).log(Level.SEVERE, null, ex);

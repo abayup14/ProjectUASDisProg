@@ -4,17 +4,44 @@
  */
 package bmicalculatorserver;
 
+import java.io.IOException;
+import java.net.ServerSocket;
+import java.net.Socket;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author Andreas Bayu P
  */
-public class FormServer extends javax.swing.JFrame {
+public class FormServer extends javax.swing.JFrame implements Runnable{
 
     /**
      * Creates new form FormServer
      */
+    ServerSocket ss;
+    Socket s;
+    Thread t;
+    ArrayList<HandleSocket> clients = new ArrayList<HandleSocket>();   
+    
     public FormServer() {
         initComponents();
+        try {
+            initComponents();
+            ss = new ServerSocket(10013);
+            
+            if (t == null) {
+                t = new Thread(this, "myserver");
+                t.start();
+            }
+        } catch (IOException ex) {
+            Logger.getLogger(FormServer.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    public void ShowChat(String message) {
+        textAreaServer.append(message + "\n");
     }
 
     /**
@@ -88,6 +115,19 @@ public class FormServer extends javax.swing.JFrame {
                 new FormServer().setVisible(true);
             }
         });
+    }
+    
+    public void run() {
+        while (true) {
+            try {
+                s = ss.accept();
+                HandleSocket hs = new HandleSocket(this, s);
+                hs.start();
+                clients.add(hs);
+            } catch (IOException ex) {
+                Logger.getLogger(FormServer.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
