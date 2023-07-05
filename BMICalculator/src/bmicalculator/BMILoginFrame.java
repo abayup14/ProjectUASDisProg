@@ -175,6 +175,7 @@ public class BMILoginFrame extends javax.swing.JFrame implements Runnable{
             // TODO add your handling code here:
             this.email = textFieldEmail.getText();
             this.password = textFieldPassword.getText();
+            this.
             
             this.output.writeBytes("login~" + this.email + "~" + this.password+"\n");
         } catch (IOException ex) {
