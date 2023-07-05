@@ -16,7 +16,8 @@ public class BMILoginFrame extends javax.swing.JFrame {
     public BMILoginFrame() {
         initComponents();
     }
-
+    
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -68,10 +69,20 @@ public class BMILoginFrame extends javax.swing.JFrame {
         buttonLogin.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
         buttonLogin.setForeground(new java.awt.Color(255, 255, 255));
         buttonLogin.setText("Login");
+        buttonLogin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonLoginActionPerformed(evt);
+            }
+        });
 
         buttonRegister.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
         buttonRegister.setForeground(new java.awt.Color(0, 0, 102));
         buttonRegister.setText("Register");
+        buttonRegister.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonRegisterActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -117,6 +128,18 @@ public class BMILoginFrame extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void buttonRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonRegisterActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_buttonRegisterActionPerformed
+
+    private void buttonLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonLoginActionPerformed
+        // TODO add your handling code here:
+        boolean isTrue = cekLogin(textFieldEmail.getText(), textFieldPassword.getText());
+        if (isTrue == true) {
+            
+        }
+    }//GEN-LAST:event_buttonLoginActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -151,7 +174,7 @@ public class BMILoginFrame extends javax.swing.JFrame {
             }
         });
     }
-
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buttonLogin;
     private javax.swing.JButton buttonRegister;
@@ -162,4 +185,11 @@ public class BMILoginFrame extends javax.swing.JFrame {
     private javax.swing.JTextField textFieldEmail;
     private javax.swing.JTextField textFieldPassword;
     // End of variables declaration//GEN-END:variables
+
+    private static boolean cekLogin(java.lang.String email, java.lang.String password) {
+        bmicalculator.BMICalcService_Service service = new bmicalculator.BMICalcService_Service();
+        bmicalculator.BMICalcService port = service.getBMICalcServicePort();
+        return port.cekLogin(email, password);
+    }
+
 }

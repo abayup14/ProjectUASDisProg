@@ -63,8 +63,6 @@ public class HistoryHitungIdeal extends MyModel {
         this.acc_id = acc_id;
     }
     
-    
-    
     public void insertData() {
         try {
             if (!MyModel.conn.isClosed()) {

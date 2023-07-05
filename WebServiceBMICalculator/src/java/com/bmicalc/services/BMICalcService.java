@@ -52,7 +52,7 @@ public class BMICalcService {
      * Web service operation
      */
     @WebMethod(operationName = "cekLogin")
-    public boolean cekLogin(@WebParam(name = "email") String email, @WebParam(name = "password") String password, @WebParam(name = "jenis_kelamin") String jenis_kelamin) {
+    public boolean cekLogin(@WebParam(name = "email") String email, @WebParam(name = "password") String password) {
         //TODO write your implementation code here:
         coll = new ArrayList<>();
         acc = new Account();
