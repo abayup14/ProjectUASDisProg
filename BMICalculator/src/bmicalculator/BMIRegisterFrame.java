@@ -4,17 +4,62 @@
  */
 package bmicalculator;
 
+import java.io.BufferedReader;
+import java.io.DataOutputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.Socket;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author vince
  */
-public class BMIRegisterFrame extends javax.swing.JFrame {
-
+public class BMIRegisterFrame extends javax.swing.JFrame implements Runnable {
+    Socket s;
+    BufferedReader input;
+    DataOutputStream output;
+    Thread t;
+    String email;
+    String password;
+    String gender;
+    
+    public void run() {
+        while (true) {
+            getMessage();
+        }
+    }
+    
+    private void getMessage() {
+        try {
+            JOptionPane.showMessageDialog(this, this.input.readLine()+"\n");
+        } catch (IOException ex) {
+            Logger.getLogger(BMILoginFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    public void start() {
+        if (this.t == null) {
+            this.t = new Thread(this, "myThread");
+            this.t.start();
+        }
+    }
     /**
      * Creates new form BMIRegisterFrame
      */
     public BMIRegisterFrame() {
         initComponents();
+        try {
+            String ip = "192.168.183.85";
+            s = new Socket(ip, 10013); //string host dan int port
+            input = new BufferedReader(new InputStreamReader(s.getInputStream()));
+            this.start();
+            output = new DataOutputStream(s.getOutputStream());
+        } catch (IOException ex) {
+            Logger.getLogger(BMILoginFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -47,10 +92,20 @@ public class BMIRegisterFrame extends javax.swing.JFrame {
         buttonLogin.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
         buttonLogin.setForeground(new java.awt.Color(255, 255, 255));
         buttonLogin.setText("Register");
+        buttonLogin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonLoginActionPerformed(evt);
+            }
+        });
 
         buttonBack.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
         buttonBack.setForeground(new java.awt.Color(0, 0, 102));
         buttonBack.setText("Back");
+        buttonBack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonBackActionPerformed(evt);
+            }
+        });
 
         panelJudul.setBackground(new java.awt.Color(0, 0, 102));
 
@@ -160,6 +215,33 @@ public class BMIRegisterFrame extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void buttonLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonLoginActionPerformed
+        // TODO add your handling code here:
+        try {
+            // TODO add your handling code here:
+            this.email = textFieldEmail.getText();
+            this.password = textFieldPassword.getText();
+            if (radioButtonPria.isSelected()) {
+                this.gender = "L";
+            } else if (radioButtonWanita.isSelected()) {
+                this.gender = "P";
+            }
+            
+            if (textFieldRetypePassword.getText().equals(textFieldPassword.getText())) {
+                this.output.writeBytes("login~" + this.email + "~" + this.password + "~" + this.gender + "\n");
+            } else {
+                JOptionPane.showMessageDialog(this, "Password yang anda isikan tidak sama. Silahkan ulangi.");
+            }
+        } catch (IOException ex) {
+            Logger.getLogger(BMILoginFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_buttonLoginActionPerformed
+
+    private void buttonBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonBackActionPerformed
+        // TODO add your handling code here:
+        this.setVisible(false);
+    }//GEN-LAST:event_buttonBackActionPerformed
 
     /**
      * @param args the command line arguments

@@ -43,9 +43,9 @@ public class HandleSocket extends Thread {
             if(part[0].equals("login")) {
                 //u = new User();
                 //u = u.CekLogin(part[1], part[2]);
-                boolean isTrue = cekLogin(part[1], part[2]);
+                boolean cekLogin = cekLogin(part[1], part[2]);
                 
-                if (isTrue == true) {
+                if (cekLogin == true) {
                     output.writeBytes("Berhasil Login\n");
                 } else {
                     output.writeBytes("Gagal Login\n");
@@ -59,9 +59,16 @@ public class HandleSocket extends Thread {
             }
             else if (part[0].equals("register")) {
                 String email = part[1];
-                String name = part[2];
-                String pass = part[3];
-                String answer = part[4];
+                String password = part[2];
+                String gender = part[3];
+                
+                boolean insertAccount = insertAccount(email, password, gender);
+                
+                if (insertAccount == true) {
+                    output.writeBytes("Berhasil mendaftarkan akun\n");
+                } else {
+                    output.writeBytes("Gagal mendaftarkan akun. Akun sudah ada di dalam database\n");
+                }
                 /*u = new User(name, pass, email, answer);
                 if(u.viewListData(u) == null) {
                     u.insert();
@@ -71,20 +78,20 @@ public class HandleSocket extends Thread {
                     output.writeBytes("Email telah digunakan\n");
                 }*/
             }
-            else if(part[0].equals("verif")) {
-                /*u = new User();
+            /*else if(part[0].equals("verif")) {
+                u = new User();
                 if(u.Verification(part[1], part[2]) == true) {
                     output.writeBytes("jawabanBenar\n");
                 }
                 else {
                     output.writeBytes("jawabanSalah\n");
-                }*/
+                }
             }
             else if(part[0].equals("change")) {
-                /*u = new User("", part[1], part[2], "");
+                u = new User("", part[1], part[2], "");
                 u.update();
-                output.writeBytes("sukses\n");*/
-            }
+                output.writeBytes("sukses\n");
+            }*/
         } catch (IOException ex) {
             Logger.getLogger(HandleSocket.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -107,6 +114,12 @@ public class HandleSocket extends Thread {
         bmicalculatorserver.BMICalcService_Service service = new bmicalculatorserver.BMICalcService_Service();
         bmicalculatorserver.BMICalcService port = service.getBMICalcServicePort();
         return port.cekLogin(email, password);
+    }
+
+    private static boolean insertAccount(java.lang.String email, java.lang.String password, java.lang.String jenisKelamin) {
+        bmicalculatorserver.BMICalcService_Service service = new bmicalculatorserver.BMICalcService_Service();
+        bmicalculatorserver.BMICalcService port = service.getBMICalcServicePort();
+        return port.insertAccount(email, password, jenisKelamin);
     }
     
     

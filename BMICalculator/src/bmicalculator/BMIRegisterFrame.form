@@ -131,6 +131,9 @@
         </Property>
         <Property name="text" type="java.lang.String" value="Register"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonLoginActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="buttonBack">
       <Properties>
@@ -142,6 +145,9 @@
         </Property>
         <Property name="text" type="java.lang.String" value="Back"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonBackActionPerformed"/>
+      </Events>
     </Component>
     <Container class="javax.swing.JPanel" name="panelJudul">
       <Properties>
