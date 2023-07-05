@@ -49,7 +49,7 @@ public class BMILoginFrame extends javax.swing.JFrame implements Runnable{
     public BMILoginFrame(){
         try {
             initComponents();
-            String ip = "TARGETTED IP";
+            String ip = "192.168.183.85";
             s = new Socket(ip, 10013); //string host dan int port
             input = new BufferedReader(new InputStreamReader(s.getInputStream()));
             this.start();
@@ -58,7 +58,6 @@ public class BMILoginFrame extends javax.swing.JFrame implements Runnable{
             Logger.getLogger(BMILoginFrame.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
     
     /**
      * This method is called from within the constructor to initialize the form.

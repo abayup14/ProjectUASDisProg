@@ -29,7 +29,7 @@ public class BMICalculator {
             BufferedReader input;
             DataOutputStream output;
             
-            s = new Socket("INI NANTI DIISI IP TARGET", 10013); //string host dan int port
+            s = new Socket("192.168.183.85", 10013); //string host dan int port
             output = new DataOutputStream(s.getOutputStream());
             input = new BufferedReader(new InputStreamReader(s.getInputStream()));
             
