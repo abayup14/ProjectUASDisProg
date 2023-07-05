@@ -98,7 +98,7 @@ CREATE TABLE `history_hitung_ideal` (
 
 LOCK TABLES `history_hitung_ideal` WRITE;
 /*!40000 ALTER TABLE `history_hitung_ideal` DISABLE KEYS */;
-INSERT INTO `history_hitung_ideal` VALUES (1,'2023-07-05 07:24:11',60,170,1);
+INSERT INTO `history_hitung_ideal` VALUES (1,'2023-07-05 07:24:11',170,60,1);
 /*!40000 ALTER TABLE `history_hitung_ideal` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -111,4 +111,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-07-05 18:11:45
+-- Dump completed on 2023-07-06  6:06:08
