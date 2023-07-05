@@ -54,6 +54,11 @@ public class Account extends MyModel {
     public Account() {
         
     }
+
+    public Account(String email, String password) {
+        this.email = email;
+        this.password = password;
+    }
     
     public Account(String email, String password, String jenis_kelamin) {
         this.email = email;
@@ -83,7 +88,7 @@ public class Account extends MyModel {
                 sql.close();
             }
         } catch (Exception e) {
-            System.out.println("Error di insertAccount" + e);
+            System.out.println("Error di insertAccount " + e);
         }
     }
 

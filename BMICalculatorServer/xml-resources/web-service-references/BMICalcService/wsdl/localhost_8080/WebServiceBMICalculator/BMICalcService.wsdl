@@ -4,23 +4,17 @@
 <xsd:import namespace="http://services.bmicalc.com/" schemaLocation="http://localhost:8080/WebServiceBMICalculator/BMICalcService?xsd=1"/>
 </xsd:schema>
 </types>
-<message name="cekLogin">
-<part name="parameters" element="tns:cekLogin"/>
-</message>
-<message name="cekLoginResponse">
-<part name="parameters" element="tns:cekLoginResponse"/>
-</message>
-<message name="insertData">
-<part name="parameters" element="tns:insertData"/>
-</message>
-<message name="insertDataResponse">
-<part name="parameters" element="tns:insertDataResponse"/>
-</message>
 <message name="insertAccount">
 <part name="parameters" element="tns:insertAccount"/>
 </message>
 <message name="insertAccountResponse">
 <part name="parameters" element="tns:insertAccountResponse"/>
+</message>
+<message name="insertDataBMI">
+<part name="parameters" element="tns:insertDataBMI"/>
+</message>
+<message name="insertDataBMIResponse">
+<part name="parameters" element="tns:insertDataBMIResponse"/>
 </message>
 <message name="insertDataIdeal">
 <part name="parameters" element="tns:insertDataIdeal"/>
@@ -28,44 +22,32 @@
 <message name="insertDataIdealResponse">
 <part name="parameters" element="tns:insertDataIdealResponse"/>
 </message>
+<message name="cekLogin">
+<part name="parameters" element="tns:cekLogin"/>
+</message>
+<message name="cekLoginResponse">
+<part name="parameters" element="tns:cekLoginResponse"/>
+</message>
 <portType name="BMICalcService">
-<operation name="cekLogin">
-<input wsam:Action="http://services.bmicalc.com/BMICalcService/cekLoginRequest" message="tns:cekLogin"/>
-<output wsam:Action="http://services.bmicalc.com/BMICalcService/cekLoginResponse" message="tns:cekLoginResponse"/>
-</operation>
-<operation name="insertData">
-<input wsam:Action="http://services.bmicalc.com/BMICalcService/insertDataRequest" message="tns:insertData"/>
-<output wsam:Action="http://services.bmicalc.com/BMICalcService/insertDataResponse" message="tns:insertDataResponse"/>
-</operation>
 <operation name="insertAccount">
 <input wsam:Action="http://services.bmicalc.com/BMICalcService/insertAccountRequest" message="tns:insertAccount"/>
 <output wsam:Action="http://services.bmicalc.com/BMICalcService/insertAccountResponse" message="tns:insertAccountResponse"/>
+</operation>
+<operation name="insertDataBMI">
+<input wsam:Action="http://services.bmicalc.com/BMICalcService/insertDataBMIRequest" message="tns:insertDataBMI"/>
+<output wsam:Action="http://services.bmicalc.com/BMICalcService/insertDataBMIResponse" message="tns:insertDataBMIResponse"/>
 </operation>
 <operation name="insertDataIdeal">
 <input wsam:Action="http://services.bmicalc.com/BMICalcService/insertDataIdealRequest" message="tns:insertDataIdeal"/>
 <output wsam:Action="http://services.bmicalc.com/BMICalcService/insertDataIdealResponse" message="tns:insertDataIdealResponse"/>
 </operation>
+<operation name="cekLogin">
+<input wsam:Action="http://services.bmicalc.com/BMICalcService/cekLoginRequest" message="tns:cekLogin"/>
+<output wsam:Action="http://services.bmicalc.com/BMICalcService/cekLoginResponse" message="tns:cekLoginResponse"/>
+</operation>
 </portType>
 <binding name="BMICalcServicePortBinding" type="tns:BMICalcService">
 <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
-<operation name="cekLogin">
-<soap:operation soapAction=""/>
-<input>
-<soap:body use="literal"/>
-</input>
-<output>
-<soap:body use="literal"/>
-</output>
-</operation>
-<operation name="insertData">
-<soap:operation soapAction=""/>
-<input>
-<soap:body use="literal"/>
-</input>
-<output>
-<soap:body use="literal"/>
-</output>
-</operation>
 <operation name="insertAccount">
 <soap:operation soapAction=""/>
 <input>
@@ -75,7 +57,25 @@
 <soap:body use="literal"/>
 </output>
 </operation>
+<operation name="insertDataBMI">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
 <operation name="insertDataIdeal">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="cekLogin">
 <soap:operation soapAction=""/>
 <input>
 <soap:body use="literal"/>
