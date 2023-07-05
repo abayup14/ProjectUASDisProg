@@ -58,7 +58,8 @@ public class BMILoginFrame extends javax.swing.JFrame implements Runnable{
             Logger.getLogger(BMILoginFrame.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-
+    
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -221,7 +222,7 @@ public class BMILoginFrame extends javax.swing.JFrame implements Runnable{
             }
         });
     }
-
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buttonLogin;
     private javax.swing.JButton buttonRegister;
@@ -233,4 +234,11 @@ public class BMILoginFrame extends javax.swing.JFrame implements Runnable{
     private javax.swing.JTextField textFieldEmail;
     private javax.swing.JTextField textFieldPassword;
     // End of variables declaration//GEN-END:variables
+
+    private static boolean cekLogin(java.lang.String email, java.lang.String password) {
+        bmicalculator.BMICalcService_Service service = new bmicalculator.BMICalcService_Service();
+        bmicalculator.BMICalcService port = service.getBMICalcServicePort();
+        return port.cekLogin(email, password);
+    }
+
 }
