@@ -30,7 +30,7 @@ CREATE TABLE `account` (
   `password` varchar(45) NOT NULL,
   `jenis_kelamin` enum('L','P') NOT NULL,
   PRIMARY KEY (`id_account`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -39,7 +39,7 @@ CREATE TABLE `account` (
 
 LOCK TABLES `account` WRITE;
 /*!40000 ALTER TABLE `account` DISABLE KEYS */;
-INSERT INTO `account` VALUES (1,'bayu','bayu','L');
+INSERT INTO `account` VALUES (1,'bayu','bayu','L'),(2,'andre','andre','L');
 /*!40000 ALTER TABLE `account` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -60,7 +60,7 @@ CREATE TABLE `history_bmi` (
   PRIMARY KEY (`id_bmi`),
   KEY `fk_history_bmi_account_idx` (`account_id`),
   CONSTRAINT `fk_history_bmi_account` FOREIGN KEY (`account_id`) REFERENCES `account` (`id_account`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -69,6 +69,7 @@ CREATE TABLE `history_bmi` (
 
 LOCK TABLES `history_bmi` WRITE;
 /*!40000 ALTER TABLE `history_bmi` DISABLE KEYS */;
+INSERT INTO `history_bmi` VALUES (1,'2023-07-03 11:28:36',60,170,20.7,1);
 /*!40000 ALTER TABLE `history_bmi` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -88,7 +89,7 @@ CREATE TABLE `history_hitung_ideal` (
   PRIMARY KEY (`id_hitung_ideal`),
   KEY `fk_history_hitung_ideal_account1_idx` (`account_id`),
   CONSTRAINT `fk_history_hitung_ideal_account1` FOREIGN KEY (`account_id`) REFERENCES `account` (`id_account`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -97,6 +98,7 @@ CREATE TABLE `history_hitung_ideal` (
 
 LOCK TABLES `history_hitung_ideal` WRITE;
 /*!40000 ALTER TABLE `history_hitung_ideal` DISABLE KEYS */;
+INSERT INTO `history_hitung_ideal` VALUES (1,'2023-07-05 07:24:11',60,170,1);
 /*!40000 ALTER TABLE `history_hitung_ideal` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -109,4 +111,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-07-03 18:09:53
+-- Dump completed on 2023-07-05 18:11:45
