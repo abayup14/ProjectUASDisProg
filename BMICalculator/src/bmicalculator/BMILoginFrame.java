@@ -4,17 +4,59 @@
  */
 package bmicalculator;
 
+import java.io.BufferedReader;
+import java.io.DataOutputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.Socket;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author vince
  */
-public class BMILoginFrame extends javax.swing.JFrame {
+public class BMILoginFrame extends javax.swing.JFrame implements Runnable{
+    Socket s;
+    BufferedReader input;
+    DataOutputStream output;
+    Thread t;
+    String email;
+    String password;
+    
+    @Override
+    public void run() {
+        while (true) {
+            getMessage();
+        }
+    }
+    
+    private void getMessage() {
+        try {
+            jOptionPane1.showMessageDialog(this, this.input.readLine()+"\n");
+        } catch (IOException ex) {
+            Logger.getLogger(BMILoginFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    public void start() {
+        if (this.t == null) {
+            this.t = new Thread(this, "myThread");
+            this.t.start();
+        }
+    }
 
-    /**
-     * Creates new form BMILoginFrame
-     */
-    public BMILoginFrame() {
-        initComponents();
+    public BMILoginFrame(){
+        try {
+            initComponents();
+            String ip = "TARGETTED IP";
+            s = new Socket(ip, 10013); //string host dan int port
+            input = new BufferedReader(new InputStreamReader(s.getInputStream()));
+            this.start();
+            output = new DataOutputStream(s.getOutputStream());
+        } catch (IOException ex) {
+            Logger.getLogger(BMILoginFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -26,6 +68,7 @@ public class BMILoginFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jOptionPane1 = new javax.swing.JOptionPane();
         panelJudul = new javax.swing.JPanel();
         labelJudul = new javax.swing.JLabel();
         labelTinggiBadan = new javax.swing.JLabel();
@@ -68,10 +111,20 @@ public class BMILoginFrame extends javax.swing.JFrame {
         buttonLogin.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
         buttonLogin.setForeground(new java.awt.Color(255, 255, 255));
         buttonLogin.setText("Login");
+        buttonLogin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonLoginActionPerformed(evt);
+            }
+        });
 
         buttonRegister.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
         buttonRegister.setForeground(new java.awt.Color(0, 0, 102));
         buttonRegister.setText("Register");
+        buttonRegister.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonRegisterActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -117,6 +170,23 @@ public class BMILoginFrame extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void buttonLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonLoginActionPerformed
+        try {
+            // TODO add your handling code here:
+            this.email = textFieldEmail.getText();
+            this.password = textFieldPassword.getText();
+            
+            this.output.writeBytes("login~" + this.email + "~" + this.password+"\n");
+        } catch (IOException ex) {
+            Logger.getLogger(BMILoginFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_buttonLoginActionPerformed
+
+    private void buttonRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonRegisterActionPerformed
+        BMIRegisterFrame formRegister = new BMIRegisterFrame();
+        formRegister.setVisible(true);
+    }//GEN-LAST:event_buttonRegisterActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -155,6 +225,7 @@ public class BMILoginFrame extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buttonLogin;
     private javax.swing.JButton buttonRegister;
+    private javax.swing.JOptionPane jOptionPane1;
     private javax.swing.JLabel labelBeratBadan;
     private javax.swing.JLabel labelJudul;
     private javax.swing.JLabel labelTinggiBadan;

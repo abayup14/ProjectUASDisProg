@@ -4,6 +4,14 @@
  */
 package bmicalculator;
 
+import java.io.BufferedReader;
+import java.io.DataOutputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.Socket;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author vince
@@ -14,7 +22,20 @@ public class BMICalculator {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+        try {
+            // TODO code application logic here
+            // TODO code application logic here
+            Socket s;
+            BufferedReader input;
+            DataOutputStream output;
+            
+            s = new Socket("INI NANTI DIISI IP TARGET", 10013); //string host dan int port
+            output = new DataOutputStream(s.getOutputStream());
+            input = new BufferedReader(new InputStreamReader(s.getInputStream()));
+            
+            System.out.println(input.readLine());
+        } catch (IOException ex) {
+            Logger.getLogger(BMICalculator.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
-    
 }
