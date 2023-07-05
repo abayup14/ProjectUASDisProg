@@ -60,6 +60,7 @@ public class FormServer extends javax.swing.JFrame implements Runnable{
 
         textAreaServer.setColumns(20);
         textAreaServer.setRows(5);
+        textAreaServer.setEnabled(false);
         jScrollPane1.setViewportView(textAreaServer);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
