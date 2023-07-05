@@ -59,6 +59,7 @@ public class FormServer extends javax.swing.JFrame implements Runnable{
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         textAreaServer.setColumns(20);
+        textAreaServer.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         textAreaServer.setRows(5);
         textAreaServer.setEnabled(false);
         jScrollPane1.setViewportView(textAreaServer);
