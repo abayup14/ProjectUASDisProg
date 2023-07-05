@@ -54,13 +54,13 @@ public class BMICalcService {
     @WebMethod(operationName = "cekLogin")
     public boolean cekLogin(@WebParam(name = "email") String email, @WebParam(name = "password") String password) {
         //TODO write your implementation code here:
-        coll = new ArrayList<>();
-        acc = new Account();
+        coll = new ArrayList<Object>();
+        acc = new Account(email, password);
         coll = acc.cekLogin();
-        if (!coll.isEmpty()) {
-            return true;
-        } else {
+        if (coll.isEmpty()) {
             return false;
+        } else {
+            return true;
         }
     }
 

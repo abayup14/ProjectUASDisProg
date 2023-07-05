@@ -54,6 +54,11 @@ public class Account extends MyModel {
     public Account() {
         
     }
+
+    public Account(String email, String password) {
+        this.email = email;
+        this.password = password;
+    }
     
     public Account(String email, String password, String jenis_kelamin) {
         this.email = email;
