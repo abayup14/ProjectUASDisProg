@@ -78,4 +78,8 @@ public class HistoryHitungIdeal extends MyModel {
             System.out.println("Error di insertData " + e);
         }
     }
+    
+    public double calculateBeratIdeal() {
+        return 0;
+    }
 }

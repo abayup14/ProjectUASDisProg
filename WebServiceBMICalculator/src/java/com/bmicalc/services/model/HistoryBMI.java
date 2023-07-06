@@ -97,4 +97,19 @@ public class HistoryBMI extends MyModel{
             System.out.println("Error di insertData " + e);
         }
     }
+    public double calculateBMI() {
+        this.hasil_bmi = this.berat_badan / Math.pow((this.tinggi_badan / 100.0), 2.0);
+        return this.hasil_bmi;
+    }
+    public String kategoriBMI() {
+        if (this.hasil_bmi < 18.5) {
+            return "Underweight";
+        } else if (this.hasil_bmi >= 18.5 && this.hasil_bmi < 25) {
+            return "Normal";
+        } else if (this.hasil_bmi >= 25 && this.hasil_bmi < 30) {
+            return "Overweight";
+        } else {
+            return "Obesity";
+        }
+    }
 }
