@@ -64,7 +64,7 @@ public class BMILoginFrame extends javax.swing.JFrame implements Runnable{
     public BMILoginFrame(){
         try {
             initComponents();
-            u = new User();
+            acc = new Account();
             String ip = "192.168.183.85";
             s = new Socket(ip, 10013); //string host dan int port
             input = new BufferedReader(new InputStreamReader(s.getInputStream()));
