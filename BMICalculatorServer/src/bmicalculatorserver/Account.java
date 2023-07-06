@@ -52,7 +52,10 @@ public class Account extends MyModel {
     }
     
     public Account() {
-        
+        this.id = 1;
+        this.email = "";
+        this.password = "";
+        this.jenis_kelamin = "";
     }
 
     public Account(String email, String password) {
