@@ -43,51 +43,50 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Component id="panelJudul" alignment="0" max="32767" attributes="0"/>
-          <Group type="102" attributes="0">
-              <EmptySpace max="-2" attributes="0"/>
-              <Component id="jScrollPane2" max="32767" attributes="0"/>
-              <EmptySpace max="-2" attributes="0"/>
-          </Group>
-          <Group type="102" alignment="0" attributes="0">
-              <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
+          <Group type="102" alignment="1" attributes="0">
+              <Group type="103" groupAlignment="1" attributes="0">
                   <Group type="102" attributes="0">
-                      <Group type="103" groupAlignment="1" attributes="0">
-                          <Component id="labelBeratBadan" alignment="1" min="-2" max="-2" attributes="0"/>
-                          <Component id="labelTinggiBadan" alignment="1" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="textFieldEmail" max="32767" attributes="0"/>
-                          <Component id="textFieldPassword" max="32767" attributes="0"/>
-                      </Group>
                       <EmptySpace max="-2" attributes="0"/>
+                      <Component id="jScrollPane2" max="32767" attributes="0"/>
                   </Group>
-                  <Group type="102" alignment="1" attributes="0">
-                      <EmptySpace min="0" pref="29" max="32767" attributes="0"/>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" alignment="1" attributes="0">
-                              <Component id="buttonHistori" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
-                              <Component id="buttonChat" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="1" attributes="0">
-                              <Component id="radioButtonBMI" min="-2" max="-2" attributes="0"/>
+                          <Group type="102" attributes="0">
+                              <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
+                              <Component id="labelBeratBadan" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Component id="textFieldBerat" max="32767" attributes="0"/>
+                          </Group>
+                          <Group type="102" attributes="0">
+                              <Group type="103" groupAlignment="1" attributes="0">
+                                  <Component id="buttonHitung" min="-2" max="-2" attributes="0"/>
+                                  <Component id="labelTinggiBadan" alignment="1" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="102" attributes="0">
+                                      <EmptySpace pref="43" max="32767" attributes="0"/>
+                                      <Component id="buttonHistori" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
+                                      <Component id="buttonChat" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" attributes="0">
+                                      <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
+                                      <Component id="textFieldTinggi" max="32767" attributes="0"/>
+                                  </Group>
+                              </Group>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                              <Component id="radioButtonBMI" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
                               <Component id="radioButtonBeratBadanIdeal" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
               </Group>
-          </Group>
-          <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
-              <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
-                  <Component id="buttonHitung" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="280" max="32767" attributes="0"/>
-              </Group>
+              <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -97,34 +96,28 @@
               <Component id="panelJudul" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="jScrollPane2" min="-2" pref="200" max="-2" attributes="0"/>
-              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="radioButtonBeratBadanIdeal" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="radioButtonBMI" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="radioButtonBeratBadanIdeal" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="labelTinggiBadan" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="textFieldEmail" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="textFieldTinggi" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="labelBeratBadan" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="textFieldPassword" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="textFieldBerat" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="buttonHistori" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="buttonChat" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="buttonHitung" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="32767" attributes="0"/>
-          </Group>
-          <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
-              <Group type="102" alignment="1" attributes="0">
-                  <EmptySpace pref="388" max="32767" attributes="0"/>
-                  <Component id="buttonHitung" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace max="-2" attributes="0"/>
-              </Group>
           </Group>
       </Group>
     </DimensionLayout>
@@ -186,18 +179,18 @@
         </Component>
       </SubComponents>
     </Container>
-    <Component class="javax.swing.JLabel" name="labelTinggiBadan">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="email :"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JTextField" name="textFieldEmail">
-    </Component>
-    <Component class="javax.swing.JTextField" name="textFieldPassword">
-    </Component>
     <Component class="javax.swing.JLabel" name="labelBeratBadan">
       <Properties>
-        <Property name="text" type="java.lang.String" value="password :"/>
+        <Property name="text" type="java.lang.String" value="Berat Badan:"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="textFieldBerat">
+    </Component>
+    <Component class="javax.swing.JTextField" name="textFieldTinggi">
+    </Component>
+    <Component class="javax.swing.JLabel" name="labelTinggiBadan">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Tinggi Badan:"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JRadioButton" name="radioButtonBeratBadanIdeal">
@@ -207,14 +200,21 @@
         </Property>
         <Property name="text" type="java.lang.String" value="Hitung Berat Badan Ideal"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="radioButtonBeratBadanIdealActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JRadioButton" name="radioButtonBMI">
       <Properties>
         <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
           <ComponentRef name="buttonGroup1"/>
         </Property>
+        <Property name="selected" type="boolean" value="true"/>
         <Property name="text" type="java.lang.String" value="Hitung BMI"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="radioButtonBMIActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="buttonHistori">
       <Properties>
@@ -229,6 +229,9 @@
         </Property>
         <Property name="text" type="java.lang.String" value="Histori"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonHistoriActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="buttonChat">
       <Properties>
@@ -240,6 +243,9 @@
         </Property>
         <Property name="text" type="java.lang.String" value="Chat Group"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonChatActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="buttonHitung">
       <Properties>
@@ -254,6 +260,9 @@
         </Property>
         <Property name="text" type="java.lang.String" value="Hitung"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonHitungActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

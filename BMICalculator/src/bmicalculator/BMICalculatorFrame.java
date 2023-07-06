@@ -4,17 +4,65 @@
  */
 package bmicalculator;
 
+import java.io.BufferedReader;
+import java.io.DataOutputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.Socket;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author vince
  */
-public class BMICalculatorFrame extends javax.swing.JFrame {
-
-    /**
-     * Creates new form BMICalculatorFrame
-     */
+public class BMICalculatorFrame extends javax.swing.JFrame implements Runnable{
+    Socket s;
+    BufferedReader input;
+    DataOutputStream output;
+    Thread t;
+    User accountAktif;
+    double tinggi;
+    double berat;
+    
+    public void run() {
+        while (true) {
+            getMessage();
+        }
+    }
+    
+    private void getMessage() {
+        try {
+            textAreaHasil.setText("");
+            textAreaHasil.append(this.input.readLine()+"\n");
+        } catch (IOException ex) {
+            Logger.getLogger(BMILoginFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    public void start() {
+        if (this.t == null) {
+            this.t = new Thread(this, "myThread");
+            this.t.start();
+        }
+    }
     public BMICalculatorFrame() {
         initComponents();
+    }
+    
+    public BMICalculatorFrame(User account) {
+        initComponents();
+        try {
+            accountAktif = account;
+            String ip = "192.168.183.85";
+            s = new Socket(ip, 10013); //string host dan int port
+            input = new BufferedReader(new InputStreamReader(s.getInputStream()));
+            this.start();
+            output = new DataOutputStream(s.getOutputStream());
+        } catch (IOException ex) {
+            Logger.getLogger(BMICalculatorFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -33,10 +81,10 @@ public class BMICalculatorFrame extends javax.swing.JFrame {
         labelJudul = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         textAreaHasil = new javax.swing.JTextArea();
-        labelTinggiBadan = new javax.swing.JLabel();
-        textFieldEmail = new javax.swing.JTextField();
-        textFieldPassword = new javax.swing.JTextField();
         labelBeratBadan = new javax.swing.JLabel();
+        textFieldBerat = new javax.swing.JTextField();
+        textFieldTinggi = new javax.swing.JTextField();
+        labelTinggiBadan = new javax.swing.JLabel();
         radioButtonBeratBadanIdeal = new javax.swing.JRadioButton();
         radioButtonBMI = new javax.swing.JRadioButton();
         buttonHistori = new javax.swing.JButton();
@@ -76,69 +124,94 @@ public class BMICalculatorFrame extends javax.swing.JFrame {
         textAreaHasil.setRows(5);
         jScrollPane2.setViewportView(textAreaHasil);
 
-        labelTinggiBadan.setText("email :");
+        labelBeratBadan.setText("Berat Badan:");
 
-        labelBeratBadan.setText("password :");
+        labelTinggiBadan.setText("Tinggi Badan:");
 
         buttonGroup1.add(radioButtonBeratBadanIdeal);
         radioButtonBeratBadanIdeal.setText("Hitung Berat Badan Ideal");
+        radioButtonBeratBadanIdeal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                radioButtonBeratBadanIdealActionPerformed(evt);
+            }
+        });
 
         buttonGroup1.add(radioButtonBMI);
+        radioButtonBMI.setSelected(true);
         radioButtonBMI.setText("Hitung BMI");
+        radioButtonBMI.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                radioButtonBMIActionPerformed(evt);
+            }
+        });
 
         buttonHistori.setBackground(new java.awt.Color(0, 0, 102));
         buttonHistori.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
         buttonHistori.setForeground(new java.awt.Color(255, 255, 255));
         buttonHistori.setText("Histori");
+        buttonHistori.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonHistoriActionPerformed(evt);
+            }
+        });
 
         buttonChat.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
         buttonChat.setForeground(new java.awt.Color(0, 0, 102));
         buttonChat.setText("Chat Group");
+        buttonChat.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonChatActionPerformed(evt);
+            }
+        });
 
         buttonHitung.setBackground(new java.awt.Color(0, 0, 102));
         buttonHitung.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
         buttonHitung.setForeground(new java.awt.Color(255, 255, 255));
         buttonHitung.setText("Hitung");
+        buttonHitung.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonHitungActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(panelJudul, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane2)
-                .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(labelBeratBadan)
-                            .addComponent(labelTinggiBadan))
-                        .addGap(18, 18, 18)
+                        .addContainerGap()
+                        .addComponent(jScrollPane2))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addGap(20, 20, 20)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(textFieldEmail)
-                            .addComponent(textFieldPassword))
-                        .addContainerGap())
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 29, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(buttonHistori)
-                                .addGap(28, 28, 28)
-                                .addComponent(buttonChat)
-                                .addContainerGap())
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(radioButtonBMI)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(6, 6, 6)
+                                .addComponent(labelBeratBadan)
                                 .addGap(18, 18, 18)
+                                .addComponent(textFieldBerat))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(buttonHitung)
+                                    .addComponent(labelTinggiBadan))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
+                                        .addComponent(buttonHistori)
+                                        .addGap(32, 32, 32)
+                                        .addComponent(buttonChat))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(17, 17, 17)
+                                        .addComponent(textFieldTinggi))))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(radioButtonBMI)
+                                .addGap(37, 37, 37)
                                 .addComponent(radioButtonBeratBadanIdeal)
-                                .addGap(31, 31, 31))))))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(30, 30, 30)
-                    .addComponent(buttonHitung)
-                    .addContainerGap(280, Short.MAX_VALUE)))
+                                .addGap(11, 11, 11)))))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -146,32 +219,66 @@ public class BMICalculatorFrame extends javax.swing.JFrame {
                 .addComponent(panelJudul, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(radioButtonBeratBadanIdeal)
-                    .addComponent(radioButtonBMI))
-                .addGap(11, 11, 11)
+                    .addComponent(radioButtonBMI)
+                    .addComponent(radioButtonBeratBadanIdeal))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelTinggiBadan)
-                    .addComponent(textFieldEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(textFieldTinggi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelBeratBadan)
-                    .addComponent(textFieldPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                    .addComponent(textFieldBerat, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(17, 17, 17)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(buttonHistori)
-                    .addComponent(buttonChat))
+                    .addComponent(buttonChat)
+                    .addComponent(buttonHitung))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                    .addContainerGap(388, Short.MAX_VALUE)
-                    .addComponent(buttonHitung)
-                    .addContainerGap()))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void radioButtonBMIActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioButtonBMIActionPerformed
+        labelBeratBadan.setEnabled(true);
+        textFieldBerat.setEnabled(true);
+        textFieldTinggi.setEnabled(true);
+    }//GEN-LAST:event_radioButtonBMIActionPerformed
+
+    private void radioButtonBeratBadanIdealActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioButtonBeratBadanIdealActionPerformed
+        labelBeratBadan.setEnabled(false);
+        textFieldBerat.setEnabled(false);
+        textFieldTinggi.setEnabled(true);
+    }//GEN-LAST:event_radioButtonBeratBadanIdealActionPerformed
+
+    private void buttonHitungActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonHitungActionPerformed
+        try {
+            if(radioButtonBMI.isSelected()){
+                this.tinggi = Double.parseDouble(textFieldTinggi.getText());
+                this.berat = Double.parseDouble(textFieldBerat.getText());
+                this.output.writeBytes("bmi~" + accountAktif.getId() + "~" + this.tinggi + "~" + this.berat + "\n");
+            }
+            else if(radioButtonBeratBadanIdeal.isSelected()){
+                this.tinggi = Double.parseDouble(textFieldTinggi.getText());
+                this.output.writeBytes("ideal~" + accountAktif.getId() + "~" + accountAktif.getJenis_kelamin() + "~" + this.tinggi + "\n");
+            }
+        } catch (IOException ex) {
+            Logger.getLogger(BMICalculatorFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_buttonHitungActionPerformed
+
+    private void buttonHistoriActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonHistoriActionPerformed
+        BMIHistoryFrame formHistory = new BMIHistoryFrame();
+        formHistory.setVisible(true);
+    }//GEN-LAST:event_buttonHistoriActionPerformed
+
+    private void buttonChatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonChatActionPerformed
+        BMIChatGroup formChat = new BMIChatGroup();
+        formChat.setVisible(true);
+    }//GEN-LAST:event_buttonChatActionPerformed
 
     /**
      * @param args the command line arguments
@@ -223,7 +330,7 @@ public class BMICalculatorFrame extends javax.swing.JFrame {
     private javax.swing.JRadioButton radioButtonBMI;
     private javax.swing.JRadioButton radioButtonBeratBadanIdeal;
     private javax.swing.JTextArea textAreaHasil;
-    private javax.swing.JTextField textFieldEmail;
-    private javax.swing.JTextField textFieldPassword;
+    private javax.swing.JTextField textFieldBerat;
+    private javax.swing.JTextField textFieldTinggi;
     // End of variables declaration//GEN-END:variables
 }
