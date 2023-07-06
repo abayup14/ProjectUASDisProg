@@ -46,9 +46,7 @@ public class BMIRegisterFrame extends javax.swing.JFrame implements Runnable {
             this.t.start();
         }
     }
-    /**
-     * Creates new form BMIRegisterFrame
-     */
+    
     public BMIRegisterFrame() {
         initComponents();
         try {
@@ -229,7 +227,7 @@ public class BMIRegisterFrame extends javax.swing.JFrame implements Runnable {
             }
             
             if (textFieldRetypePassword.getText().equals(textFieldPassword.getText())) {
-                this.output.writeBytes("login~" + this.email + "~" + this.password + "~" + this.gender + "\n");
+                this.output.writeBytes("register~" + this.email + "~" + this.password + "~" + this.gender + "\n");
             } else {
                 JOptionPane.showMessageDialog(this, "Password yang anda isikan tidak sama. Silahkan ulangi.");
             }

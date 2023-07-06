@@ -70,6 +70,11 @@ public class BMIHistoryFrame extends javax.swing.JFrame {
         buttonBack.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
         buttonBack.setForeground(new java.awt.Color(0, 0, 102));
         buttonBack.setText("Back");
+        buttonBack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonBackActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -111,6 +116,11 @@ public class BMIHistoryFrame extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void buttonBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonBackActionPerformed
+        this.dispose();
+        this.setVisible(false);
+    }//GEN-LAST:event_buttonBackActionPerformed
 
     /**
      * @param args the command line arguments
