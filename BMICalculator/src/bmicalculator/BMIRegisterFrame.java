@@ -238,7 +238,6 @@ public class BMIRegisterFrame extends javax.swing.JFrame implements Runnable {
 
     private void buttonBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonBackActionPerformed
         // TODO add your handling code here:
-        this.dispose();
         this.setVisible(false);
     }//GEN-LAST:event_buttonBackActionPerformed
 
