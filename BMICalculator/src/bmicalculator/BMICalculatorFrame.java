@@ -84,6 +84,7 @@ public class BMICalculatorFrame extends javax.swing.JFrame implements Runnable{
         jTextArea1 = new javax.swing.JTextArea();
         buttonGroup1 = new javax.swing.ButtonGroup();
         jOptionPane1 = new javax.swing.JOptionPane();
+        jPasswordField1 = new javax.swing.JPasswordField();
         panelJudul = new javax.swing.JPanel();
         labelJudul = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
@@ -99,6 +100,8 @@ public class BMICalculatorFrame extends javax.swing.JFrame implements Runnable{
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
         jScrollPane1.setViewportView(jTextArea1);
+
+        jPasswordField1.setText("jPasswordField1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -127,6 +130,7 @@ public class BMICalculatorFrame extends javax.swing.JFrame implements Runnable{
 
         textAreaHasil.setColumns(20);
         textAreaHasil.setRows(5);
+        textAreaHasil.setEnabled(false);
         jScrollPane2.setViewportView(textAreaHasil);
 
         labelBeratBadan.setText("Berat Badan:");
@@ -189,7 +193,7 @@ public class BMICalculatorFrame extends javax.swing.JFrame implements Runnable{
                                         .addComponent(radioButtonBMI)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(radioButtonBeratBadanIdeal)
-                                        .addGap(0, 13, Short.MAX_VALUE)))))))
+                                        .addGap(0, 0, Short.MAX_VALUE)))))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -286,6 +290,7 @@ public class BMICalculatorFrame extends javax.swing.JFrame implements Runnable{
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JButton buttonHitung;
     private javax.swing.JOptionPane jOptionPane1;
+    private javax.swing.JPasswordField jPasswordField1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextArea jTextArea1;
