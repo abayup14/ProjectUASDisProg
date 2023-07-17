@@ -12,6 +12,10 @@ import java.net.Socket;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+<<<<<<< Updated upstream
+=======
+import bmicalculatorserver.Account;
+>>>>>>> Stashed changes
 
 /**
  *
@@ -22,7 +26,11 @@ public class BMICalculatorFrame extends javax.swing.JFrame implements Runnable{
     BufferedReader input;
     DataOutputStream output;
     Thread t;
+<<<<<<< Updated upstream
     User accountAktif;
+=======
+    Account accountAktif;
+>>>>>>> Stashed changes
     double tinggi;
     double berat;
     
@@ -51,7 +59,11 @@ public class BMICalculatorFrame extends javax.swing.JFrame implements Runnable{
         initComponents();
     }
     
+<<<<<<< Updated upstream
     public BMICalculatorFrame(User account) {
+=======
+    public BMICalculatorFrame(Account account) {
+>>>>>>> Stashed changes
         initComponents();
         try {
             accountAktif = account;
@@ -174,8 +186,11 @@ public class BMICalculatorFrame extends javax.swing.JFrame implements Runnable{
                 buttonHitungActionPerformed(evt);
             }
         });
+<<<<<<< Updated upstream
 
         labelSelamatDatang.setText("Selamat datang, nama");
+=======
+>>>>>>> Stashed changes
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -183,11 +198,19 @@ public class BMICalculatorFrame extends javax.swing.JFrame implements Runnable{
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(panelJudul, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+<<<<<<< Updated upstream
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jScrollPane2))
                     .addGroup(layout.createSequentialGroup()
+=======
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jScrollPane2))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+>>>>>>> Stashed changes
                         .addGap(20, 20, 20)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
@@ -215,10 +238,13 @@ public class BMICalculatorFrame extends javax.swing.JFrame implements Runnable{
                                 .addComponent(radioButtonBeratBadanIdeal)
                                 .addGap(11, 11, 11)))))
                 .addContainerGap())
+<<<<<<< Updated upstream
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(labelSelamatDatang)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+=======
+>>>>>>> Stashed changes
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -245,7 +271,11 @@ public class BMICalculatorFrame extends javax.swing.JFrame implements Runnable{
                     .addComponent(buttonHistori)
                     .addComponent(buttonChat)
                     .addComponent(buttonHitung))
+<<<<<<< Updated upstream
                 .addContainerGap())
+=======
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+>>>>>>> Stashed changes
         );
 
         pack();

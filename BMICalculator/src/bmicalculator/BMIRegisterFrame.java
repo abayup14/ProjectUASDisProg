@@ -34,7 +34,11 @@ public class BMIRegisterFrame extends javax.swing.JFrame implements Runnable {
     
     private void getMessage() {
         try {
+<<<<<<< Updated upstream
             jOptionPane1.showMessageDialog(this, this.input.readLine()+"\n");
+=======
+            JOptionPane.showMessageDialog(this, this.input.readLine()+"\n");
+>>>>>>> Stashed changes
         } catch (IOException ex) {
             Logger.getLogger(BMILoginFrame.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -50,7 +54,11 @@ public class BMIRegisterFrame extends javax.swing.JFrame implements Runnable {
     public BMIRegisterFrame() {
         initComponents();
         try {
+<<<<<<< Updated upstream
             String ip = "192.168.43.212";
+=======
+            String ip = "192.168.183.85";
+>>>>>>> Stashed changes
             s = new Socket(ip, 10013); //string host dan int port
             input = new BufferedReader(new InputStreamReader(s.getInputStream()));
             this.start();
@@ -239,6 +247,10 @@ public class BMIRegisterFrame extends javax.swing.JFrame implements Runnable {
 
     private void buttonBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonBackActionPerformed
         // TODO add your handling code here:
+<<<<<<< Updated upstream
+=======
+        this.dispose();
+>>>>>>> Stashed changes
         this.setVisible(false);
     }//GEN-LAST:event_buttonBackActionPerformed
 

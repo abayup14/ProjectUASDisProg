@@ -44,8 +44,13 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Component id="panelJudul" alignment="0" max="32767" attributes="0"/>
           <Group type="102" alignment="1" attributes="0">
+<<<<<<< Updated upstream
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="1" attributes="0">
+=======
+              <Group type="103" groupAlignment="1" attributes="0">
+                  <Group type="102" attributes="0">
+>>>>>>> Stashed changes
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jScrollPane2" max="32767" attributes="0"/>
                   </Group>
@@ -87,11 +92,14 @@
                   </Group>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
+<<<<<<< Updated upstream
           </Group>
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Component id="labelSelamatDatang" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="32767" attributes="0"/>
+=======
+>>>>>>> Stashed changes
           </Group>
       </Group>
     </DimensionLayout>
@@ -124,7 +132,11 @@
                   <Component id="buttonChat" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="buttonHitung" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
+<<<<<<< Updated upstream
               <EmptySpace max="-2" attributes="0"/>
+=======
+              <EmptySpace max="32767" attributes="0"/>
+>>>>>>> Stashed changes
           </Group>
       </Group>
     </DimensionLayout>
@@ -270,11 +282,14 @@
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonHitungActionPerformed"/>
       </Events>
+<<<<<<< Updated upstream
     </Component>
     <Component class="javax.swing.JLabel" name="labelSelamatDatang">
       <Properties>
         <Property name="text" type="java.lang.String" value="Selamat datang, nama"/>
       </Properties>
+=======
+>>>>>>> Stashed changes
     </Component>
   </SubComponents>
 </Form>

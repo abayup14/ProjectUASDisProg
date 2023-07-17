@@ -45,7 +45,11 @@ public class HandleSocket extends Thread {
                 boolean cekLogin = cekLogin(part[1], part[2]);
                 
                 if (cekLogin == true) {
+<<<<<<< Updated upstream
                     output.writeBytes("berhasil\n");
+=======
+                    output.writeBytes("Berhasil Login\n");
+>>>>>>> Stashed changes
                 } else {
                     output.writeBytes("gagal\n");
                 }
