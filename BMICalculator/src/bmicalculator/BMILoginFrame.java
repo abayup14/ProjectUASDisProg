@@ -12,10 +12,6 @@ import java.net.Socket;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
-<<<<<<< Updated upstream
-=======
-import bmicalculatorserver.Account;
->>>>>>> Stashed changes
 
 /**
  *
@@ -28,13 +24,8 @@ public class BMILoginFrame extends javax.swing.JFrame implements Runnable{
     Thread t;
     String email;
     String password;
-<<<<<<< Updated upstream
     User u;
     
-=======
-    //User u;
-    Account acc;
->>>>>>> Stashed changes
     @Override
     public void run() {
         while (true) {
@@ -44,7 +35,6 @@ public class BMILoginFrame extends javax.swing.JFrame implements Runnable{
     
     private void getMessage() {
         try {
-<<<<<<< Updated upstream
             if(this.input.readLine().contains("berhasil")){ //kalau sukses
                 String[] part = this.input.readLine().split("~");
                 u.setId(Integer.parseInt(part[1]));
@@ -59,20 +49,6 @@ public class BMILoginFrame extends javax.swing.JFrame implements Runnable{
             }
             else if(this.input.readLine().contains("gagal")){ //kalau gagal
                 jOptionPane1.showMessageDialog(this, this.input.readLine()+"\n");
-=======
-            if(this.input.readLine().contains("Sukses")){ //kalau sukses
-                    acc.setId(1);
-                    acc.setEmail("");
-                    acc.setPassword("");
-                    acc.setJenis_kelamin("");
-                JOptionPane.showMessageDialog(this, this.input.readLine()+"\n");
-                
-                BMICalculatorFrame formCalc = new BMICalculatorFrame(acc);
-                formCalc.setVisible(true);
-            }
-            else if(this.input.readLine().contains("Gagal")){ //kalau gagal
-                JOptionPane.showMessageDialog(this, this.input.readLine()+"\n");
->>>>>>> Stashed changes
             }
         } catch (IOException ex) {
             Logger.getLogger(BMILoginFrame.class.getName()).log(Level.SEVERE, null, ex);
@@ -89,11 +65,8 @@ public class BMILoginFrame extends javax.swing.JFrame implements Runnable{
     public BMILoginFrame(){
         try {
             initComponents();
-<<<<<<< Updated upstream
+
             u = new User();
-=======
-            acc = new Account();
->>>>>>> Stashed changes
             String ip = "192.168.43.212";
             s = new Socket(ip, 10013); //string host dan int port
             input = new BufferedReader(new InputStreamReader(s.getInputStream()));
