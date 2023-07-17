@@ -35,7 +35,10 @@ public class BMILoginFrame extends javax.swing.JFrame implements Runnable{
     
     private void getMessage() {
         try {
-            if(this.input.readLine().contains("Berhasil Login")){ //kalau sukses
+            jOptionPane1.showMessageDialog(this, this.input.readLine()+"\n");
+            //JOptionPane.showMessageDialog(this, this.input.readLine()+"\n");
+            
+            /*if(this.input.readLine().contains("berhasil")){ //kalau sukses
 //                    u.setId(1);
 //                    u.setEmail("");
 //                    u.setPassword("");
@@ -45,9 +48,9 @@ public class BMILoginFrame extends javax.swing.JFrame implements Runnable{
                 BMICalculatorFrame formCalc = new BMICalculatorFrame(u);
                 formCalc.setVisible(true);
             }
-            else if(this.input.readLine().contains("Gagal Login")){ //kalau gagal
+            else if(this.input.readLine().contains("gagal")){ //kalau gagal
                 JOptionPane.showMessageDialog(this, this.input.readLine()+"\n");
-            }
+            }*/
         } catch (IOException ex) {
             Logger.getLogger(BMILoginFrame.class.getName()).log(Level.SEVERE, null, ex);
         }
