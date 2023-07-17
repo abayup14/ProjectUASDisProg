@@ -5,13 +5,13 @@
 package com.bmicalc.services;
 
 //import com.bmicalc.services.model.Account;
+import com.bmicalc.services.model.Account;
 import com.bmicalc.services.model.HistoryBMI;
 import com.bmicalc.services.model.HistoryHitungIdeal;
 import java.util.ArrayList;
 import javax.jws.WebService;
 import javax.jws.WebMethod;
 import javax.jws.WebParam;
-import bmicalculatorserver.Account;
 
 /**
  *

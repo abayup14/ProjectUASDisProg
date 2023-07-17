@@ -23,7 +23,6 @@ public class HandleSocket extends Thread {
     FormServer server;
     //GUI_Server parent;
     String message;
-    Account acc;
     
     public HandleSocket(FormServer _parent, Socket s) {
         try {

@@ -10,20 +10,20 @@ package bmicalculator;
  */
 public class User {
     private int id;
-    private String username;
+    private String email;
     private String password;
     private String jenis_kelamin;
     
     public User() {
         this.id = 1;
-        this.username = "";
+        this.email = "";
         this.password = "";
         this.jenis_kelamin = "";
     }
     
-    public User(int id, String username, String password, String jenis_kelamin) {
+    public User(int id, String email, String password, String jenis_kelamin) {
         this.id = id;
-        this.username = username;
+        this.email = email;
         this.password = password;
         this.jenis_kelamin = jenis_kelamin;
     }
@@ -36,12 +36,12 @@ public class User {
         this.id = id;
     }
 
-    public String getUsername() {
-        return username;
+    public String getEmail() {
+        return email;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getPassword() {

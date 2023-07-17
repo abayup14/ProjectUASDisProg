@@ -12,7 +12,6 @@ import java.net.Socket;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
-import bmicalculatorserver.Account;
 
 /**
  *
@@ -25,8 +24,8 @@ public class BMILoginFrame extends javax.swing.JFrame implements Runnable{
     Thread t;
     String email;
     String password;
-    //User u;
-    Account acc;
+    User u;
+    //Account acc;
     @Override
     public void run() {
         while (true) {
@@ -37,13 +36,13 @@ public class BMILoginFrame extends javax.swing.JFrame implements Runnable{
     private void getMessage() {
         try {
             if(this.input.readLine().contains("Sukses")){ //kalau sukses
-                    acc.setId(1);
-                    acc.setEmail("");
-                    acc.setPassword("");
-                    acc.setJenis_kelamin("");
+                    u.setId(1);
+                    u.setEmail("");
+                    u.setPassword("");
+                    u.setJenis_kelamin("");
                 JOptionPane.showMessageDialog(this, this.input.readLine()+"\n");
                 
-                BMICalculatorFrame formCalc = new BMICalculatorFrame(acc);
+                BMICalculatorFrame formCalc = new BMICalculatorFrame(u);
                 formCalc.setVisible(true);
             }
             else if(this.input.readLine().contains("Gagal")){ //kalau gagal
@@ -64,7 +63,7 @@ public class BMILoginFrame extends javax.swing.JFrame implements Runnable{
     public BMILoginFrame(){
         try {
             initComponents();
-            acc = new Account();
+            u = new User();
             String ip = "192.168.183.85";
             s = new Socket(ip, 10013); //string host dan int port
             input = new BufferedReader(new InputStreamReader(s.getInputStream()));

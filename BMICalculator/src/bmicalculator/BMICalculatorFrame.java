@@ -12,7 +12,6 @@ import java.net.Socket;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
-import bmicalculatorserver.Account;
 
 /**
  *
@@ -23,7 +22,7 @@ public class BMICalculatorFrame extends javax.swing.JFrame implements Runnable{
     BufferedReader input;
     DataOutputStream output;
     Thread t;
-    Account accountAktif;
+    User accountAktif;
     double tinggi;
     double berat;
     
@@ -52,7 +51,7 @@ public class BMICalculatorFrame extends javax.swing.JFrame implements Runnable{
         initComponents();
     }
     
-    public BMICalculatorFrame(Account account) {
+    public BMICalculatorFrame(User account) {
         initComponents();
         try {
             accountAktif = account;
