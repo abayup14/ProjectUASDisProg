@@ -135,7 +135,7 @@ public class BMIRegisterFrame extends javax.swing.JFrame implements Runnable {
         labelBeratBadan1.setText("retype password :");
 
         buttonGroupGender.add(radioButtonPria);
-        radioButtonPria.setText("pria");
+        radioButtonPria.setText("Pria");
 
         buttonGroupGender.add(radioButtonWanita);
         radioButtonWanita.setText("Wanita");
