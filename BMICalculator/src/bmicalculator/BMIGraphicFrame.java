@@ -4,6 +4,7 @@
  */
 package bmicalculator;
 
+import classBMICalculator.User;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.io.File;
@@ -31,6 +32,8 @@ public class BMIGraphicFrame extends javax.swing.JFrame {
     /**
      * Creates new form BMIGraphicFrame
      */
+    User accountAktif;
+    
     private void exportChartAsImage(JFreeChart a) throws IOException {
         JFileChooser fileChooser = new JFileChooser();
         fileChooser.setDialogTitle("Export Chart as Image");
@@ -52,6 +55,11 @@ public class BMIGraphicFrame extends javax.swing.JFrame {
 
     public BMIGraphicFrame() {
         initComponents();
+    }
+    
+    public BMIGraphicFrame(User account) {
+        initComponents();
+        accountAktif = account;
     }
 
     /**

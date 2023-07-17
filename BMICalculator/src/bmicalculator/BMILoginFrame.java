@@ -4,6 +4,7 @@
  */
 package bmicalculator;
 
+import classBMICalculator.User;
 import java.io.BufferedReader;
 import java.io.DataOutputStream;
 import java.io.IOException;
@@ -11,7 +12,6 @@ import java.io.InputStreamReader;
 import java.net.Socket;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JOptionPane;
 
 /**
  *
@@ -36,16 +36,18 @@ public class BMILoginFrame extends javax.swing.JFrame implements Runnable{
     private void getMessage() {
         try {
             if(this.input.readLine().contains("berhasil")){ //kalau sukses
-                String[] part = this.input.readLine().split("~");
+                jOptionPane1.showMessageDialog(this, "Berhasil Login");
+                
+                String message = this.input.readLine();          
+                String[] part = message.split("~");
+                                
                 u.setId(Integer.parseInt(part[1]));
                 u.setEmail(part[2]);
                 u.setPassword(part[3]);
                 u.setJenis_kelamin(part[4]);
                 
-                jOptionPane1.showMessageDialog(this, "Berhasil Login");
-                
-                BMICalculatorFrame formCalc = new BMICalculatorFrame(u);
-                formCalc.setVisible(true);
+                BMIMainFrame formMain = new BMIMainFrame(u);
+                formMain.setVisible(true);
             }
             else if(this.input.readLine().contains("gagal")){ //kalau gagal
                 jOptionPane1.showMessageDialog(this, this.input.readLine()+"\n");
