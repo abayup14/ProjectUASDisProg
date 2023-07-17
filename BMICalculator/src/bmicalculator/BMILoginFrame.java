@@ -36,8 +36,6 @@ public class BMILoginFrame extends javax.swing.JFrame implements Runnable{
     private void getMessage() {
         try {
             if(this.input.readLine().contains("berhasil")){ //kalau sukses
-                jOptionPane1.showMessageDialog(this, "Berhasil Login");
-                
                 String message = this.input.readLine();          
                 String[] part = message.split("~");
                                 
@@ -46,6 +44,7 @@ public class BMILoginFrame extends javax.swing.JFrame implements Runnable{
                 u.setPassword(part[3]);
                 u.setJenis_kelamin(part[4]);
                 
+                jOptionPane1.showMessageDialog(this, "Berhasil Login");
                 BMIMainFrame formMain = new BMIMainFrame(u);
                 formMain.setVisible(true);
             }
