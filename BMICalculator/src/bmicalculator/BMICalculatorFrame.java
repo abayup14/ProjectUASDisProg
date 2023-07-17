@@ -12,7 +12,6 @@ import java.io.InputStreamReader;
 import java.net.Socket;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JOptionPane;
 
 /**
  *
@@ -35,8 +34,15 @@ public class BMICalculatorFrame extends javax.swing.JFrame implements Runnable{
     
     private void getMessage() {
         try {
-            textAreaHasil.setText("");
-            textAreaHasil.append(this.input.readLine()+"\n");
+            if(this.input.readLine().contains("bmi")){ //kalau sukses
+                String message = this.input.readLine();          
+                String[] part = message.split("~");
+
+                textAreaHasil.append("Hasil BMI : "+ part[1]+"\n"+"Kategori : "+ part[2]+"\n\n");
+            }
+            else if(this.input.readLine().contains("ideal")){ //kalau gagal
+                jOptionPane1.showMessageDialog(this, this.input.readLine()+"\n");
+            }
         } catch (IOException ex) {
             Logger.getLogger(BMILoginFrame.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -78,6 +84,7 @@ public class BMICalculatorFrame extends javax.swing.JFrame implements Runnable{
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
         buttonGroup1 = new javax.swing.ButtonGroup();
+        jOptionPane1 = new javax.swing.JOptionPane();
         panelJudul = new javax.swing.JPanel();
         labelJudul = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
@@ -205,9 +212,9 @@ public class BMICalculatorFrame extends javax.swing.JFrame implements Runnable{
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelBeratBadan)
                     .addComponent(textFieldBerat, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(buttonHitung)
-                .addGap(19, 19, 19))
+                .addContainerGap())
         );
 
         pack();
@@ -230,7 +237,7 @@ public class BMICalculatorFrame extends javax.swing.JFrame implements Runnable{
             if(radioButtonBMI.isSelected()){
                 this.tinggi = Double.parseDouble(textFieldTinggi.getText());
                 this.berat = Double.parseDouble(textFieldBerat.getText());
-                this.output.writeBytes("bmi~" + accountAktif.getId() + "~" + this.tinggi + "~" + this.berat + "\n");
+                this.output.writeBytes("bmi~" + String.valueOf(accountAktif.getId()) + "~" + String.valueOf(this.tinggi) + "~" + String.valueOf(this.berat) + "\n");
             }
             else if(radioButtonBeratBadanIdeal.isSelected()){
                 this.tinggi = Double.parseDouble(textFieldTinggi.getText());
@@ -280,6 +287,7 @@ public class BMICalculatorFrame extends javax.swing.JFrame implements Runnable{
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JButton buttonHitung;
+    private javax.swing.JOptionPane jOptionPane1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextArea jTextArea1;
