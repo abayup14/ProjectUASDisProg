@@ -5,7 +5,6 @@
 package com.bmicalc.services.model;
 
 import java.sql.*;
-import bmicalculatorserver.MyModel;
 
 /**
  *
@@ -66,6 +65,10 @@ public class HistoryBMI extends MyModel{
     public void setAcc_id(int acc_id) {
         this.acc_id = acc_id;
     }
+    public HistoryBMI(double berat_badan, double tinggi_badan) {
+        this.berat_badan = berat_badan;
+        this.tinggi_badan = tinggi_badan;
+    }
 
     public HistoryBMI(double berat_badan, double tinggi_badan, double hasil_bmi, int acc_id) {
         this.berat_badan = berat_badan;
@@ -98,15 +101,15 @@ public class HistoryBMI extends MyModel{
         }
     }
     public double calculateBMI() {
-        this.hasil_bmi = this.berat_badan / Math.pow((this.tinggi_badan / 100.0), 2.0);
-        return this.hasil_bmi;
+        double hasil_bmi = this.berat_badan / Math.pow((this.tinggi_badan / 100.0), 2.0);
+        return hasil_bmi;
     }
-    public String kategoriBMI() {
-        if (this.hasil_bmi < 18.5) {
+    public String kategoriBMI(double hasil_bmi) {
+        if (hasil_bmi < 18.5) {
             return "Underweight";
-        } else if (this.hasil_bmi >= 18.5 && this.hasil_bmi < 25) {
+        } else if (hasil_bmi >= 18.5 && hasil_bmi < 25) {
             return "Normal";
-        } else if (this.hasil_bmi >= 25 && this.hasil_bmi < 30) {
+        } else if (hasil_bmi >= 25 && hasil_bmi < 30) {
             return "Overweight";
         } else {
             return "Obesity";

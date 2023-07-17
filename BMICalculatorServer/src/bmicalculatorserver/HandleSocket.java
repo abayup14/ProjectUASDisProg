@@ -43,22 +43,11 @@ public class HandleSocket extends Thread {
                 //u = new User();
                 //u = u.CekLogin(part[1], part[2]);
                 boolean cekLogin = cekLogin(part[1], part[2]);
-                
                 if (cekLogin == true) {
-<<<<<<< Updated upstream
-                    output.writeBytes("berhasil\n");
-=======
-                    output.writeBytes("Berhasil Login\n");
->>>>>>> Stashed changes
+                    output.writeBytes("berhasil~"+dataToString(part[1], part[2])+"\n");
                 } else {
                     output.writeBytes("gagal\n");
                 }
-                /*if(u != null) {
-                    output.writeBytes("Berhasil Login!\n");
-                }
-                else {
-                    output.writeBytes("Gagal Login!\n");
-                }*/
             }
             else if (part[0].equals("register")) {
                 String email = part[1];
@@ -72,29 +61,18 @@ public class HandleSocket extends Thread {
                 } else {
                     output.writeBytes("Gagal mendaftarkan akun. Akun sudah ada di dalam database\n");
                 }
-                /*u = new User(name, pass, email, answer);
-                if(u.viewListData(u) == null) {
-                    u.insert();
-                    output.writeBytes("Registrasi berhasil!\n");
-                }
-                else {
-                    output.writeBytes("Email telah digunakan\n");
-                }*/
             }
-            /*else if(part[0].equals("verif")) {
-                u = new User();
-                if(u.Verification(part[1], part[2]) == true) {
-                    output.writeBytes("jawabanBenar\n");
-                }
-                else {
-                    output.writeBytes("jawabanSalah\n");
-                }
+            else if (part[0].equals("bmi")) {
+                int id = Integer.parseInt(part[1]);
+                double tinggi = Double.parseDouble(part[2]);
+                double berat = Double.parseDouble(part[3]);
+                
+                String data_bmi = hitungBMI(tinggi, berat);
+                String[] split_data = data_bmi.split("~");
+                double hasil_bmi = Double.parseDouble(split_data[1]);
+                boolean insertData = insertDataBMI(berat, tinggi, hasil_bmi, id);
+                output.writeBytes(data_bmi);
             }
-            else if(part[0].equals("change")) {
-                u = new User("", part[1], part[2], "");
-                u.update();
-                output.writeBytes("sukses\n");
-            }*/
         } catch (IOException ex) {
             Logger.getLogger(HandleSocket.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -123,6 +101,24 @@ public class HandleSocket extends Thread {
         bmicalculatorserver.BMICalcService_Service service = new bmicalculatorserver.BMICalcService_Service();
         bmicalculatorserver.BMICalcService port = service.getBMICalcServicePort();
         return port.insertAccount(email, password, jenisKelamin);
+    }
+
+    private static String dataToString(java.lang.String email, java.lang.String password) {
+        bmicalculatorserver.BMICalcService_Service service = new bmicalculatorserver.BMICalcService_Service();
+        bmicalculatorserver.BMICalcService port = service.getBMICalcServicePort();
+        return port.dataToString(email, password);
+    }
+
+    private static String hitungBMI(double tinggi, double berat) {
+        bmicalculatorserver.BMICalcService_Service service = new bmicalculatorserver.BMICalcService_Service();
+        bmicalculatorserver.BMICalcService port = service.getBMICalcServicePort();
+        return port.hitungBMI(tinggi, berat);
+    }
+
+    private static boolean insertDataBMI(double beratBadan, double tinggiBadan, double hasilBmi, int accountId) {
+        bmicalculatorserver.BMICalcService_Service service = new bmicalculatorserver.BMICalcService_Service();
+        bmicalculatorserver.BMICalcService port = service.getBMICalcServicePort();
+        return port.insertDataBMI(beratBadan, tinggiBadan, hasilBmi, accountId);
     }
     
     
