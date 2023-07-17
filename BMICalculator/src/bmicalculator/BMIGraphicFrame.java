@@ -13,10 +13,17 @@ public class BMIGraphicFrame extends javax.swing.JFrame {
     /**
      * Creates new form BMIGraphicFrame
      */
+    User accountAktif;
+    
     public BMIGraphicFrame() {
         initComponents();
     }
-
+    
+    public BMIGraphicFrame(User account) {
+        initComponents();
+        accountAktif = account;
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

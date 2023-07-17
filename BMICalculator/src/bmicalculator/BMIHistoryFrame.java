@@ -13,10 +13,17 @@ public class BMIHistoryFrame extends javax.swing.JFrame {
     /**
      * Creates new form BMIHistoryFrame
      */
+    
+    User accountAktif;
     public BMIHistoryFrame() {
         initComponents();
     }
-
+    
+     public BMIHistoryFrame(User account) {
+        initComponents();
+        accountAktif = account;
+     }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

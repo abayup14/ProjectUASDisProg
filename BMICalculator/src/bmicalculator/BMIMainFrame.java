@@ -4,6 +4,8 @@
  */
 package bmicalculator;
 
+import bmicalculatorserver.Account;
+
 /**
  *
  * @author Andreas Bayu P
@@ -13,10 +15,18 @@ public class BMIMainFrame extends javax.swing.JFrame {
     /**
      * Creates new form BMIMainForm
      */
+    User accountAktif;
     public BMIMainFrame() {
         initComponents();
     }
-
+    
+    public BMIMainFrame(User account) {
+        initComponents();    
+        accountAktif = new User();
+        accountAktif = account;
+        labelSelamatDatang.setText("Selamat datang, " + accountAktif.getEmail());
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -26,26 +36,58 @@ public class BMIMainFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        labelSelamatDatang = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
-        jMenu2 = new javax.swing.JMenu();
-        jMenu3 = new javax.swing.JMenu();
+        jAccount = new javax.swing.JMenu();
+        jHistory = new javax.swing.JMenuItem();
+        jOperation = new javax.swing.JMenu();
+        jCalculate = new javax.swing.JMenuItem();
+        jViewGraph = new javax.swing.JMenuItem();
+        jExit = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jMenu1.setText("File");
+        labelSelamatDatang.setText("Selamat datang, nama");
 
-        jMenuItem1.setText("jMenuItem1");
-        jMenu1.add(jMenuItem1);
+        jAccount.setText("Account");
 
-        jMenuBar1.add(jMenu1);
+        jHistory.setText("History");
+        jHistory.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jHistoryActionPerformed(evt);
+            }
+        });
+        jAccount.add(jHistory);
 
-        jMenu2.setText("Edit");
-        jMenuBar1.add(jMenu2);
+        jMenuBar1.add(jAccount);
 
-        jMenu3.setText("jMenu3");
-        jMenuBar1.add(jMenu3);
+        jOperation.setText("Operation");
+
+        jCalculate.setText("Calculate BMI");
+        jCalculate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCalculateActionPerformed(evt);
+            }
+        });
+        jOperation.add(jCalculate);
+
+        jViewGraph.setText("View Graph");
+        jViewGraph.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jViewGraphActionPerformed(evt);
+            }
+        });
+        jOperation.add(jViewGraph);
+
+        jMenuBar1.add(jOperation);
+
+        jExit.setText("Exit");
+        jExit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jExitActionPerformed(evt);
+            }
+        });
+        jMenuBar1.add(jExit);
 
         setJMenuBar(jMenuBar1);
 
@@ -53,15 +95,40 @@ public class BMIMainFrame extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 516, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(15, 15, 15)
+                .addComponent(labelSelamatDatang)
+                .addContainerGap(352, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 355, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(labelSelamatDatang)
+                .addContainerGap(328, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jHistoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jHistoryActionPerformed
+        BMIHistoryFrame formHistory = new BMIHistoryFrame(accountAktif);
+        formHistory.setVisible(true);
+    }//GEN-LAST:event_jHistoryActionPerformed
+
+    private void jCalculateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCalculateActionPerformed
+        BMICalculatorFrame formCalc = new BMICalculatorFrame(accountAktif);
+        formCalc.setVisible(true);
+    }//GEN-LAST:event_jCalculateActionPerformed
+
+    private void jViewGraphActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jViewGraphActionPerformed
+        BMIGraphicFrame formGraph = new BMIGraphicFrame(accountAktif);
+        formGraph.setVisible(true);
+    }//GEN-LAST:event_jViewGraphActionPerformed
+
+    private void jExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jExitActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_jExitActionPerformed
 
     /**
      * @param args the command line arguments
@@ -100,10 +167,13 @@ public class BMIMainFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
-    private javax.swing.JMenu jMenu3;
+    private javax.swing.JMenu jAccount;
+    private javax.swing.JMenuItem jCalculate;
+    private javax.swing.JMenu jExit;
+    private javax.swing.JMenuItem jHistory;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenu jOperation;
+    private javax.swing.JMenuItem jViewGraph;
+    private javax.swing.JLabel labelSelamatDatang;
     // End of variables declaration//GEN-END:variables
 }
