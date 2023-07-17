@@ -110,7 +110,7 @@ public class BMICalcService {
         //TODO write your implementation code here:
         bmi = new HistoryBMI(berat, tinggi);
         double hasil_bmi = bmi.calculateBMI();
-        String kategori = bmi.kategoriBMI();
-        return hasil_bmi + "~" + kategori;
+        String kategori = bmi.kategoriBMI(hasil_bmi);
+        return "bmi~"+hasil_bmi + "~" + kategori+"\n";
     }
 }
