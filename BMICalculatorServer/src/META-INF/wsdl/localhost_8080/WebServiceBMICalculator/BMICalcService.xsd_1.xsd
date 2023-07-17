@@ -4,6 +4,14 @@
 
 <xs:element name="cekLoginResponse" type="tns:cekLoginResponse"/>
 
+<xs:element name="dataToString" type="tns:dataToString"/>
+
+<xs:element name="dataToStringResponse" type="tns:dataToStringResponse"/>
+
+<xs:element name="hitungBMI" type="tns:hitungBMI"/>
+
+<xs:element name="hitungBMIResponse" type="tns:hitungBMIResponse"/>
+
 <xs:element name="insertAccount" type="tns:insertAccount"/>
 
 <xs:element name="insertAccountResponse" type="tns:insertAccountResponse"/>
@@ -29,6 +37,19 @@
 </xs:sequence>
 </xs:complexType>
 
+<xs:complexType name="hitungBMI">
+<xs:sequence>
+<xs:element name="tinggi" type="xs:double"/>
+<xs:element name="berat" type="xs:double"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="hitungBMIResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
 <xs:complexType name="insertAccount">
 <xs:sequence>
 <xs:element name="email" type="xs:string" minOccurs="0"/>
@@ -40,6 +61,19 @@
 <xs:complexType name="insertAccountResponse">
 <xs:sequence>
 <xs:element name="return" type="xs:boolean"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="dataToString">
+<xs:sequence>
+<xs:element name="email" type="xs:string" minOccurs="0"/>
+<xs:element name="password" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="dataToStringResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:string" minOccurs="0"/>
 </xs:sequence>
 </xs:complexType>
 

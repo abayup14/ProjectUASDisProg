@@ -85,4 +85,32 @@ public class BMICalcService {
         ideal.insertData();
         return true;
     }
+
+    /**
+     * Web service operation
+     */
+    @WebMethod(operationName = "dataToString")
+    public String dataToString(@WebParam(name = "email") String email, @WebParam(name = "password") String password) {
+        //TODO write your implementation code here:
+        acc = new Account();
+        if (this.cekLogin(email, password) == true) {
+            ArrayList<Object> coll = acc.cekLogin();
+            acc = (Account)coll.get(0);
+            String data = acc.getId() + "~" + acc.getEmail() + "~" + acc.getPassword() + "~" + acc.getJenis_kelamin();
+            return data;
+        }
+        return null;
+    }
+
+    /**
+     * Web service operation
+     */
+    @WebMethod(operationName = "hitungBMI")
+    public String hitungBMI(@WebParam(name = "tinggi") double tinggi, @WebParam(name = "berat") double berat) {
+        //TODO write your implementation code here:
+        bmi = new HistoryBMI(berat, tinggi);
+        double hasil_bmi = bmi.calculateBMI();
+        String kategori = bmi.kategoriBMI();
+        return hasil_bmi + "~" + kategori;
+    }
 }
