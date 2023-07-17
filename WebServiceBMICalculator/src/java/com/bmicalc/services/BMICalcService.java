@@ -111,6 +111,17 @@ public class BMICalcService {
         bmi = new HistoryBMI(berat, tinggi);
         double hasil_bmi = bmi.calculateBMI();
         String kategori = bmi.kategoriBMI(hasil_bmi);
-        return "bmi~"+hasil_bmi + "~" + kategori+"\n";
+        return "bmi~"+hasil_bmi + "~" + kategori + "\n";
+    }
+
+    /**
+     * Web service operation
+     */
+    @WebMethod(operationName = "hitungBeratIdeal")
+    public String hitungBeratIdeal(@WebParam(name = "tinggi") double tinggi, @WebParam(name = "acc_id") int acc_id) {
+        //TODO write your implementation code here:
+        ideal = new HistoryHitungIdeal(tinggi, acc_id);
+        double berat_ideal = ideal.calculateBeratIdeal();
+        return "ideal~" + berat_ideal + "\n";
     }
 }

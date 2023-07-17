@@ -11,6 +11,7 @@ import java.sql.*;
  * @author Andreas Bayu P
  */
 public class HistoryHitungIdeal extends MyModel {
+
     private int id_hitung_ideal;
     private Timestamp tanggal;
     private double tinggi_badan;
@@ -57,16 +58,21 @@ public class HistoryHitungIdeal extends MyModel {
         this.acc_id = acc_id;
     }
 
+    public HistoryHitungIdeal(double tinggi_badan, int acc_id) {
+        this.tinggi_badan = tinggi_badan;
+        this.acc_id = acc_id;
+    }
+
     public HistoryHitungIdeal(double tinggi_badan, double berat_ideal, int acc_id) {
         this.tinggi_badan = tinggi_badan;
         this.berat_ideal = berat_ideal;
         this.acc_id = acc_id;
     }
-    
+
     public void insertData() {
         try {
             if (!MyModel.conn.isClosed()) {
-                PreparedStatement sql = (PreparedStatement)MyModel.conn.prepareStatement("insert into history_hitung_ideal(tinggi_badan, berat_ideal, account_id) values(?, ?, ?)");
+                PreparedStatement sql = (PreparedStatement) MyModel.conn.prepareStatement("insert into history_hitung_ideal(tinggi_badan, berat_ideal, account_id) values(?, ?, ?)");
                 sql.setDouble(1, this.tinggi_badan);
                 sql.setDouble(2, this.berat_ideal);
                 sql.setInt(3, this.acc_id);
@@ -77,8 +83,27 @@ public class HistoryHitungIdeal extends MyModel {
             System.out.println("Error di insertData " + e);
         }
     }
-    
+
     public double calculateBeratIdeal() {
-        return 0;
+        double berat_ideal = 0;
+        try {
+            String jenis_kelamin = "";
+            double persentase = 0;
+            PreparedStatement sql = (PreparedStatement) MyModel.conn.prepareStatement("select * from account where id_account=?");
+            sql.setInt(1, this.acc_id);
+            this.result = sql.executeQuery();
+            while(this.result.next()) {
+                jenis_kelamin = this.result.getString("jenis_kelamin");
+            }
+            if (jenis_kelamin.equals("L")) {
+                persentase = 0.1;
+            } else if (jenis_kelamin.equals("P")) {
+                persentase = 0.15;
+            }
+            berat_ideal = (this.tinggi_badan - 100.0) - ((this.tinggi_badan - 100.0) * persentase);
+        } catch (Exception e) {
+            System.out.println("Error di calculateBeratIdeal " + e);
+        }
+        return berat_ideal;
     }
 }

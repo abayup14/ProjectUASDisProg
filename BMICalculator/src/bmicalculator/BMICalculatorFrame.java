@@ -40,7 +40,11 @@ public class BMICalculatorFrame extends javax.swing.JFrame implements Runnable{
                 textAreaHasil.append("Hasil BMI : "+ part[1]+"\n"+"Kategori : "+ part[2]+"\n\n");
             }
             else if(this.input.readLine().contains("ideal")){ //kalau gagal
-                jOptionPane1.showMessageDialog(this, this.input.readLine()+"\n");
+                String message = this.input.readLine();
+                String[] part = message.split("~");
+                
+                textAreaHasil.append("Berat ideal anda adalah : " + part[1] + " kg\n");
+                //jOptionPane1.showMessageDialog(this, this.input.readLine()+"\n");
             }
         } catch (IOException ex) {
             Logger.getLogger(BMILoginFrame.class.getName()).log(Level.SEVERE, null, ex);
@@ -244,7 +248,7 @@ public class BMICalculatorFrame extends javax.swing.JFrame implements Runnable{
             }
             else if(radioButtonBeratBadanIdeal.isSelected()){
                 this.tinggi = Double.parseDouble(textFieldTinggi.getText());
-                this.output.writeBytes("ideal~" + accountAktif.getId() + "~" + accountAktif.getJenis_kelamin() + "~" + this.tinggi + "\n");
+                this.output.writeBytes("ideal~" + String.valueOf(accountAktif.getId()) + "~" + String.valueOf(accountAktif.getJenis_kelamin()) + "~" + String.valueOf(this.tinggi) + "\n");
             }
         } catch (IOException ex) {
             Logger.getLogger(BMICalculatorFrame.class.getName()).log(Level.SEVERE, null, ex);

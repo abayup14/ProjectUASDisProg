@@ -12,6 +12,10 @@
 
 <xs:element name="hitungBMIResponse" type="tns:hitungBMIResponse"/>
 
+<xs:element name="hitungBeratIdeal" type="tns:hitungBeratIdeal"/>
+
+<xs:element name="hitungBeratIdealResponse" type="tns:hitungBeratIdealResponse"/>
+
 <xs:element name="insertAccount" type="tns:insertAccount"/>
 
 <xs:element name="insertAccountResponse" type="tns:insertAccountResponse"/>
@@ -103,6 +107,19 @@
 <xs:complexType name="insertDataBMIResponse">
 <xs:sequence>
 <xs:element name="return" type="xs:boolean"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="hitungBeratIdeal">
+<xs:sequence>
+<xs:element name="tinggi" type="xs:double"/>
+<xs:element name="acc_id" type="xs:int"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="hitungBeratIdealResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:string" minOccurs="0"/>
 </xs:sequence>
 </xs:complexType>
 </xs:schema>

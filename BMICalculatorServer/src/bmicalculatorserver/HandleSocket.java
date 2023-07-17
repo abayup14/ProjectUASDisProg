@@ -73,6 +73,17 @@ public class HandleSocket extends Thread {
                 boolean insertData = insertDataBMI(berat, tinggi, hasil_bmi, id);
                 output.writeBytes(data_bmi);
             }
+            else if (part[0].equals("ideal")) {
+                int id = Integer.parseInt(part[1]);
+                String jenis_kelamin = part[2];
+                double tinggi = Double.parseDouble(part[3]);
+                
+                String data_ideal = hitungBeratIdeal(tinggi, id);
+                String[] split_data = data_ideal.split("~");
+                double berat_ideal = Double.parseDouble(split_data[1]);
+                boolean insertData = insertDataIdeal(tinggi, berat_ideal, id);
+                output.writeBytes(data_ideal);
+            }
         } catch (IOException ex) {
             Logger.getLogger(HandleSocket.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -119,6 +130,18 @@ public class HandleSocket extends Thread {
         bmicalculatorserver.BMICalcService_Service service = new bmicalculatorserver.BMICalcService_Service();
         bmicalculatorserver.BMICalcService port = service.getBMICalcServicePort();
         return port.insertDataBMI(beratBadan, tinggiBadan, hasilBmi, accountId);
+    }
+
+    private static String hitungBeratIdeal(double tinggi, int accId) {
+        bmicalculatorserver.BMICalcService_Service service = new bmicalculatorserver.BMICalcService_Service();
+        bmicalculatorserver.BMICalcService port = service.getBMICalcServicePort();
+        return port.hitungBeratIdeal(tinggi, accId);
+    }
+
+    private static boolean insertDataIdeal(double tinggiBadan, double beratIdeal, int accountId) {
+        bmicalculatorserver.BMICalcService_Service service = new bmicalculatorserver.BMICalcService_Service();
+        bmicalculatorserver.BMICalcService port = service.getBMICalcServicePort();
+        return port.insertDataIdeal(tinggiBadan, beratIdeal, accountId);
     }
     
     
