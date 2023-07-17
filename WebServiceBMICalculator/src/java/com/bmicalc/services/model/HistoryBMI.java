@@ -5,6 +5,7 @@
 package com.bmicalc.services.model;
 
 import java.sql.*;
+import bmicalculatorserver.MyModel;
 
 /**
  *

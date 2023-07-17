@@ -4,6 +4,8 @@
  */
 package bmicalculator;
 
+import classBMICalculator.User;
+
 /**
  *
  * @author vince
@@ -13,8 +15,14 @@ public class BMIHistoryFrame extends javax.swing.JFrame {
     /**
      * Creates new form BMIHistoryFrame
      */
+    User accountAktif;
     public BMIHistoryFrame() {
         initComponents();
+    }
+    
+    public BMIHistoryFrame(User account) {
+        initComponents();
+        accountAktif = account;
     }
 
     /**
