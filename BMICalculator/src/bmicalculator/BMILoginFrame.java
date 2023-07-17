@@ -25,7 +25,7 @@ public class BMILoginFrame extends javax.swing.JFrame implements Runnable{
     String email;
     String password;
     User u;
-    //Account acc;
+    
     @Override
     public void run() {
         while (true) {
@@ -35,17 +35,17 @@ public class BMILoginFrame extends javax.swing.JFrame implements Runnable{
     
     private void getMessage() {
         try {
-            if(this.input.readLine().contains("Sukses")){ //kalau sukses
-                    u.setId(1);
-                    u.setEmail("");
-                    u.setPassword("");
-                    u.setJenis_kelamin("");
+            if(this.input.readLine().contains("Berhasil Login")){ //kalau sukses
+//                    u.setId(1);
+//                    u.setEmail("");
+//                    u.setPassword("");
+//                    u.setJenis_kelamin("");
                 JOptionPane.showMessageDialog(this, this.input.readLine()+"\n");
                 
                 BMICalculatorFrame formCalc = new BMICalculatorFrame(u);
                 formCalc.setVisible(true);
             }
-            else if(this.input.readLine().contains("Gagal")){ //kalau gagal
+            else if(this.input.readLine().contains("Gagal Login")){ //kalau gagal
                 JOptionPane.showMessageDialog(this, this.input.readLine()+"\n");
             }
         } catch (IOException ex) {
@@ -64,7 +64,7 @@ public class BMILoginFrame extends javax.swing.JFrame implements Runnable{
         try {
             initComponents();
             u = new User();
-            String ip = "192.168.183.85";
+            String ip = "192.168.43.212";
             s = new Socket(ip, 10013); //string host dan int port
             input = new BufferedReader(new InputStreamReader(s.getInputStream()));
             this.start();
