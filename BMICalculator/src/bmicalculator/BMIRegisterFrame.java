@@ -34,7 +34,7 @@ public class BMIRegisterFrame extends javax.swing.JFrame implements Runnable {
     
     private void getMessage() {
         try {
-            jOptionPane1.showMessageDialog(this, this.input.readLine()+"\n");
+            JOptionPane.showMessageDialog(this, this.input.readLine()+"\n");
         } catch (IOException ex) {
             Logger.getLogger(BMILoginFrame.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -50,8 +50,7 @@ public class BMIRegisterFrame extends javax.swing.JFrame implements Runnable {
     public BMIRegisterFrame() {
         initComponents();
         try {
-
-            String ip = "192.168.43.212";
+            String ip = "192.168.183.85";
             s = new Socket(ip, 10013); //string host dan int port
             input = new BufferedReader(new InputStreamReader(s.getInputStream()));
             this.start();
@@ -71,7 +70,6 @@ public class BMIRegisterFrame extends javax.swing.JFrame implements Runnable {
     private void initComponents() {
 
         buttonGroupGender = new javax.swing.ButtonGroup();
-        jOptionPane1 = new javax.swing.JOptionPane();
         textFieldPassword = new javax.swing.JTextField();
         textFieldEmail = new javax.swing.JTextField();
         buttonLogin = new javax.swing.JButton();
@@ -282,7 +280,6 @@ public class BMIRegisterFrame extends javax.swing.JFrame implements Runnable {
     private javax.swing.JButton buttonBack;
     private javax.swing.ButtonGroup buttonGroupGender;
     private javax.swing.JButton buttonLogin;
-    private javax.swing.JOptionPane jOptionPane1;
     private javax.swing.JLabel labelBeratBadan;
     private javax.swing.JLabel labelBeratBadan1;
     private javax.swing.JLabel labelJudul;
