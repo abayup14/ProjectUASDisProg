@@ -11,6 +11,7 @@ import java.io.InputStreamReader;
 import java.net.Socket;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import bmicalculatorserver.CobaIP;
 
 /**
  *
@@ -23,6 +24,7 @@ public class HandleSocket extends Thread {
     FormServer server;
     //GUI_Server parent;
     String message;
+    String ipAddress;
     
     public HandleSocket(FormServer _parent, Socket s) {
         try {
@@ -31,6 +33,8 @@ public class HandleSocket extends Thread {
             this.s = s;
             input = new BufferedReader(new InputStreamReader(s.getInputStream()));
             output = new DataOutputStream(s.getOutputStream());
+            CobaIP ip = new CobaIP();
+            ipAddress = ip.ipKita();
         } catch (IOException ex) {
             Logger.getLogger(HandleSocket.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -44,9 +48,9 @@ public class HandleSocket extends Thread {
                 //u = u.CekLogin(part[1], part[2]);
                 boolean cekLogin = cekLogin(part[1], part[2]);
                 if (cekLogin == true) {
-                    output.writeBytes("berhasil~"+dataToString(part[1], part[2])+"\n");
+                    output.writeBytes(ipAddress+"~berhasil~"+dataToString(part[1], part[2])+"\n");
                 } else {
-                    output.writeBytes("gagal~\n");
+                    output.writeBytes(ipAddress+"~gagal~\n");
                 }
             }
             else if (part[0].equals("register")) {
