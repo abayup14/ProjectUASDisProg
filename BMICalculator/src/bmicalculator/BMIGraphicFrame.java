@@ -4,6 +4,24 @@
  */
 package bmicalculator;
 
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.io.File;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JButton;
+import javax.swing.JFileChooser;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import javax.swing.filechooser.FileNameExtensionFilter;
+import org.jfree.chart.ChartFactory;
+import org.jfree.chart.ChartPanel;
+import org.jfree.chart.ChartUtilities;
+import org.jfree.chart.JFreeChart;
+import org.jfree.chart.plot.PlotOrientation;
+import org.jfree.data.category.DefaultCategoryDataset;
+
 /**
  *
  * @author vince
@@ -15,6 +33,24 @@ public class BMIGraphicFrame extends javax.swing.JFrame {
      */
     User accountAktif;
     
+    private void exportChartAsImage(JFreeChart a) throws IOException {
+        JFileChooser fileChooser = new JFileChooser();
+        fileChooser.setDialogTitle("Export Chart as Image");
+        FileNameExtensionFilter filter = new FileNameExtensionFilter("PNG Images", "png");
+        fileChooser.setFileFilter(filter);
+
+        int userSelection = fileChooser.showSaveDialog(this);
+        if (userSelection == JFileChooser.APPROVE_OPTION) {
+            File fileToSave = fileChooser.getSelectedFile();
+            String filePath = fileToSave.getAbsolutePath();
+            if (!filePath.toLowerCase().endsWith(".png")) {
+                fileToSave = new File(filePath + ".png");
+            }
+
+            ChartUtilities.saveChartAsPNG(fileToSave, a, 500, 300);
+            JOptionPane.showMessageDialog(this, "Chart exported successfully!", "Export Successful", JOptionPane.INFORMATION_MESSAGE);
+        }
+    }
     public BMIGraphicFrame() {
         initComponents();
     }
@@ -37,6 +73,7 @@ public class BMIGraphicFrame extends javax.swing.JFrame {
         labelJudul = new javax.swing.JLabel();
         buttonBack = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
+        buttonView = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -81,6 +118,15 @@ public class BMIGraphicFrame extends javax.swing.JFrame {
             .addGap(0, 201, Short.MAX_VALUE)
         );
 
+        buttonView.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
+        buttonView.setForeground(new java.awt.Color(0, 0, 102));
+        buttonView.setText("View Graphic");
+        buttonView.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonViewActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -91,7 +137,8 @@ public class BMIGraphicFrame extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(buttonBack)
-                        .addGap(0, 0, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(buttonView))
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -102,12 +149,58 @@ public class BMIGraphicFrame extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(buttonBack)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(buttonBack)
+                    .addComponent(buttonView))
                 .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void buttonViewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonViewActionPerformed
+         // TODO add your handling code here:
+        DefaultCategoryDataset dataset = new DefaultCategoryDataset();
+        dataset.addValue(10, "Series 1", "One");
+        dataset.addValue(20, "Series 1", "Two");
+        dataset.addValue(30, "Series 1", "Three");
+        dataset.addValue(40, "Series 1", "Four");
+
+        JFreeChart chart = ChartFactory.createLineChart(
+                "Line Chart",          // chart title
+                "Category",            // domain axis label
+                "Value",               // range axis label
+                dataset,               // data
+                PlotOrientation.VERTICAL,
+                true,                  // include legend
+                true,                  // tooltips
+                false                  // urls
+        );
+
+        chart.setBackgroundPaint(Color.WHITE);
+
+        ChartPanel chartPanel = new ChartPanel(chart);
+        chartPanel.setPreferredSize(new java.awt.Dimension(500, 300));
+
+        JFrame frame = new JFrame("Line Chart");
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.getContentPane().add(chartPanel);
+
+        JButton exportButton = new JButton("Export Chart");
+        exportButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                try {
+                    exportChartAsImage(chart);
+                } catch (IOException ex) {
+                    Logger.getLogger(BMIGraphicFrame.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        });
+        frame.getContentPane().add(exportButton, BorderLayout.SOUTH);
+
+        frame.pack();
+        frame.setVisible(true);
+    }//GEN-LAST:event_buttonViewActionPerformed
 
     /**
      * @param args the command line arguments
@@ -146,6 +239,7 @@ public class BMIGraphicFrame extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buttonBack;
+    private javax.swing.JButton buttonView;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel labelJudul;
     private javax.swing.JPanel panelJudul;
