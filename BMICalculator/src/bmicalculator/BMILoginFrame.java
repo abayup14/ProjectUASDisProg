@@ -69,13 +69,12 @@ public class BMILoginFrame extends javax.swing.JFrame implements Runnable{
         try {
             initComponents();
             u = new User();
+            //String ip = this.input.readLine().split("~")[0];
+            String ip = "192.168.117.85";
+            s = new Socket(ip, 10013); //string host dan int port
             input = new BufferedReader(new InputStreamReader(s.getInputStream()));
             this.start();
             output = new DataOutputStream(s.getOutputStream());
-            String ip = this.input.readLine().split("~")[0];
-            //String ip = "192.168.43.212";
-            s = new Socket(ip, 10013); //string host dan int port
-            
         } catch (IOException ex) {
             Logger.getLogger(BMILoginFrame.class.getName()).log(Level.SEVERE, null, ex);
         }
