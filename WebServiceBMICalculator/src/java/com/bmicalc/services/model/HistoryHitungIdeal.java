@@ -5,6 +5,7 @@
 package com.bmicalc.services.model;
 
 import java.sql.*;
+import java.util.ArrayList;
 
 /**
  *
@@ -57,7 +58,17 @@ public class HistoryHitungIdeal extends MyModel {
     public void setAcc_id(int acc_id) {
         this.acc_id = acc_id;
     }
-
+    
+    public HistoryHitungIdeal(int acc_id) {
+        this.acc_id = acc_id;
+    }
+    
+    public HistoryHitungIdeal(Timestamp tanggal, double tinggi_badan, double berat_ideal) {
+        this.tanggal = tanggal;
+        this.tinggi_badan = tinggi_badan;
+        this.berat_ideal = berat_ideal;
+    }
+    
     public HistoryHitungIdeal(double tinggi_badan, int acc_id) {
         this.tinggi_badan = tinggi_badan;
         this.acc_id = acc_id;
@@ -105,5 +116,24 @@ public class HistoryHitungIdeal extends MyModel {
             System.out.println("Error di calculateBeratIdeal " + e);
         }
         return berat_ideal;
+    }
+    
+    public ArrayList<Object> viewListData() {
+        ArrayList<Object> coll = new ArrayList<Object>();
+        try {
+            //this.statement = (Statement) MyModel.conn.createStatement();
+            //this.result = this.statement.executeQuery("SELECT * from account WHERE email = " + this.email + " AND password = " + this.password);
+            PreparedStatement sql = (PreparedStatement) MyModel.conn.prepareStatement("SELECT tanggal, tinggi_badan, berat_ideal from history_hitung_ideal where account_id=?");
+            sql.setInt(1, this.acc_id);
+            this.result = sql.executeQuery();
+            while (this.result.next()) {
+                HistoryHitungIdeal ideal = new HistoryHitungIdeal(this.result.getTimestamp("tanggal"),this.result.getDouble("tinggi_badan"), this.result.getDouble("berat_ideal"));
+                coll.add(ideal);
+            }
+        } catch (Exception e) {
+            System.out.println("Error di viewListData " + e);
+        }
+
+        return coll;
     }
 }

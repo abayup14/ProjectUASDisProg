@@ -19,10 +19,10 @@ import javax.jws.WebParam;
  */
 @WebService(serviceName = "BMICalcService")
 public class BMICalcService {
+
     Account acc;
-    HistoryBMI bmi;
-    HistoryHitungIdeal ideal;
     ArrayList<Object> coll;
+
     /**
      * This is a sample web service operation
      */
@@ -70,6 +70,7 @@ public class BMICalcService {
      */
     @WebMethod(operationName = "insertDataBMI")
     public boolean insertDataBMI(@WebParam(name = "berat_badan") double berat_badan, @WebParam(name = "tinggi_badan") double tinggi_badan, @WebParam(name = "hasil_bmi") double hasil_bmi, @WebParam(name = "account_id") int account_id) {
+        HistoryBMI bmi;
         bmi = new HistoryBMI(berat_badan, tinggi_badan, hasil_bmi, account_id);
         bmi.insertData();
         return true;
@@ -81,6 +82,7 @@ public class BMICalcService {
     @WebMethod(operationName = "insertDataIdeal")
     public boolean insertDataIdeal(@WebParam(name = "tinggi_badan") double tinggi_badan, @WebParam(name = "berat_ideal") double berat_ideal, @WebParam(name = "account_id") int account_id) {
         //TODO write your implementation code here:
+        HistoryHitungIdeal ideal;
         ideal = new HistoryHitungIdeal(berat_ideal, tinggi_badan, account_id);
         ideal.insertData();
         return true;
@@ -95,7 +97,7 @@ public class BMICalcService {
         acc = new Account();
         if (this.cekLogin(email, password) == true) {
             ArrayList<Object> coll = acc.cekLogin();
-            acc = (Account)coll.get(0);
+            acc = (Account) coll.get(0);
             String data = acc.getId() + "~" + acc.getEmail() + "~" + acc.getPassword() + "~" + acc.getJenis_kelamin();
             return data;
         }
@@ -108,10 +110,11 @@ public class BMICalcService {
     @WebMethod(operationName = "hitungBMI")
     public String hitungBMI(@WebParam(name = "tinggi") double tinggi, @WebParam(name = "berat") double berat) {
         //TODO write your implementation code here:
+        HistoryBMI bmi;
         bmi = new HistoryBMI(berat, tinggi);
         double hasil_bmi = bmi.calculateBMI();
         String kategori = bmi.kategoriBMI(hasil_bmi);
-        return "bmi~"+hasil_bmi + "~" + kategori + "\n";
+        return "bmi~" + hasil_bmi + "~" + kategori + "\n";
     }
 
     /**
@@ -120,8 +123,49 @@ public class BMICalcService {
     @WebMethod(operationName = "hitungBeratIdeal")
     public String hitungBeratIdeal(@WebParam(name = "tinggi") double tinggi, @WebParam(name = "acc_id") int acc_id) {
         //TODO write your implementation code here:
+        HistoryHitungIdeal ideal;
         ideal = new HistoryHitungIdeal(tinggi, acc_id);
         double berat_ideal = ideal.calculateBeratIdeal();
         return "ideal~" + berat_ideal + "\n";
+    }
+
+    /**
+     * Web service operation
+     */
+    @WebMethod(operationName = "viewListHistoryBMI")
+    public String viewListHistoryBMI(@WebParam(name = "acc_id") int acc_id) {
+        //TODO write your implementation code here:
+        String hasil = "";
+        HistoryBMI bmi = new HistoryBMI(acc_id);
+        ArrayList<Object> coll = new ArrayList<Object>();
+        coll = bmi.viewListData();
+        for (Object obj : coll) {
+            if (obj instanceof HistoryBMI) {
+                HistoryBMI bmi_new = (HistoryBMI) obj;
+                String data = String.valueOf(bmi_new.getTanggal()) + "#" + String.valueOf(bmi_new.getBerat_badan()) + "#" + String.valueOf(bmi_new.getTinggi_badan()) + "#" + String.valueOf(bmi_new.getHasil_bmi()) + "~";
+                hasil += data;
+            }
+        }
+        return "historybmi~" + hasil + "\n";
+    }
+
+    /**
+     * Web service operation
+     */
+    @WebMethod(operationName = "viewListHistoryIdeal")
+    public String viewListHistoryIdeal(@WebParam(name = "acc_id") int acc_id) {
+        //TODO write your implementation code here:
+        String hasil = "";
+        HistoryHitungIdeal ideal = new HistoryHitungIdeal(acc_id);
+        ArrayList<Object> coll = new ArrayList<Object>();
+        coll = ideal.viewListData();
+        for (Object obj : coll) {
+            if (obj instanceof HistoryHitungIdeal) {
+                HistoryHitungIdeal bmi_new = (HistoryHitungIdeal) obj;
+                String data = String.valueOf(bmi_new.getTanggal()) + "#" + String.valueOf(bmi_new.getTinggi_badan()) + "#" + String.valueOf(bmi_new.getBerat_ideal()) + "~";
+                hasil += data;
+            }
+        }
+        return "historyideal~" + hasil + "\n";
     }
 }

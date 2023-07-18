@@ -4,35 +4,11 @@
 <xsd:import namespace="http://services.bmicalc.com/" schemaLocation="http://localhost:8080/WebServiceBMICalculator/BMICalcService?xsd=1"/>
 </xsd:schema>
 </types>
-<message name="insertAccount">
-<part name="parameters" element="tns:insertAccount"/>
-</message>
-<message name="insertAccountResponse">
-<part name="parameters" element="tns:insertAccountResponse"/>
-</message>
-<message name="insertDataIdeal">
-<part name="parameters" element="tns:insertDataIdeal"/>
-</message>
-<message name="insertDataIdealResponse">
-<part name="parameters" element="tns:insertDataIdealResponse"/>
-</message>
 <message name="dataToString">
 <part name="parameters" element="tns:dataToString"/>
 </message>
 <message name="dataToStringResponse">
 <part name="parameters" element="tns:dataToStringResponse"/>
-</message>
-<message name="cekLogin">
-<part name="parameters" element="tns:cekLogin"/>
-</message>
-<message name="cekLoginResponse">
-<part name="parameters" element="tns:cekLoginResponse"/>
-</message>
-<message name="hitungBMI">
-<part name="parameters" element="tns:hitungBMI"/>
-</message>
-<message name="hitungBMIResponse">
-<part name="parameters" element="tns:hitungBMIResponse"/>
 </message>
 <message name="insertDataBMI">
 <part name="parameters" element="tns:insertDataBMI"/>
@@ -40,81 +16,89 @@
 <message name="insertDataBMIResponse">
 <part name="parameters" element="tns:insertDataBMIResponse"/>
 </message>
+<message name="insertDataIdeal">
+<part name="parameters" element="tns:insertDataIdeal"/>
+</message>
+<message name="insertDataIdealResponse">
+<part name="parameters" element="tns:insertDataIdealResponse"/>
+</message>
+<message name="hitungBMI">
+<part name="parameters" element="tns:hitungBMI"/>
+</message>
+<message name="hitungBMIResponse">
+<part name="parameters" element="tns:hitungBMIResponse"/>
+</message>
 <message name="hitungBeratIdeal">
 <part name="parameters" element="tns:hitungBeratIdeal"/>
 </message>
 <message name="hitungBeratIdealResponse">
 <part name="parameters" element="tns:hitungBeratIdealResponse"/>
 </message>
+<message name="cekLogin">
+<part name="parameters" element="tns:cekLogin"/>
+</message>
+<message name="cekLoginResponse">
+<part name="parameters" element="tns:cekLoginResponse"/>
+</message>
+<message name="insertAccount">
+<part name="parameters" element="tns:insertAccount"/>
+</message>
+<message name="insertAccountResponse">
+<part name="parameters" element="tns:insertAccountResponse"/>
+</message>
+<message name="viewListHistoryBMI">
+<part name="parameters" element="tns:viewListHistoryBMI"/>
+</message>
+<message name="viewListHistoryBMIResponse">
+<part name="parameters" element="tns:viewListHistoryBMIResponse"/>
+</message>
+<message name="viewListHistoryIdeal">
+<part name="parameters" element="tns:viewListHistoryIdeal"/>
+</message>
+<message name="viewListHistoryIdealResponse">
+<part name="parameters" element="tns:viewListHistoryIdealResponse"/>
+</message>
 <portType name="BMICalcService">
-<operation name="insertAccount">
-<input wsam:Action="http://services.bmicalc.com/BMICalcService/insertAccountRequest" message="tns:insertAccount"/>
-<output wsam:Action="http://services.bmicalc.com/BMICalcService/insertAccountResponse" message="tns:insertAccountResponse"/>
-</operation>
-<operation name="insertDataIdeal">
-<input wsam:Action="http://services.bmicalc.com/BMICalcService/insertDataIdealRequest" message="tns:insertDataIdeal"/>
-<output wsam:Action="http://services.bmicalc.com/BMICalcService/insertDataIdealResponse" message="tns:insertDataIdealResponse"/>
-</operation>
 <operation name="dataToString">
 <input wsam:Action="http://services.bmicalc.com/BMICalcService/dataToStringRequest" message="tns:dataToString"/>
 <output wsam:Action="http://services.bmicalc.com/BMICalcService/dataToStringResponse" message="tns:dataToStringResponse"/>
-</operation>
-<operation name="cekLogin">
-<input wsam:Action="http://services.bmicalc.com/BMICalcService/cekLoginRequest" message="tns:cekLogin"/>
-<output wsam:Action="http://services.bmicalc.com/BMICalcService/cekLoginResponse" message="tns:cekLoginResponse"/>
-</operation>
-<operation name="hitungBMI">
-<input wsam:Action="http://services.bmicalc.com/BMICalcService/hitungBMIRequest" message="tns:hitungBMI"/>
-<output wsam:Action="http://services.bmicalc.com/BMICalcService/hitungBMIResponse" message="tns:hitungBMIResponse"/>
 </operation>
 <operation name="insertDataBMI">
 <input wsam:Action="http://services.bmicalc.com/BMICalcService/insertDataBMIRequest" message="tns:insertDataBMI"/>
 <output wsam:Action="http://services.bmicalc.com/BMICalcService/insertDataBMIResponse" message="tns:insertDataBMIResponse"/>
 </operation>
+<operation name="insertDataIdeal">
+<input wsam:Action="http://services.bmicalc.com/BMICalcService/insertDataIdealRequest" message="tns:insertDataIdeal"/>
+<output wsam:Action="http://services.bmicalc.com/BMICalcService/insertDataIdealResponse" message="tns:insertDataIdealResponse"/>
+</operation>
+<operation name="hitungBMI">
+<input wsam:Action="http://services.bmicalc.com/BMICalcService/hitungBMIRequest" message="tns:hitungBMI"/>
+<output wsam:Action="http://services.bmicalc.com/BMICalcService/hitungBMIResponse" message="tns:hitungBMIResponse"/>
+</operation>
 <operation name="hitungBeratIdeal">
 <input wsam:Action="http://services.bmicalc.com/BMICalcService/hitungBeratIdealRequest" message="tns:hitungBeratIdeal"/>
 <output wsam:Action="http://services.bmicalc.com/BMICalcService/hitungBeratIdealResponse" message="tns:hitungBeratIdealResponse"/>
 </operation>
+<operation name="cekLogin">
+<input wsam:Action="http://services.bmicalc.com/BMICalcService/cekLoginRequest" message="tns:cekLogin"/>
+<output wsam:Action="http://services.bmicalc.com/BMICalcService/cekLoginResponse" message="tns:cekLoginResponse"/>
+</operation>
+<operation name="insertAccount">
+<input wsam:Action="http://services.bmicalc.com/BMICalcService/insertAccountRequest" message="tns:insertAccount"/>
+<output wsam:Action="http://services.bmicalc.com/BMICalcService/insertAccountResponse" message="tns:insertAccountResponse"/>
+</operation>
+<operation name="viewListHistoryBMI">
+<input wsam:Action="http://services.bmicalc.com/BMICalcService/viewListHistoryBMIRequest" message="tns:viewListHistoryBMI"/>
+<output wsam:Action="http://services.bmicalc.com/BMICalcService/viewListHistoryBMIResponse" message="tns:viewListHistoryBMIResponse"/>
+</operation>
+<operation name="viewListHistoryIdeal">
+<input wsam:Action="http://services.bmicalc.com/BMICalcService/viewListHistoryIdealRequest" message="tns:viewListHistoryIdeal"/>
+<output wsam:Action="http://services.bmicalc.com/BMICalcService/viewListHistoryIdealResponse" message="tns:viewListHistoryIdealResponse"/>
+</operation>
 </portType>
 <binding name="BMICalcServicePortBinding" type="tns:BMICalcService">
 <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
-<operation name="insertAccount">
-<soap:operation soapAction=""/>
-<input>
-<soap:body use="literal"/>
-</input>
-<output>
-<soap:body use="literal"/>
-</output>
-</operation>
-<operation name="insertDataIdeal">
-<soap:operation soapAction=""/>
-<input>
-<soap:body use="literal"/>
-</input>
-<output>
-<soap:body use="literal"/>
-</output>
-</operation>
 <operation name="dataToString">
-<soap:operation soapAction=""/>
-<input>
-<soap:body use="literal"/>
-</input>
-<output>
-<soap:body use="literal"/>
-</output>
-</operation>
-<operation name="cekLogin">
-<soap:operation soapAction=""/>
-<input>
-<soap:body use="literal"/>
-</input>
-<output>
-<soap:body use="literal"/>
-</output>
-</operation>
-<operation name="hitungBMI">
 <soap:operation soapAction=""/>
 <input>
 <soap:body use="literal"/>
@@ -132,7 +116,61 @@
 <soap:body use="literal"/>
 </output>
 </operation>
+<operation name="insertDataIdeal">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="hitungBMI">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
 <operation name="hitungBeratIdeal">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="cekLogin">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="insertAccount">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="viewListHistoryBMI">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="viewListHistoryIdeal">
 <soap:operation soapAction=""/>
 <input>
 <soap:body use="literal"/>

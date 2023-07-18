@@ -5,6 +5,7 @@
 package com.bmicalc.services.model;
 
 import java.sql.*;
+import java.util.ArrayList;
 
 /**
  *
@@ -65,6 +66,11 @@ public class HistoryBMI extends MyModel{
     public void setAcc_id(int acc_id) {
         this.acc_id = acc_id;
     }
+    
+    public HistoryBMI(int acc_id) {
+        this.acc_id = acc_id;
+    }
+    
     public HistoryBMI(double berat_badan, double tinggi_badan) {
         this.berat_badan = berat_badan;
         this.tinggi_badan = tinggi_badan;
@@ -83,6 +89,13 @@ public class HistoryBMI extends MyModel{
         this.berat_badan = berat_badan;
         this.tinggi_badan = tinggi_badan;
         this.acc_id = acc_id;
+    }
+
+    public HistoryBMI(Timestamp tanggal, double berat_badan, double tinggi_badan, double hasil_bmi) {
+        this.tanggal = tanggal;
+        this.berat_badan = berat_badan;
+        this.tinggi_badan = tinggi_badan;
+        this.hasil_bmi = hasil_bmi;
     }
     
     public void insertData() {
@@ -114,5 +127,24 @@ public class HistoryBMI extends MyModel{
         } else {
             return "Obesity";
         }
+    }
+    
+    public ArrayList<Object> viewListData() {
+        ArrayList<Object> coll = new ArrayList<Object>();
+        try {
+            //this.statement = (Statement) MyModel.conn.createStatement();
+            //this.result = this.statement.executeQuery("SELECT * from account WHERE email = " + this.email + " AND password = " + this.password);
+            PreparedStatement sql = (PreparedStatement) MyModel.conn.prepareStatement("SELECT tanggal, berat_badan, tinggi_badan, hasil_bmi from history_bmi where account_id=?");
+            sql.setInt(1, this.acc_id);
+            this.result = sql.executeQuery();
+            while (this.result.next()) {
+                HistoryBMI bmi = new HistoryBMI(this.result.getTimestamp("tanggal"), this.result.getDouble("berat_badan"), this.result.getDouble("berat_badan"), this.result.getDouble("hasil_bmi"));
+                coll.add(bmi);
+            }
+        } catch (Exception e) {
+            System.out.println("Error di viewListData " + e);
+        }
+
+        return coll;
     }
 }

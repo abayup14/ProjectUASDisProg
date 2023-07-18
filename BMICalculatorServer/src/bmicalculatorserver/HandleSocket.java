@@ -24,7 +24,7 @@ public class HandleSocket extends Thread {
     FormServer server;
     //GUI_Server parent;
     String message;
-    String ipAddress;
+    //String ipAddress;
     
     public HandleSocket(FormServer _parent, Socket s) {
         try {
@@ -33,8 +33,8 @@ public class HandleSocket extends Thread {
             this.s = s;
             input = new BufferedReader(new InputStreamReader(s.getInputStream()));
             output = new DataOutputStream(s.getOutputStream());
-            CobaIP ip = new CobaIP();
-            ipAddress = ip.ipKita();
+            //CobaIP ip = new CobaIP();
+            //ipAddress = ip.ipKita();
         } catch (IOException ex) {
             Logger.getLogger(HandleSocket.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -87,6 +87,18 @@ public class HandleSocket extends Thread {
                 double berat_ideal = Double.parseDouble(split_data[1]);
                 boolean insertData = insertDataIdeal(tinggi, berat_ideal, id);
                 output.writeBytes(data_ideal);
+            }
+            else if (part[0].equals("historybmi")) {
+                int id = Integer.parseInt(part[1]);
+                
+                String hist_bmi = viewListHistoryBMI(id);
+                output.writeBytes(hist_bmi);
+            }
+            else if (part[0].equals("historyideal")) {
+                int id = Integer.parseInt(part[1]);
+                
+                String hasil_ideal = viewListHistoryIdeal(id);
+                output.writeBytes(hasil_ideal);
             }
         } catch (IOException ex) {
             Logger.getLogger(HandleSocket.class.getName()).log(Level.SEVERE, null, ex);
@@ -146,6 +158,18 @@ public class HandleSocket extends Thread {
         bmicalculatorserver.BMICalcService_Service service = new bmicalculatorserver.BMICalcService_Service();
         bmicalculatorserver.BMICalcService port = service.getBMICalcServicePort();
         return port.insertDataIdeal(tinggiBadan, beratIdeal, accountId);
+    }
+
+    private static String viewListHistoryBMI(int accId) {
+        bmicalculatorserver.BMICalcService_Service service = new bmicalculatorserver.BMICalcService_Service();
+        bmicalculatorserver.BMICalcService port = service.getBMICalcServicePort();
+        return port.viewListHistoryBMI(accId);
+    }
+
+    private static String viewListHistoryIdeal(int accId) {
+        bmicalculatorserver.BMICalcService_Service service = new bmicalculatorserver.BMICalcService_Service();
+        bmicalculatorserver.BMICalcService port = service.getBMICalcServicePort();
+        return port.viewListHistoryIdeal(accId);
     }
     
     
