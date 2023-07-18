@@ -63,6 +63,7 @@ public class BMIChatGroup extends javax.swing.JFrame {
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
         jTextArea1.setText("[s160421001@student.ubaya.ac.id] : aku sayang vkh\n[s160421072@student.ubaya.ac.id] : skip");
+        jTextArea1.setEnabled(false);
         jScrollPane1.setViewportView(jTextArea1);
 
         labelTinggiBadan.setText("chat :");

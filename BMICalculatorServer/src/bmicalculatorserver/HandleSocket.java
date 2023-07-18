@@ -46,7 +46,7 @@ public class HandleSocket extends Thread {
                 if (cekLogin == true) {
                     output.writeBytes("berhasil~"+dataToString(part[1], part[2])+"\n");
                 } else {
-                    output.writeBytes("gagal\n");
+                    output.writeBytes("gagal~\n");
                 }
             }
             else if (part[0].equals("register")) {
@@ -57,9 +57,9 @@ public class HandleSocket extends Thread {
                 boolean insertAccount = insertAccount(email, password, gender);
                 
                 if (insertAccount == true) {
-                    output.writeBytes("Berhasil mendaftarkan akun\n");
+                    output.writeBytes("berhasil~\n");
                 } else {
-                    output.writeBytes("Gagal mendaftarkan akun. Akun sudah ada di dalam database\n");
+                    output.writeBytes("gagal~\n");
                 }
             }
             else if (part[0].equals("bmi")) {

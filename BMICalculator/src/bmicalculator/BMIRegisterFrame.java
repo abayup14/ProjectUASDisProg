@@ -34,7 +34,13 @@ public class BMIRegisterFrame extends javax.swing.JFrame implements Runnable {
     
     private void getMessage() {
         try {
-            JOptionPane.showMessageDialog(this, this.input.readLine()+"\n");
+            String message = this.input.readLine();
+            String[] part = message.split("~");
+            if (part[0].equals("berhasil")) {
+                JOptionPane.showMessageDialog(this, "Berhasil mendaftarkan akun.\n");
+            } else if (part[0].equals("gagal")) {
+                JOptionPane.showMessageDialog(this, "Gagal membuat akun. Coba lagi.\n");
+            }
         } catch (IOException ex) {
             Logger.getLogger(BMILoginFrame.class.getName()).log(Level.SEVERE, null, ex);
         }

@@ -54,9 +54,9 @@ public class BMIHistoryFrame extends javax.swing.JFrame {
         panelJudulLayout.setHorizontalGroup(
             panelJudulLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelJudulLayout.createSequentialGroup()
-                .addGap(67, 67, 67)
+                .addGap(33, 33, 33)
                 .addComponent(labelJudul)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(40, Short.MAX_VALUE))
         );
         panelJudulLayout.setVerticalGroup(
             panelJudulLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -72,6 +72,7 @@ public class BMIHistoryFrame extends javax.swing.JFrame {
 
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
+        jTextArea1.setEnabled(false);
         jScrollPane1.setViewportView(jTextArea1);
 
         buttonBack.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
@@ -103,7 +104,7 @@ public class BMIHistoryFrame extends javax.swing.JFrame {
                                 .addComponent(radioButtonBMI)
                                 .addGap(34, 34, 34)
                                 .addComponent(radioButtonBeratBadanIdeal)))
-                        .addGap(0, 34, Short.MAX_VALUE)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(

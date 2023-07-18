@@ -35,9 +35,11 @@ public class BMILoginFrame extends javax.swing.JFrame implements Runnable{
     
     private void getMessage() {
         try {
-            if(this.input.readLine().contains("berhasil")){ //kalau sukses
-                String message = this.input.readLine();          
-                String[] part = message.split("~");
+            String message = this.input.readLine();
+            String[] part = message.split("~");
+            if(part[0].equals("berhasil")){ //kalau sukses
+                //String message = this.input.readLine();          
+                //String[] part = message.split("~");
                                 
                 u.setId(Integer.parseInt(part[1]));
                 u.setEmail(part[2]);
@@ -48,7 +50,7 @@ public class BMILoginFrame extends javax.swing.JFrame implements Runnable{
                 BMIMainFrame formMain = new BMIMainFrame(u);
                 formMain.setVisible(true);
             }
-            else if(this.input.readLine().contains("gagal")){ //kalau gagal
+            else if(part[0].equals("gagal")){ //kalau gagal
                 JOptionPane.showMessageDialog(this, this.input.readLine()+"\n");
             }
         } catch (IOException ex) {

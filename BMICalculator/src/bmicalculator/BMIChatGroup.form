@@ -123,6 +123,7 @@
             <Property name="columns" type="int" value="20"/>
             <Property name="rows" type="int" value="5"/>
             <Property name="text" type="java.lang.String" value="[s160421001@student.ubaya.ac.id] : aku sayang vkh&#xa;[s160421072@student.ubaya.ac.id] : skip"/>
+            <Property name="enabled" type="boolean" value="false"/>
           </Properties>
         </Component>
       </SubComponents>
