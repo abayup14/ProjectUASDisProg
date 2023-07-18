@@ -48,9 +48,9 @@ public class HandleSocket extends Thread {
                 //u = u.CekLogin(part[1], part[2]);
                 boolean cekLogin = cekLogin(part[1], part[2]);
                 if (cekLogin == true) {
-                    output.writeBytes(ipAddress+"~berhasil~"+dataToString(part[1], part[2])+"\n");
+                    output.writeBytes("berhasil~"+dataToString(part[1], part[2])+"\n");
                 } else {
-                    output.writeBytes(ipAddress+"~gagal~\n");
+                    output.writeBytes("gagal~\n");
                 }
             }
             else if (part[0].equals("register")) {
