@@ -9,6 +9,7 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.Socket;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -16,60 +17,63 @@ import java.util.logging.Logger;
  *
  * @author vince
  */
-public class BMIHistoryFrame extends javax.swing.JFrame implements Runnable{
+public class BMIHistoryFrame extends javax.swing.JFrame implements Runnable {
+
     Socket s;
     BufferedReader input;
     DataOutputStream output;
     Thread t;
     User accountAktif;
-    
+
     public void run() {
         while (true) {
             getMessage();
         }
     }
-    
+
     private void getMessage() {
         try {
-            if(this.input.readLine().contains("historybmi")){ //kalau sukses
-                String message = this.input.readLine();          
-                String[] part = message.split("~");
-
-                textAreaHasil.append("Tanggal : " + part[1] + "\n" + 
-                                     "Berat Badan : " + part[2] + "\n" + 
-                                     "Tinggi Badan : " + part[3] + "\n" +
-                                     "Hasil BMI : " + part[4] + "\n" +
-                                     "Kategori : " + part[5] + "\n\n");
-            }
-            else if(this.input.readLine().contains("historyideal")){ //kalau gagal
-                String message = this.input.readLine();
-                String[] part = message.split("~");
-                
-                textAreaHasil.append("Tanggal : " + part[1] + "\n" + 
-                                     "Tinggi Badan : " + part[2] + "\n" +
-                                     "Berat Ideal : " + part[3] + "\n\n");
+            String message = this.input.readLine();
+            String[] part = message.split("~");
+            if (part[0].equals("historybmi")) { //kalau history bmi
+                textAreaHasil.append("HISTORY CALCULATION OF BMI: \n");
+                for (int i = 1; i <= part.length; i++) {
+                    String[] partHasilBMI = part[i].split("#");
+                    textAreaHasil.append("Tanggal : " + partHasilBMI[0] + "\n"
+                            + "Berat Badan : " + partHasilBMI[1] + "\n"
+                            + "Tinggi Badan : " + partHasilBMI[2] + "\n"
+                            + "Hasil BMI : " + partHasilBMI[3] + "\n\n");
+                }
+            } else if (part[0].equals("historyideal")) {
+                textAreaHasil.append("HISTORY CALCULATION OF IDEAL WEIGHT: \n");
+                for (int i = 1; i <= part.length; i++) {
+                    String[] partHasilIdeal = part[i].split("#");
+                    textAreaHasil.append("Tanggal : " + partHasilIdeal[0] + "\n"
+                            + "Tinggi Badan : " + partHasilIdeal[1] + "\n"
+                            + "Berat Ideal : " + partHasilIdeal[2] + "\n\n");
+                }
             }
         } catch (IOException ex) {
             Logger.getLogger(BMIHistoryFrame.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
+
     public void start() {
         if (this.t == null) {
             this.t = new Thread(this, "myThread");
             this.t.start();
         }
     }
-    
+
     public BMIHistoryFrame() {
         initComponents();
     }
-    
-     public BMIHistoryFrame(User account) {
+
+    public BMIHistoryFrame(User account) {
         initComponents();
         try {
-        accountAktif = account;
-        String ip = "192.168.117.85";
+            accountAktif = account;
+            String ip = "192.168.117.85";
             s = new Socket(ip, 10013); //string host dan int port
             input = new BufferedReader(new InputStreamReader(s.getInputStream()));
             this.start();
@@ -77,8 +81,8 @@ public class BMIHistoryFrame extends javax.swing.JFrame implements Runnable{
         } catch (IOException ex) {
             Logger.getLogger(BMIHistoryFrame.class.getName()).log(Level.SEVERE, null, ex);
         }
-     }
-    
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -88,6 +92,7 @@ public class BMIHistoryFrame extends javax.swing.JFrame implements Runnable{
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroup1 = new javax.swing.ButtonGroup();
         panelJudul = new javax.swing.JPanel();
         labelJudul = new javax.swing.JLabel();
         radioButtonBeratBadanIdeal = new javax.swing.JRadioButton();
@@ -121,6 +126,7 @@ public class BMIHistoryFrame extends javax.swing.JFrame implements Runnable{
                 .addContainerGap())
         );
 
+        buttonGroup1.add(radioButtonBeratBadanIdeal);
         radioButtonBeratBadanIdeal.setText("Hitung Berat Badan Ideal");
         radioButtonBeratBadanIdeal.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -128,6 +134,7 @@ public class BMIHistoryFrame extends javax.swing.JFrame implements Runnable{
             }
         });
 
+        buttonGroup1.add(radioButtonBMI);
         radioButtonBMI.setText("Hitung BMI");
         radioButtonBMI.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -191,7 +198,6 @@ public class BMIHistoryFrame extends javax.swing.JFrame implements Runnable{
     }// </editor-fold>//GEN-END:initComponents
 
     private void buttonBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonBackActionPerformed
-        this.dispose();
         this.setVisible(false);
     }//GEN-LAST:event_buttonBackActionPerformed
 
@@ -248,6 +254,7 @@ public class BMIHistoryFrame extends javax.swing.JFrame implements Runnable{
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buttonBack;
+    private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel labelJudul;
     private javax.swing.JPanel panelJudul;
