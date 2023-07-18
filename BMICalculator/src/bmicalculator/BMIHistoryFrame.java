@@ -4,24 +4,79 @@
  */
 package bmicalculator;
 
+import java.io.BufferedReader;
+import java.io.DataOutputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.Socket;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author vince
  */
-public class BMIHistoryFrame extends javax.swing.JFrame {
-
-    /**
-     * Creates new form BMIHistoryFrame
-     */
-    
+public class BMIHistoryFrame extends javax.swing.JFrame implements Runnable{
+    Socket s;
+    BufferedReader input;
+    DataOutputStream output;
+    Thread t;
     User accountAktif;
+    
+    public void run() {
+        while (true) {
+            getMessage();
+        }
+    }
+    
+    private void getMessage() {
+        try {
+            if(this.input.readLine().contains("historybmi")){ //kalau sukses
+                String message = this.input.readLine();          
+                String[] part = message.split("~");
+
+                textAreaHasil.append("Tanggal : " + part[1] + "\n" + 
+                                     "Berat Badan : " + part[2] + "\n" + 
+                                     "Tinggi Badan : " + part[3] + "\n" +
+                                     "Hasil BMI : " + part[4] + "\n" +
+                                     "Kategori : " + part[5] + "\n\n");
+            }
+            else if(this.input.readLine().contains("historyideal")){ //kalau gagal
+                String message = this.input.readLine();
+                String[] part = message.split("~");
+                
+                textAreaHasil.append("Tanggal : " + part[1] + "\n" + 
+                                     "Tinggi Badan : " + part[2] + "\n" +
+                                     "Berat Ideal : " + part[3] + "\n\n");
+            }
+        } catch (IOException ex) {
+            Logger.getLogger(BMIHistoryFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    public void start() {
+        if (this.t == null) {
+            this.t = new Thread(this, "myThread");
+            this.t.start();
+        }
+    }
+    
     public BMIHistoryFrame() {
         initComponents();
     }
     
      public BMIHistoryFrame(User account) {
         initComponents();
+        try {
         accountAktif = account;
+        String ip = "192.168.117.85";
+            s = new Socket(ip, 10013); //string host dan int port
+            input = new BufferedReader(new InputStreamReader(s.getInputStream()));
+            this.start();
+            output = new DataOutputStream(s.getOutputStream());
+        } catch (IOException ex) {
+            Logger.getLogger(BMIHistoryFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
      }
     
     /**
@@ -38,7 +93,7 @@ public class BMIHistoryFrame extends javax.swing.JFrame {
         radioButtonBeratBadanIdeal = new javax.swing.JRadioButton();
         radioButtonBMI = new javax.swing.JRadioButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        textAreaHasil = new javax.swing.JTextArea();
         buttonBack = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -56,7 +111,7 @@ public class BMIHistoryFrame extends javax.swing.JFrame {
             .addGroup(panelJudulLayout.createSequentialGroup()
                 .addGap(33, 33, 33)
                 .addComponent(labelJudul)
-                .addContainerGap(40, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         panelJudulLayout.setVerticalGroup(
             panelJudulLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -67,13 +122,23 @@ public class BMIHistoryFrame extends javax.swing.JFrame {
         );
 
         radioButtonBeratBadanIdeal.setText("Hitung Berat Badan Ideal");
+        radioButtonBeratBadanIdeal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                radioButtonBeratBadanIdealActionPerformed(evt);
+            }
+        });
 
         radioButtonBMI.setText("Hitung BMI");
+        radioButtonBMI.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                radioButtonBMIActionPerformed(evt);
+            }
+        });
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jTextArea1.setEnabled(false);
-        jScrollPane1.setViewportView(jTextArea1);
+        textAreaHasil.setEditable(false);
+        textAreaHasil.setColumns(20);
+        textAreaHasil.setRows(5);
+        jScrollPane1.setViewportView(textAreaHasil);
 
         buttonBack.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
         buttonBack.setForeground(new java.awt.Color(0, 0, 102));
@@ -130,6 +195,22 @@ public class BMIHistoryFrame extends javax.swing.JFrame {
         this.setVisible(false);
     }//GEN-LAST:event_buttonBackActionPerformed
 
+    private void radioButtonBMIActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioButtonBMIActionPerformed
+        try {
+            this.output.writeBytes("historybmi~" + String.valueOf(accountAktif.getId()) + "\n");
+        } catch (IOException ex) {
+            Logger.getLogger(BMIHistoryFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_radioButtonBMIActionPerformed
+
+    private void radioButtonBeratBadanIdealActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioButtonBeratBadanIdealActionPerformed
+        try {
+            this.output.writeBytes("historyideal~" + String.valueOf(accountAktif.getId()) + "\n");
+        } catch (IOException ex) {
+            Logger.getLogger(BMIHistoryFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_radioButtonBeratBadanIdealActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -168,10 +249,10 @@ public class BMIHistoryFrame extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buttonBack;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea jTextArea1;
     private javax.swing.JLabel labelJudul;
     private javax.swing.JPanel panelJudul;
     private javax.swing.JRadioButton radioButtonBMI;
     private javax.swing.JRadioButton radioButtonBeratBadanIdeal;
+    private javax.swing.JTextArea textAreaHasil;
     // End of variables declaration//GEN-END:variables
 }
