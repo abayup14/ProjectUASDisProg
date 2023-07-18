@@ -19,7 +19,9 @@ import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.ChartUtilities;
 import org.jfree.chart.JFreeChart;
+import org.jfree.chart.plot.CategoryPlot;
 import org.jfree.chart.plot.PlotOrientation;
+import org.jfree.chart.renderer.category.LineAndShapeRenderer;
 import org.jfree.data.category.DefaultCategoryDataset;
 
 /**
@@ -32,7 +34,7 @@ public class BMIGraphicFrame extends javax.swing.JFrame {
      * Creates new form BMIGraphicFrame
      */
     User accountAktif;
-    
+
     private void exportChartAsImage(JFreeChart a) throws IOException {
         JFileChooser fileChooser = new JFileChooser();
         fileChooser.setDialogTitle("Export Chart as Image");
@@ -51,15 +53,16 @@ public class BMIGraphicFrame extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Chart exported successfully!", "Export Successful", JOptionPane.INFORMATION_MESSAGE);
         }
     }
+
     public BMIGraphicFrame() {
         initComponents();
     }
-    
+
     public BMIGraphicFrame(User account) {
         initComponents();
         accountAktif = account;
     }
-    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -159,7 +162,7 @@ public class BMIGraphicFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void buttonViewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonViewActionPerformed
-         // TODO add your handling code here:
+        // TODO add your handling code here:
         DefaultCategoryDataset dataset = new DefaultCategoryDataset();
         dataset.addValue(10, "Series 1", "One");
         dataset.addValue(20, "Series 1", "Two");
@@ -167,17 +170,22 @@ public class BMIGraphicFrame extends javax.swing.JFrame {
         dataset.addValue(40, "Series 1", "Four");
 
         JFreeChart chart = ChartFactory.createLineChart(
-                "Line Chart",          // chart title
-                "Category",            // domain axis label
-                "Value",               // range axis label
-                dataset,               // data
+                "Line Chart", // chart title
+                "Category", // domain axis label
+                "Value", // range axis label
+                dataset, // data
                 PlotOrientation.VERTICAL,
-                true,                  // include legend
-                true,                  // tooltips
-                false                  // urls
+                true, // include legend
+                true, // tooltips
+                false // urls
         );
 
         chart.setBackgroundPaint(Color.WHITE);
+
+        CategoryPlot plot = (CategoryPlot) chart.getPlot();
+        LineAndShapeRenderer renderer = new LineAndShapeRenderer();
+        renderer.setSeriesShapesVisible(0, true); // Show dots for series 1
+        plot.setRenderer(renderer);
 
         ChartPanel chartPanel = new ChartPanel(chart);
         chartPanel.setPreferredSize(new java.awt.Dimension(500, 300));
