@@ -43,7 +43,7 @@ public class BMICalculatorFrame extends javax.swing.JFrame implements Runnable{
                 String message = this.input.readLine();
                 String[] part = message.split("~");
                 
-                textAreaHasil.append("Berat ideal anda adalah : " + part[1] + " kg\n");
+                textAreaHasil.append("Berat ideal anda adalah : " + part[1] + " kg\n\n");
                 //jOptionPane1.showMessageDialog(this, this.input.readLine()+"\n");
             }
         } catch (IOException ex) {
