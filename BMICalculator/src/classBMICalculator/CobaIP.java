@@ -16,14 +16,23 @@ import java.util.logging.Logger;
 public class CobaIP {
 
     public static void main(String[] args) {
-        InetAddress ipAddress;
-        try {
-            ipAddress = InetAddress.getLocalHost();
-            String hostAddress = ipAddress.getHostAddress();
-            System.out.println("IP Address: " + hostAddress);
-        } catch (UnknownHostException ex) {
-            Logger.getLogger(CobaIP.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
+        CobaIP ip = new CobaIP();
+        String ipKu = ip.getServerIP();
+        System.out.println("IPku adalah : " + ipKu);
     }
+
+    public String getServerIP() {
+        String ipAddress = null;
+        InetAddress addressKu;
+        try {
+            addressKu = InetAddress.getLocalHost();
+            String hostname = addressKu.getHostName();
+            addressKu = InetAddress.getByName(hostname); // Replace "other-pc-name" with the hostname or IP address of the other PC
+            ipAddress = addressKu.getHostAddress();
+        } catch (UnknownHostException e) {
+            System.out.println("Error di getServerIP : " + e);
+        }
+        return ipAddress;
+    }
+
 }
