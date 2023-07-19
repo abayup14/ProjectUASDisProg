@@ -15,15 +15,16 @@ import java.net.UnknownHostException;
 public class CobaIP {
 
     public static void main(String[] args) {
-
+        /*CobaIP ip = new CobaIP();
+        String ipKu = ip.getServerIP();
+        System.out.println(ipKu);*/
     }
 
     public String getServerIP() {
         String ipAddress = null;
-        InetAddress addressKu;
         try {
-            addressKu = InetAddress.getByName("LAPTOP-ABAYUP"); // Replace "other-pc-name" with the hostname or IP address of the other PC
-            ipAddress = addressKu.getHostAddress();
+            // Replace "other-pc-name" with the hostname or IP address of the other PC
+            ipAddress = InetAddress.getByName("LAPTOP-ABAYUP").getHostAddress();
         } catch (UnknownHostException e) {
             System.out.println("Error di getServerIP : " + e);
         }
