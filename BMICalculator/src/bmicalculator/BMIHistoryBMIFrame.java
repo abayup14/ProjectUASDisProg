@@ -18,7 +18,7 @@ import java.util.logging.Logger;
  *
  * @author vince
  */
-public class BMIHistoryFrame extends javax.swing.JFrame implements Runnable {
+public class BMIHistoryBMIFrame extends javax.swing.JFrame implements Runnable {
 
     Socket s;
     BufferedReader input;
@@ -46,17 +46,9 @@ public class BMIHistoryFrame extends javax.swing.JFrame implements Runnable {
                             + "Tinggi Badan : " + partHasilBMI[2] + "\n"
                             + "Hasil BMI : " + partHasilBMI[3] + "\n\n");
                 }
-            } else if (part[0].equals("historyideal")) {
-                textAreaHasil.append("HISTORY CALCULATION OF IDEAL WEIGHT: \n");
-                for (int i = 1; i <= part.length; i++) {
-                    String[] partHasilIdeal = part[i].split("#");
-                    textAreaHasil.append("Tanggal : " + partHasilIdeal[0] + "\n"
-                            + "Tinggi Badan : " + partHasilIdeal[1] + "\n"
-                            + "Berat Ideal : " + partHasilIdeal[2] + "\n\n");
-                }
-            }
+            } 
         } catch (IOException ex) {
-            Logger.getLogger(BMIHistoryFrame.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(BMIHistoryBMIFrame.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -67,11 +59,11 @@ public class BMIHistoryFrame extends javax.swing.JFrame implements Runnable {
         }
     }
 
-    public BMIHistoryFrame() {
+    public BMIHistoryBMIFrame() {
         initComponents();
     }
 
-    public BMIHistoryFrame(User account) {
+    public BMIHistoryBMIFrame(User account) {
         initComponents();
         try {
             accountAktif = account;
@@ -83,7 +75,7 @@ public class BMIHistoryFrame extends javax.swing.JFrame implements Runnable {
             this.start();
             output = new DataOutputStream(s.getOutputStream());
         } catch (IOException ex) {
-            Logger.getLogger(BMIHistoryFrame.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(BMIHistoryBMIFrame.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -99,50 +91,33 @@ public class BMIHistoryFrame extends javax.swing.JFrame implements Runnable {
         buttonGroup1 = new javax.swing.ButtonGroup();
         panelJudul = new javax.swing.JPanel();
         labelJudul = new javax.swing.JLabel();
-        radioButtonBeratBadanIdeal = new javax.swing.JRadioButton();
-        radioButtonBMI = new javax.swing.JRadioButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         textAreaHasil = new javax.swing.JTextArea();
         buttonBack = new javax.swing.JButton();
+        buttonShowHistory = new javax.swing.JButton();
 
         panelJudul.setBackground(new java.awt.Color(0, 0, 102));
 
         labelJudul.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         labelJudul.setForeground(new java.awt.Color(255, 255, 255));
-        labelJudul.setText("CALCULATION HISTORY");
+        labelJudul.setText("CALCULATION HISTORY BMI");
 
         javax.swing.GroupLayout panelJudulLayout = new javax.swing.GroupLayout(panelJudul);
         panelJudul.setLayout(panelJudulLayout);
         panelJudulLayout.setHorizontalGroup(
             panelJudulLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelJudulLayout.createSequentialGroup()
-                .addGap(33, 33, 33)
+                .addGap(24, 24, 24)
                 .addComponent(labelJudul)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(27, Short.MAX_VALUE))
         );
         panelJudulLayout.setVerticalGroup(
             panelJudulLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelJudulLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(panelJudulLayout.createSequentialGroup()
+                .addContainerGap()
                 .addComponent(labelJudul)
-                .addContainerGap())
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-
-        buttonGroup1.add(radioButtonBeratBadanIdeal);
-        radioButtonBeratBadanIdeal.setText("Hitung Berat Badan Ideal");
-        radioButtonBeratBadanIdeal.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                radioButtonBeratBadanIdealActionPerformed(evt);
-            }
-        });
-
-        buttonGroup1.add(radioButtonBMI);
-        radioButtonBMI.setText("Hitung BMI");
-        radioButtonBMI.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                radioButtonBMIActionPerformed(evt);
-            }
-        });
 
         textAreaHasil.setEditable(false);
         textAreaHasil.setColumns(20);
@@ -158,6 +133,15 @@ public class BMIHistoryFrame extends javax.swing.JFrame implements Runnable {
             }
         });
 
+        buttonShowHistory.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
+        buttonShowHistory.setForeground(new java.awt.Color(0, 0, 102));
+        buttonShowHistory.setText("Show History");
+        buttonShowHistory.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonShowHistoryActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -165,35 +149,27 @@ public class BMIHistoryFrame extends javax.swing.JFrame implements Runnable {
             .addComponent(panelJudul, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(buttonBack))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jScrollPane1))
-                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(buttonBack))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(33, 33, 33)
-                                .addComponent(radioButtonBMI)
-                                .addGap(34, 34, 34)
-                                .addComponent(radioButtonBeratBadanIdeal)))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                            .addComponent(jScrollPane1)
+                            .addComponent(buttonShowHistory))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(panelJudul, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(radioButtonBeratBadanIdeal)
-                    .addComponent(radioButtonBMI))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(11, 11, 11)
+                .addComponent(buttonShowHistory)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 319, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(buttonBack)
-                .addContainerGap())
+                .addContainerGap(11, Short.MAX_VALUE))
         );
 
         pack();
@@ -203,21 +179,13 @@ public class BMIHistoryFrame extends javax.swing.JFrame implements Runnable {
         this.setVisible(false);
     }//GEN-LAST:event_buttonBackActionPerformed
 
-    private void radioButtonBMIActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioButtonBMIActionPerformed
+    private void buttonShowHistoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonShowHistoryActionPerformed
         try {
             this.output.writeBytes("historybmi~" + String.valueOf(accountAktif.getId()) + "\n");
         } catch (IOException ex) {
-            Logger.getLogger(BMIHistoryFrame.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(BMIHistoryBMIFrame.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }//GEN-LAST:event_radioButtonBMIActionPerformed
-
-    private void radioButtonBeratBadanIdealActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioButtonBeratBadanIdealActionPerformed
-        try {
-            this.output.writeBytes("historyideal~" + String.valueOf(accountAktif.getId()) + "\n");
-        } catch (IOException ex) {
-            Logger.getLogger(BMIHistoryFrame.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }//GEN-LAST:event_radioButtonBeratBadanIdealActionPerformed
+    }//GEN-LAST:event_buttonShowHistoryActionPerformed
 
     /**
      * @param args the command line arguments
@@ -236,20 +204,21 @@ public class BMIHistoryFrame extends javax.swing.JFrame implements Runnable {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(BMIHistoryFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(BMIHistoryBMIFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(BMIHistoryFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(BMIHistoryBMIFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(BMIHistoryFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(BMIHistoryBMIFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(BMIHistoryFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(BMIHistoryBMIFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new BMIHistoryFrame().setVisible(true);
+                new BMIHistoryBMIFrame().setVisible(true);
             }
         });
     }
@@ -257,11 +226,10 @@ public class BMIHistoryFrame extends javax.swing.JFrame implements Runnable {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buttonBack;
     private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.JButton buttonShowHistory;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel labelJudul;
     private javax.swing.JPanel panelJudul;
-    private javax.swing.JRadioButton radioButtonBMI;
-    private javax.swing.JRadioButton radioButtonBeratBadanIdeal;
     private javax.swing.JTextArea textAreaHasil;
     // End of variables declaration//GEN-END:variables
 }

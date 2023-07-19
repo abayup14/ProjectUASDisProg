@@ -37,18 +37,11 @@ public class BMICalculatorFrame extends javax.swing.JFrame implements Runnable{
         try {
             String message = this.input.readLine();
             String[] part = message.split("~");
-            if(/*this.input.readLine().contains("bmi")*/part[0].equals("bmi")){ //kalau sukses
-                //String message = this.input.readLine();          
-                //String[] part = message.split("~");
-
-                textAreaHasil.append("Hasil BMI : "+ part[1]+"\n"+"Kategori : "+ part[2]+"\n\n");
+            if(part[0].equals("bmi")){ //kalau bmi
+                textAreaHasil.append("Hasil BMI anda adalah : " + part[1] + "\n" + "Kategori anda adalah : " + part[2] + "\n\n");
             }
-            else if(/*this.input.readLine().contains("ideal")*/part[0].equals("ideal")){ //kalau gagal
-                //String message = this.input.readLine();
-                //String[] part = message.split("~");
-                
-                textAreaHasil.append("Berat ideal anda adalah : " + part[1] + " kg\n\n");
-                //jOptionPane1.showMessageDialog(this, this.input.readLine()+"\n");
+            else if(part[0].equals("ideal")){ //kalau ideal
+                textAreaHasil.append("Berat badan ideal anda adalah : " + part[1] + " kg\n\n");
             }
         } catch (IOException ex) {
             Logger.getLogger(BMILoginFrame.class.getName()).log(Level.SEVERE, null, ex);

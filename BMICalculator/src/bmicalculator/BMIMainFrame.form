@@ -9,12 +9,20 @@
             <Property name="text" type="java.lang.String" value="Account"/>
           </Properties>
           <SubComponents>
-            <MenuItem class="javax.swing.JMenuItem" name="jHistory">
+            <MenuItem class="javax.swing.JMenuItem" name="jMenuItemHistoryBMI">
               <Properties>
-                <Property name="text" type="java.lang.String" value="History"/>
+                <Property name="text" type="java.lang.String" value="History BMI"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jHistoryActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItemHistoryBMIActionPerformed"/>
+              </Events>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="jMenuItemHistoryIdeal">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="History Berat Ideal"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItemHistoryIdealActionPerformed"/>
               </Events>
             </MenuItem>
           </SubComponents>

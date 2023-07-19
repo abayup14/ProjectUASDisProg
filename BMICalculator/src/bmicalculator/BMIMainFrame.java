@@ -39,7 +39,8 @@ public class BMIMainFrame extends javax.swing.JFrame {
         labelSelamatDatang = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jAccount = new javax.swing.JMenu();
-        jHistory = new javax.swing.JMenuItem();
+        jMenuItemHistoryBMI = new javax.swing.JMenuItem();
+        jMenuItemHistoryIdeal = new javax.swing.JMenuItem();
         jOperation = new javax.swing.JMenu();
         jCalculate = new javax.swing.JMenuItem();
         jViewGraph = new javax.swing.JMenuItem();
@@ -51,13 +52,21 @@ public class BMIMainFrame extends javax.swing.JFrame {
 
         jAccount.setText("Account");
 
-        jHistory.setText("History");
-        jHistory.addActionListener(new java.awt.event.ActionListener() {
+        jMenuItemHistoryBMI.setText("History BMI");
+        jMenuItemHistoryBMI.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jHistoryActionPerformed(evt);
+                jMenuItemHistoryBMIActionPerformed(evt);
             }
         });
-        jAccount.add(jHistory);
+        jAccount.add(jMenuItemHistoryBMI);
+
+        jMenuItemHistoryIdeal.setText("History Berat Ideal");
+        jMenuItemHistoryIdeal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemHistoryIdealActionPerformed(evt);
+            }
+        });
+        jAccount.add(jMenuItemHistoryIdeal);
 
         jMenuBar1.add(jAccount);
 
@@ -111,10 +120,10 @@ public class BMIMainFrame extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jHistoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jHistoryActionPerformed
-        BMIHistoryFrame formHistory = new BMIHistoryFrame(accountAktif);
-        formHistory.setVisible(true);
-    }//GEN-LAST:event_jHistoryActionPerformed
+    private void jMenuItemHistoryBMIActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemHistoryBMIActionPerformed
+        BMIHistoryBMIFrame formHistoryBMI = new BMIHistoryBMIFrame(accountAktif);
+        formHistoryBMI.setVisible(true);
+    }//GEN-LAST:event_jMenuItemHistoryBMIActionPerformed
 
     private void jCalculateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCalculateActionPerformed
         BMICalculatorFrame formCalc = new BMICalculatorFrame(accountAktif);
@@ -129,6 +138,11 @@ public class BMIMainFrame extends javax.swing.JFrame {
     private void jExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jExitActionPerformed
         this.dispose();
     }//GEN-LAST:event_jExitActionPerformed
+
+    private void jMenuItemHistoryIdealActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemHistoryIdealActionPerformed
+        BMIHistoryIdealFrame formHistoryIdeal = new BMIHistoryIdealFrame(accountAktif);
+        formHistoryIdeal.setVisible(true);
+    }//GEN-LAST:event_jMenuItemHistoryIdealActionPerformed
 
     /**
      * @param args the command line arguments
@@ -170,8 +184,9 @@ public class BMIMainFrame extends javax.swing.JFrame {
     private javax.swing.JMenu jAccount;
     private javax.swing.JMenuItem jCalculate;
     private javax.swing.JMenu jExit;
-    private javax.swing.JMenuItem jHistory;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItemHistoryBMI;
+    private javax.swing.JMenuItem jMenuItemHistoryIdeal;
     private javax.swing.JMenu jOperation;
     private javax.swing.JMenuItem jViewGraph;
     private javax.swing.JLabel labelSelamatDatang;
