@@ -103,8 +103,6 @@ public class BMIGraphicFrame extends javax.swing.JFrame {
         buttonView = new javax.swing.JButton();
         buttonExport = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
         panelJudul.setBackground(new java.awt.Color(0, 0, 102));
 
         labelJudul.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N

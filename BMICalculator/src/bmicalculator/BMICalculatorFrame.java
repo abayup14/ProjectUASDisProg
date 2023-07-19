@@ -4,6 +4,7 @@
  */
 package bmicalculator;
 
+import bmicalculatorserver.CobaIP;
 import java.io.BufferedReader;
 import java.io.DataOutputStream;
 import java.io.IOException;
@@ -24,6 +25,7 @@ public class BMICalculatorFrame extends javax.swing.JFrame implements Runnable{
     User accountAktif;
     double tinggi;
     double berat;
+    CobaIP ipKu;
     
     public void run() {
         while (true) {
@@ -67,7 +69,9 @@ public class BMICalculatorFrame extends javax.swing.JFrame implements Runnable{
         initComponents();
         try {
             accountAktif = account;
-            String ip = "192.168.117.85";
+            ipKu = new CobaIP();
+            String ip = ipKu.getServerIP();
+            //String ip = "192.168.117.85";
             s = new Socket(ip, 10013); //string host dan int port
             input = new BufferedReader(new InputStreamReader(s.getInputStream()));
             this.start();
@@ -108,8 +112,6 @@ public class BMICalculatorFrame extends javax.swing.JFrame implements Runnable{
         jScrollPane1.setViewportView(jTextArea1);
 
         jPasswordField1.setText("jPasswordField1");
-
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         panelJudul.setBackground(new java.awt.Color(0, 0, 102));
 

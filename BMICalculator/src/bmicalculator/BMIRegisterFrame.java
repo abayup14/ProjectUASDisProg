@@ -4,6 +4,7 @@
  */
 package bmicalculator;
 
+import bmicalculatorserver.CobaIP;
 import java.io.BufferedReader;
 import java.io.DataOutputStream;
 import java.io.IOException;
@@ -25,6 +26,7 @@ public class BMIRegisterFrame extends javax.swing.JFrame implements Runnable {
     String email;
     String password;
     String gender;
+    CobaIP ipKu;
     
     public void run() {
         while (true) {
@@ -56,7 +58,9 @@ public class BMIRegisterFrame extends javax.swing.JFrame implements Runnable {
     public BMIRegisterFrame() {
         initComponents();
         try {
-            String ip = "192.168.117.85";
+            ipKu = new CobaIP();
+            String ip = ipKu.getServerIP();
+            //String ip = "192.168.117.85";
             s = new Socket(ip, 10013); //string host dan int port
             input = new BufferedReader(new InputStreamReader(s.getInputStream()));
             this.start();
@@ -89,8 +93,6 @@ public class BMIRegisterFrame extends javax.swing.JFrame implements Runnable {
         radioButtonPria = new javax.swing.JRadioButton();
         radioButtonWanita = new javax.swing.JRadioButton();
         labelTinggiBadan1 = new javax.swing.JLabel();
-
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         buttonLogin.setBackground(new java.awt.Color(0, 0, 102));
         buttonLogin.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N

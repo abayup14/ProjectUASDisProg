@@ -6,8 +6,7 @@ package bmicalculatorserver;
 
 import java.net.InetAddress;
 import java.net.UnknownHostException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+
 
 /**
  *
@@ -18,17 +17,16 @@ public class CobaIP {
     public static void main(String[] args) {
 
     }
-    
-    public String ipKita() {
-        InetAddress ipAddress;
+
+    public String getServerIP() {
+        String ipAddress = null;
+        InetAddress addressKu;
         try {
-            ipAddress = InetAddress.getLocalHost();
-            String hostAddress = ipAddress.getHostAddress();
-            //System.out.println("IP Address: " + hostAddress);
-            return hostAddress;
-        } catch (UnknownHostException ex) {
-            Logger.getLogger(CobaIP.class.getName()).log(Level.SEVERE, null, ex);
+            addressKu = InetAddress.getByName("LAPTOP-ABAYUP"); // Replace "other-pc-name" with the hostname or IP address of the other PC
+            ipAddress = addressKu.getHostAddress();
+        } catch (UnknownHostException e) {
+            System.out.println("Error di getServerIP : " + e);
         }
-        return null;
+        return ipAddress;
     }
 }
