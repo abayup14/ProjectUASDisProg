@@ -75,6 +75,11 @@ public class HistoryBMI extends MyModel{
         this.berat_badan = berat_badan;
         this.tinggi_badan = tinggi_badan;
     }
+    
+    public HistoryBMI(Timestamp tanggal, double hasil_bmi) {
+        this.tanggal = tanggal;
+        this.hasil_bmi = hasil_bmi;
+    }
 
     public HistoryBMI(double berat_badan, double tinggi_badan, double hasil_bmi, int acc_id) {
         this.berat_badan = berat_badan;
@@ -145,6 +150,23 @@ public class HistoryBMI extends MyModel{
             System.out.println("Error di viewListData " + e);
         }
 
+        return coll;
+    }
+    
+    public ArrayList<Object> getDataUntukGrafik() {
+        ArrayList<Object> coll = new ArrayList<Object>();
+        try {
+            PreparedStatement sql = (PreparedStatement) MyModel.conn.prepareStatement("SELECT tanggal, hasil_bmi from history_bmi where account_id=?");
+            sql.setInt(1, this.acc_id);
+            this.result = sql.executeQuery();
+            while (this.result.next()) {
+                HistoryBMI bmi = new HistoryBMI(this.result.getTimestamp("tanggal"), this.result.getDouble("hasil_bmi"));
+                coll.add(bmi);
+            }
+        } catch (Exception e) {
+            System.out.println("Error di getDataUntukGrafik " + e);
+        }
+        
         return coll;
     }
 }

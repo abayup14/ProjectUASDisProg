@@ -168,4 +168,24 @@ public class BMICalcService {
         }
         return "historyideal~" + hasil + "\n";
     }
+
+    /**
+     * Web service operation
+     */
+    @WebMethod(operationName = "dataUntukGrafik")
+    public String dataUntukGrafik(@WebParam(name = "acc_id") int acc_id) {
+        //TODO write your implementation code here:
+        String hasil = "";
+        HistoryBMI bmi = new HistoryBMI(acc_id);
+        ArrayList<Object> coll = new ArrayList<Object>();
+        coll = bmi.getDataUntukGrafik();
+        for (Object obj : coll) {
+            if (obj instanceof HistoryBMI) {
+                HistoryBMI bmi_new = (HistoryBMI) obj;
+                String data = String.valueOf(bmi_new.getTanggal()) + "#" + String.valueOf(bmi_new.getHasil_bmi()) + "~";
+                hasil += data;
+            }
+        }
+        return "grafikbmi~" + hasil + "\n";
+    }
 }

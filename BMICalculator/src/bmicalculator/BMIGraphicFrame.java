@@ -6,6 +6,8 @@ package bmicalculator;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Shape;
+import java.awt.geom.Ellipse2D;
 import java.io.File;
 import java.io.IOException;
 import java.util.logging.Level;
@@ -62,6 +64,29 @@ public class BMIGraphicFrame extends javax.swing.JFrame {
         initComponents();
         accountAktif = account;
     }
+    
+    private JFreeChart makeChart(String title, String axisLbl, String valueLbl) {
+        String data;
+        DefaultCategoryDataset dataset = new DefaultCategoryDataset();
+        dataset.addValue(10, "Series 1", "One");
+        dataset.addValue(20, "Series 1", "Two");
+        dataset.addValue(30, "Series 1", "Three");
+        dataset.addValue(40, "Series 1", "Four");
+
+        JFreeChart chart = ChartFactory.createLineChart(
+                title, // chart title
+                axisLbl, // domain axis label
+                valueLbl, // range axis label
+                dataset, // data
+                PlotOrientation.VERTICAL,
+                true, // include legend
+                true, // tooltips
+                false // urls
+        );
+
+        chart.setBackgroundPaint(Color.WHITE);
+        return chart;
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -77,6 +102,7 @@ public class BMIGraphicFrame extends javax.swing.JFrame {
         buttonBack = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         buttonView = new javax.swing.JButton();
+        buttonExport = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -130,6 +156,15 @@ public class BMIGraphicFrame extends javax.swing.JFrame {
             }
         });
 
+        buttonExport.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
+        buttonExport.setForeground(new java.awt.Color(0, 0, 102));
+        buttonExport.setText("Export Graphic");
+        buttonExport.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonExportActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -141,6 +176,8 @@ public class BMIGraphicFrame extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(buttonBack)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(buttonExport)
+                        .addGap(31, 31, 31)
                         .addComponent(buttonView))
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
@@ -154,7 +191,8 @@ public class BMIGraphicFrame extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(buttonBack)
-                    .addComponent(buttonView))
+                    .addComponent(buttonView)
+                    .addComponent(buttonExport))
                 .addContainerGap())
         );
 
@@ -163,34 +201,26 @@ public class BMIGraphicFrame extends javax.swing.JFrame {
 
     private void buttonViewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonViewActionPerformed
         // TODO add your handling code here:
-        DefaultCategoryDataset dataset = new DefaultCategoryDataset();
-        dataset.addValue(10, "Series 1", "One");
-        dataset.addValue(20, "Series 1", "Two");
-        dataset.addValue(30, "Series 1", "Three");
-        dataset.addValue(40, "Series 1", "Four");
-
-        JFreeChart chart = ChartFactory.createLineChart(
-                "Line Chart", // chart title
-                "Category", // domain axis label
-                "Value", // range axis label
-                dataset, // data
-                PlotOrientation.VERTICAL,
-                true, // include legend
-                true, // tooltips
-                false // urls
-        );
-
-        chart.setBackgroundPaint(Color.WHITE);
+        JFreeChart chart = this.makeChart("Grafik Hasil BMI", "Tanggal", "BMI");
 
         CategoryPlot plot = (CategoryPlot) chart.getPlot();
         LineAndShapeRenderer renderer = new LineAndShapeRenderer();
         renderer.setSeriesShapesVisible(0, true); // Show dots for series 1
+        renderer.setSeriesPaint(0, Color.BLACK);
+        Shape circle = new Ellipse2D.Double(-3, -3, 6, 6);
+        renderer.setSeriesShape(0, circle);
         plot.setRenderer(renderer);
 
         ChartPanel chartPanel = new ChartPanel(chart);
-        chartPanel.setPreferredSize(new java.awt.Dimension(500, 300));
+        chartPanel.setPreferredSize(jPanel1.getSize());
+        jPanel1.setLayout(new BorderLayout());
+        jPanel1.removeAll();
+        jPanel1.add(chartPanel, BorderLayout.CENTER);
+        jPanel1.revalidate();
+        jPanel1.repaint();
+        //chartPanel.setPreferredSize(new java.awt.Dimension(500, 300));
 
-        JFrame frame = new JFrame("Line Chart");
+        /*JFrame frame = new JFrame("Line Chart");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.getContentPane().add(chartPanel);
 
@@ -207,8 +237,17 @@ public class BMIGraphicFrame extends javax.swing.JFrame {
         frame.getContentPane().add(exportButton, BorderLayout.SOUTH);
 
         frame.pack();
-        frame.setVisible(true);
+        frame.setVisible(true);*/
     }//GEN-LAST:event_buttonViewActionPerformed
+
+    private void buttonExportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonExportActionPerformed
+        // TODO add your handling code here:
+        try {
+            exportChartAsImage(this.makeChart("Grafik Hasil BMI", "Tanggal", "BMI"));
+        } catch (IOException ex) {
+            Logger.getLogger(BMIGraphicFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_buttonExportActionPerformed
 
     /**
      * @param args the command line arguments
@@ -247,6 +286,7 @@ public class BMIGraphicFrame extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buttonBack;
+    private javax.swing.JButton buttonExport;
     private javax.swing.JButton buttonView;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel labelJudul;
