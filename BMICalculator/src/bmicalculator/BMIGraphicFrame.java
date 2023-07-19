@@ -36,6 +36,7 @@ public class BMIGraphicFrame extends javax.swing.JFrame {
      * Creates new form BMIGraphicFrame
      */
     User accountAktif;
+    JFreeChart chart;
 
     private void exportChartAsImage(JFreeChart a) throws IOException {
         JFileChooser fileChooser = new JFileChooser();
@@ -73,7 +74,7 @@ public class BMIGraphicFrame extends javax.swing.JFrame {
         dataset.addValue(30, "Series 1", "Three");
         dataset.addValue(40, "Series 1", "Four");
 
-        JFreeChart chart = ChartFactory.createLineChart(
+        chart = ChartFactory.createLineChart(
                 title, // chart title
                 axisLbl, // domain axis label
                 valueLbl, // range axis label
@@ -201,7 +202,7 @@ public class BMIGraphicFrame extends javax.swing.JFrame {
 
     private void buttonViewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonViewActionPerformed
         // TODO add your handling code here:
-        JFreeChart chart = this.makeChart("Grafik Hasil BMI", "Tanggal", "BMI");
+        chart = this.makeChart("Grafik Hasil BMI", "Tanggal", "BMI");
 
         CategoryPlot plot = (CategoryPlot) chart.getPlot();
         LineAndShapeRenderer renderer = new LineAndShapeRenderer();
@@ -243,7 +244,7 @@ public class BMIGraphicFrame extends javax.swing.JFrame {
     private void buttonExportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonExportActionPerformed
         // TODO add your handling code here:
         try {
-            exportChartAsImage(this.makeChart("Grafik Hasil BMI", "Tanggal", "BMI"));
+            exportChartAsImage(chart);
         } catch (IOException ex) {
             Logger.getLogger(BMIGraphicFrame.class.getName()).log(Level.SEVERE, null, ex);
         }
