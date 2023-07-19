@@ -51,7 +51,7 @@ public class BMILoginFrame extends javax.swing.JFrame implements Runnable{
                 formMain.setVisible(true);
             }
             else if(part[0].equals("gagal")){ //kalau gagal
-                JOptionPane.showMessageDialog(this, this.input.readLine()+"\n");
+                JOptionPane.showMessageDialog(this, "Gagal Login");
             }
         } catch (IOException ex) {
             Logger.getLogger(BMILoginFrame.class.getName()).log(Level.SEVERE, null, ex);
