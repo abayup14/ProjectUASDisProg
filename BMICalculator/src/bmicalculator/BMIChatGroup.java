@@ -98,6 +98,7 @@ public class BMIChatGroup extends javax.swing.JFrame implements Runnable{
             this.start();
             this.jTextAreaDisplay.append("Welcome to the group chat!, " + accountAktif.getEmail() + "\n");
             output = new DataOutputStream(s.getOutputStream());
+            accountAktif.centerFormOnScreen(this);
             
         } catch (IOException ex) {
             Logger.getLogger(BMIChatGroup.class.getName()).log(Level.SEVERE, null, ex);
@@ -126,7 +127,7 @@ public class BMIChatGroup extends javax.swing.JFrame implements Runnable{
         textFieldChatUser = new javax.swing.JTextField();
         labelTinggiBadan1 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         panelJudul.setBackground(new java.awt.Color(0, 0, 102));
 

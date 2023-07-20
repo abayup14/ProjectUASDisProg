@@ -4,6 +4,10 @@
  */
 package bmicalculator;
 
+import java.awt.Dimension;
+import java.awt.Toolkit;
+import javax.swing.JFrame;
+
 /**
  *
  * @author Steven Christopher
@@ -58,5 +62,20 @@ public class User {
 
     public void setJenis_kelamin(String jenis_kelamin) {
         this.jenis_kelamin = jenis_kelamin;
+    }
+    public void centerFormOnScreen(JFrame frame) {
+        // Get the dimensions of the screen
+        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        int screenWidth = screenSize.width;
+        int screenHeight = screenSize.height;
+
+        // Calculate the X and Y coordinates for the form to appear in the center
+        int formWidth = frame.getWidth();
+        int formHeight = frame.getHeight();
+        int x = (screenWidth - formWidth) / 2;
+        int y = (screenHeight - formHeight) / 2;
+
+        // Set the form's location to the calculated X and Y coordinates
+        frame.setLocation(x, y);
     }
 }

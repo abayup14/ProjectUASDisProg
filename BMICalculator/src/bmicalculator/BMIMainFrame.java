@@ -23,6 +23,7 @@ public class BMIMainFrame extends javax.swing.JFrame {
     public BMIMainFrame(User account) {
         initComponents();    
         accountAktif = new User();
+        accountAktif.centerFormOnScreen(this);
         accountAktif = account;
         labelSelamatDatang.setText("Selamat datang, " + accountAktif.getEmail());
     }
@@ -46,7 +47,6 @@ public class BMIMainFrame extends javax.swing.JFrame {
         jViewGraph = new javax.swing.JMenuItem();
         jMenu1 = new javax.swing.JMenu();
         jMenuItemChat = new javax.swing.JMenuItem();
-        jExit = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -104,14 +104,6 @@ public class BMIMainFrame extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu1);
 
-        jExit.setText("Exit");
-        jExit.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jExitActionPerformed(evt);
-            }
-        });
-        jMenuBar1.add(jExit);
-
         setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -148,10 +140,6 @@ public class BMIMainFrame extends javax.swing.JFrame {
         BMIGraphicFrame formGraph = new BMIGraphicFrame(accountAktif);
         formGraph.setVisible(true);
     }//GEN-LAST:event_jViewGraphActionPerformed
-
-    private void jExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jExitActionPerformed
-        this.dispose();
-    }//GEN-LAST:event_jExitActionPerformed
 
     private void jMenuItemHistoryIdealActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemHistoryIdealActionPerformed
         BMIHistoryIdealFrame formHistoryIdeal = new BMIHistoryIdealFrame(accountAktif);
@@ -202,7 +190,6 @@ public class BMIMainFrame extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenu jAccount;
     private javax.swing.JMenuItem jCalculate;
-    private javax.swing.JMenu jExit;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItemChat;

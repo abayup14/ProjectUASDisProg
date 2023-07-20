@@ -5,6 +5,8 @@
 package bmicalculator;
 
 import bmicalculatorserver.CobaIP;
+import java.awt.Dimension;
+import java.awt.Toolkit;
 import java.io.BufferedReader;
 import java.io.DataOutputStream;
 import java.io.IOException;
@@ -80,6 +82,7 @@ public class BMILoginFrame extends javax.swing.JFrame implements Runnable{
             input = new BufferedReader(new InputStreamReader(s.getInputStream()));
             this.start();
             output = new DataOutputStream(s.getOutputStream());
+            u.centerFormOnScreen(this);
         } catch (IOException ex) {
             Logger.getLogger(BMILoginFrame.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -103,6 +106,8 @@ public class BMILoginFrame extends javax.swing.JFrame implements Runnable{
         buttonLogin = new javax.swing.JButton();
         buttonRegister = new javax.swing.JButton();
         jPasswordField = new javax.swing.JPasswordField();
+
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         panelJudul.setBackground(new java.awt.Color(0, 0, 102));
 
@@ -160,7 +165,7 @@ public class BMILoginFrame extends javax.swing.JFrame implements Runnable{
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addComponent(buttonRegister)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 103, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 115, Short.MAX_VALUE)
                         .addComponent(buttonLogin))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)

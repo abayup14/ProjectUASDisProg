@@ -73,6 +73,7 @@ public class BMIHistoryIdealFrame extends javax.swing.JFrame implements Runnable
             input = new BufferedReader(new InputStreamReader(s.getInputStream()));
             this.start();
             output = new DataOutputStream(s.getOutputStream());
+            accountAktif.centerFormOnScreen(this);
         } catch (IOException ex) {
             Logger.getLogger(BMIHistoryIdealFrame.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -94,6 +95,8 @@ public class BMIHistoryIdealFrame extends javax.swing.JFrame implements Runnable
         textAreaHasil = new javax.swing.JTextArea();
         buttonBack = new javax.swing.JButton();
         buttonShowHistory = new javax.swing.JButton();
+
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         panelJudul.setBackground(new java.awt.Color(0, 0, 102));
 

@@ -28,6 +28,7 @@ public class BMIRegisterFrame extends javax.swing.JFrame implements Runnable {
     String passwordRetype;
     String gender;
     CobaIP ipKu;
+    User u;
     
     public void run() {
         while (true) {
@@ -66,6 +67,9 @@ public class BMIRegisterFrame extends javax.swing.JFrame implements Runnable {
             input = new BufferedReader(new InputStreamReader(s.getInputStream()));
             this.start();
             output = new DataOutputStream(s.getOutputStream());
+            u = new User();
+            u.centerFormOnScreen(this);
+            
         } catch (IOException ex) {
             Logger.getLogger(BMILoginFrame.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -94,6 +98,8 @@ public class BMIRegisterFrame extends javax.swing.JFrame implements Runnable {
         labelTinggiBadan1 = new javax.swing.JLabel();
         jPasswordField = new javax.swing.JPasswordField();
         jPasswordFieldRetype = new javax.swing.JPasswordField();
+
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         buttonLogin.setBackground(new java.awt.Color(0, 0, 102));
         buttonLogin.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N

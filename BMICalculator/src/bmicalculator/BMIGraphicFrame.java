@@ -111,6 +111,7 @@ public class BMIGraphicFrame extends javax.swing.JFrame implements Runnable{
             this.start();
             output = new DataOutputStream(s.getOutputStream());
             this.output.writeBytes("grafik~" + accountAktif.getId() + "\n");
+            accountAktif.centerFormOnScreen(this);
         } catch (IOException ex) {
             Logger.getLogger(BMIGraphicFrame.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -119,7 +120,7 @@ public class BMIGraphicFrame extends javax.swing.JFrame implements Runnable{
     private JFreeChart makeChart(String title, String axisLbl, String valueLbl) {
         DefaultCategoryDataset dataset = new DefaultCategoryDataset();
         for(int i = 0; i < kumpulanBMI.size(); i++){
-            dataset.addValue(kumpulanBMI.get(i), "Series 1", kumpulanTanggal.get(i));
+            dataset.addValue(kumpulanBMI.get(i), "BMI", kumpulanTanggal.get(i));
         }
         
         chart = ChartFactory.createLineChart(
@@ -152,6 +153,8 @@ public class BMIGraphicFrame extends javax.swing.JFrame implements Runnable{
         jPanel1 = new javax.swing.JPanel();
         buttonView = new javax.swing.JButton();
         buttonExport = new javax.swing.JButton();
+
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         panelJudul.setBackground(new java.awt.Color(0, 0, 102));
 
@@ -252,7 +255,7 @@ public class BMIGraphicFrame extends javax.swing.JFrame implements Runnable{
     }// </editor-fold>//GEN-END:initComponents
 
     private void buttonViewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonViewActionPerformed
-        chart = this.makeChart("Grafik Hasil BMI", "Tanggal", "BMI");
+        chart = this.makeChart("Grafik Hasil BMI", "Tanggal", "Nilai BMI");
         CategoryPlot plot = (CategoryPlot) chart.getPlot();
         LineAndShapeRenderer renderer = new LineAndShapeRenderer();
         renderer.setSeriesShapesVisible(0, true); // Show dots for series 1

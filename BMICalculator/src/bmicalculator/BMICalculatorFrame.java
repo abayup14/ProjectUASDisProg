@@ -70,6 +70,7 @@ public class BMICalculatorFrame extends javax.swing.JFrame implements Runnable{
             input = new BufferedReader(new InputStreamReader(s.getInputStream()));
             this.start();
             output = new DataOutputStream(s.getOutputStream());
+            accountAktif.centerFormOnScreen(this);
         } catch (IOException ex) {
             Logger.getLogger(BMICalculatorFrame.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -107,6 +108,8 @@ public class BMICalculatorFrame extends javax.swing.JFrame implements Runnable{
         jScrollPane1.setViewportView(jTextArea1);
 
         jPasswordField1.setText("jPasswordField1");
+
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         panelJudul.setBackground(new java.awt.Color(0, 0, 102));
 
