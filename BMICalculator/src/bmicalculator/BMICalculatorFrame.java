@@ -63,8 +63,6 @@ public class BMICalculatorFrame extends javax.swing.JFrame implements Runnable{
         initComponents();
         try {
             accountAktif = account;
-//            ipKu = new CobaIP();
-//            String ip = ipKu.getServerIP();
             String ip = "192.168.117.85";
             s = new Socket(ip, 10013); //string host dan int port
             input = new BufferedReader(new InputStreamReader(s.getInputStream()));
@@ -124,7 +122,7 @@ public class BMICalculatorFrame extends javax.swing.JFrame implements Runnable{
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelJudulLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(labelJudul)
-                .addGap(60, 60, 60))
+                .addGap(83, 83, 83))
         );
         panelJudulLayout.setVerticalGroup(
             panelJudulLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -186,30 +184,29 @@ public class BMICalculatorFrame extends javax.swing.JFrame implements Runnable{
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(panelJudul, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                    .addGroup(layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(buttonHitung))
+                        .addComponent(radioButtonBMI)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(radioButtonBeratBadanIdeal))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 374, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(12, 12, 12)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane2)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(6, 6, 6)
+                                .addComponent(buttonBack)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(buttonHitung))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(labelTinggiBadan)
+                                    .addComponent(labelBeratBadan))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addComponent(labelTinggiBadan)
-                                            .addComponent(labelBeratBadan)
-                                            .addComponent(buttonBack))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(textFieldBerat)
-                                            .addComponent(textFieldTinggi)))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(radioButtonBMI)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(radioButtonBeratBadanIdeal)
-                                        .addGap(0, 0, Short.MAX_VALUE)))))))
+                                    .addComponent(textFieldBerat)
+                                    .addComponent(textFieldTinggi))))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -218,7 +215,7 @@ public class BMICalculatorFrame extends javax.swing.JFrame implements Runnable{
                 .addGap(5, 5, 5)
                 .addComponent(panelJudul, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 221, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(radioButtonBeratBadanIdeal)
@@ -235,7 +232,7 @@ public class BMICalculatorFrame extends javax.swing.JFrame implements Runnable{
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(buttonHitung)
                     .addComponent(buttonBack))
-                .addContainerGap(14, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         pack();

@@ -270,30 +270,9 @@ public class BMIGraphicFrame extends javax.swing.JFrame implements Runnable{
         jPanel1.add(chartPanel, BorderLayout.CENTER);
         jPanel1.revalidate();
         jPanel1.repaint();
-        //chartPanel.setPreferredSize(new java.awt.Dimension(500, 300));
-        
-        /*JFrame frame = new JFrame("Line Chart");
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.getContentPane().add(chartPanel);
-        
-        JButton exportButton = new JButton("Export Chart");
-        exportButton.addActionListener(new java.awt.event.ActionListener() {
-        public void actionPerformed(java.awt.event.ActionEvent evt) {
-        try {
-        exportChartAsImage(chart);
-        } catch (IOException ex) {
-        Logger.getLogger(BMIGraphicFrame.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        }
-        });
-        frame.getContentPane().add(exportButton, BorderLayout.SOUTH);
-        
-        frame.pack();
-        frame.setVisible(true);*/
     }//GEN-LAST:event_buttonViewActionPerformed
 
     private void buttonExportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonExportActionPerformed
-        // TODO add your handling code here:
         try {
             exportChartAsImage(chart);
         } catch (IOException ex) {

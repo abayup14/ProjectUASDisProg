@@ -28,7 +28,6 @@ public class BMILoginFrame extends javax.swing.JFrame implements Runnable{
     String email;
     String password;
     User u;
-    CobaIP getIP;
     
     @Override
     public void run() {
@@ -201,7 +200,6 @@ public class BMILoginFrame extends javax.swing.JFrame implements Runnable{
 
     private void buttonLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonLoginActionPerformed
         try {
-            // TODO add your handling code here:
             this.email = textFieldEmail.getText();
             
             char[] passwordChar = jPasswordField.getPassword();
