@@ -58,9 +58,9 @@ public class BMIRegisterFrame extends javax.swing.JFrame implements Runnable {
     public BMIRegisterFrame() {
         initComponents();
         try {
-            ipKu = new CobaIP();
-            String ip = ipKu.getServerIP();
-            //String ip = "192.168.117.85";
+//            ipKu = new CobaIP();
+//            String ip = ipKu.getServerIP();
+            String ip = "192.168.117.85";
             s = new Socket(ip, 10013); //string host dan int port
             input = new BufferedReader(new InputStreamReader(s.getInputStream()));
             this.start();
