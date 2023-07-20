@@ -25,7 +25,6 @@ public class BMICalculatorFrame extends javax.swing.JFrame implements Runnable{
     User accountAktif;
     double tinggi;
     double berat;
-    CobaIP ipKu;
     
     public void run() {
         while (true) {
@@ -37,6 +36,7 @@ public class BMICalculatorFrame extends javax.swing.JFrame implements Runnable{
         try {
             String message = this.input.readLine();
             String[] part = message.split("~");
+            
             if(part[0].equals("bmi")){ //kalau bmi
                 textAreaHasil.append("Hasil BMI anda adalah : " + part[1] + "\n" + "Kategori anda adalah : " + part[2] + "\n\n");
             }
@@ -54,6 +54,7 @@ public class BMICalculatorFrame extends javax.swing.JFrame implements Runnable{
             this.t.start();
         }
     }
+    
     public BMICalculatorFrame() {
         initComponents();
     }
@@ -99,6 +100,7 @@ public class BMICalculatorFrame extends javax.swing.JFrame implements Runnable{
         radioButtonBeratBadanIdeal = new javax.swing.JRadioButton();
         radioButtonBMI = new javax.swing.JRadioButton();
         buttonHitung = new javax.swing.JButton();
+        buttonBack = new javax.swing.JButton();
 
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
@@ -165,6 +167,15 @@ public class BMICalculatorFrame extends javax.swing.JFrame implements Runnable{
             }
         });
 
+        buttonBack.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
+        buttonBack.setForeground(new java.awt.Color(0, 0, 102));
+        buttonBack.setText("Back");
+        buttonBack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonBackActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -185,7 +196,8 @@ public class BMICalculatorFrame extends javax.swing.JFrame implements Runnable{
                                     .addGroup(layout.createSequentialGroup()
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                             .addComponent(labelTinggiBadan)
-                                            .addComponent(labelBeratBadan))
+                                            .addComponent(labelBeratBadan)
+                                            .addComponent(buttonBack))
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(textFieldBerat)
@@ -217,7 +229,9 @@ public class BMICalculatorFrame extends javax.swing.JFrame implements Runnable{
                     .addComponent(textFieldTinggi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(labelTinggiBadan))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(buttonHitung)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(buttonHitung)
+                    .addComponent(buttonBack))
                 .addContainerGap(14, Short.MAX_VALUE))
         );
 
@@ -251,6 +265,10 @@ public class BMICalculatorFrame extends javax.swing.JFrame implements Runnable{
             Logger.getLogger(BMICalculatorFrame.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_buttonHitungActionPerformed
+
+    private void buttonBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonBackActionPerformed
+        this.setVisible(false);
+    }//GEN-LAST:event_buttonBackActionPerformed
 
     /**
      * @param args the command line arguments
@@ -288,6 +306,7 @@ public class BMICalculatorFrame extends javax.swing.JFrame implements Runnable{
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton buttonBack;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JButton buttonHitung;
     private javax.swing.JOptionPane jOptionPane1;

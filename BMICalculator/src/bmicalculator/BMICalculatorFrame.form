@@ -64,6 +64,7 @@
                                       <Group type="103" groupAlignment="1" attributes="0">
                                           <Component id="labelTinggiBadan" min="-2" max="-2" attributes="0"/>
                                           <Component id="labelBeratBadan" min="-2" max="-2" attributes="0"/>
+                                          <Component id="buttonBack" alignment="1" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                       <EmptySpace max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" attributes="0">
@@ -109,7 +110,10 @@
                   <Component id="labelTinggiBadan" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Component id="buttonHitung" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="buttonHitung" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="buttonBack" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
               <EmptySpace pref="14" max="32767" attributes="0"/>
           </Group>
       </Group>
@@ -225,6 +229,20 @@
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonHitungActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="buttonBack">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Segoe UI" size="15" style="1"/>
+        </Property>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="66" green="0" red="0" type="rgb"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Back"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonBackActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>

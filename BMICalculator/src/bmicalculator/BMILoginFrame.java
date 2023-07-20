@@ -97,10 +97,10 @@ public class BMILoginFrame extends javax.swing.JFrame implements Runnable{
         labelJudul = new javax.swing.JLabel();
         labelTinggiBadan = new javax.swing.JLabel();
         labelBeratBadan = new javax.swing.JLabel();
-        textFieldPassword = new javax.swing.JTextField();
         textFieldEmail = new javax.swing.JTextField();
         buttonLogin = new javax.swing.JButton();
         buttonRegister = new javax.swing.JButton();
+        jPasswordField = new javax.swing.JPasswordField();
 
         panelJudul.setBackground(new java.awt.Color(0, 0, 102));
 
@@ -158,16 +158,16 @@ public class BMILoginFrame extends javax.swing.JFrame implements Runnable{
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addComponent(buttonRegister)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 103, Short.MAX_VALUE)
                         .addComponent(buttonLogin))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(labelBeratBadan)
                             .addComponent(labelTinggiBadan))
                         .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(textFieldPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(textFieldEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(textFieldEmail, javax.swing.GroupLayout.DEFAULT_SIZE, 201, Short.MAX_VALUE)
+                            .addComponent(jPasswordField))))
                 .addContainerGap(41, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -181,7 +181,7 @@ public class BMILoginFrame extends javax.swing.JFrame implements Runnable{
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelBeratBadan)
-                    .addComponent(textFieldPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jPasswordField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(buttonLogin)
@@ -196,7 +196,9 @@ public class BMILoginFrame extends javax.swing.JFrame implements Runnable{
         try {
             // TODO add your handling code here:
             this.email = textFieldEmail.getText();
-            this.password = textFieldPassword.getText();
+            
+            char[] passwordChar = jPasswordField.getPassword();
+            this.password = String.valueOf(passwordChar);
             
             this.output.writeBytes("login~" + this.email + "~" + this.password+"\n");
         } catch (IOException ex) {
@@ -248,12 +250,12 @@ public class BMILoginFrame extends javax.swing.JFrame implements Runnable{
     private javax.swing.JButton buttonLogin;
     private javax.swing.JButton buttonRegister;
     private javax.swing.JOptionPane jOptionPane1;
+    private javax.swing.JPasswordField jPasswordField;
     private javax.swing.JLabel labelBeratBadan;
     private javax.swing.JLabel labelJudul;
     private javax.swing.JLabel labelTinggiBadan;
     private javax.swing.JPanel panelJudul;
     private javax.swing.JTextField textFieldEmail;
-    private javax.swing.JTextField textFieldPassword;
     // End of variables declaration//GEN-END:variables
 
 }

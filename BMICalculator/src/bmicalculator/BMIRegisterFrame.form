@@ -26,52 +26,45 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Component id="panelJudul" alignment="0" max="32767" attributes="0"/>
           <Group type="102" alignment="0" attributes="0">
+              <EmptySpace min="-2" pref="72" max="-2" attributes="0"/>
+              <Component id="labelTinggiBadan1" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="68" max="-2" attributes="0"/>
+              <Component id="radioButtonPria" min="-2" max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Component id="radioButtonWanita" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+          </Group>
+          <Group type="102" alignment="1" attributes="0">
+              <EmptySpace pref="21" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="1" attributes="0">
-                      <EmptySpace max="32767" attributes="0"/>
-                      <Group type="103" groupAlignment="1" attributes="0">
-                          <Component id="labelBeratBadan" min="-2" max="-2" attributes="0"/>
-                          <Component id="labelTinggiBadan" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="textFieldEmail" min="-2" pref="201" max="-2" attributes="0"/>
-                          <Component id="textFieldPassword" min="-2" pref="201" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="0" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="1" attributes="0">
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="buttonBack" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="buttonLogin" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="1" attributes="0">
-                                  <Component id="labelTinggiBadan1" min="-2" max="-2" attributes="0"/>
-                                  <Component id="labelBeratBadan1" min="-2" max="-2" attributes="0"/>
+                                  <Component id="labelBeratBadan" min="-2" max="-2" attributes="0"/>
+                                  <Component id="labelTinggiBadan" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                                      <Component id="textFieldRetypePassword" min="-2" pref="201" max="-2" attributes="0"/>
-                                  </Group>
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <EmptySpace min="-2" pref="68" max="-2" attributes="0"/>
-                                      <Component id="radioButtonPria" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                                      <Component id="radioButtonWanita" min="-2" max="-2" attributes="0"/>
-                                  </Group>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Component id="textFieldEmail" max="32767" attributes="0"/>
+                                  <Component id="jPasswordField" min="-2" pref="201" max="-2" attributes="0"/>
                               </Group>
+                          </Group>
+                          <Group type="102" alignment="1" attributes="0">
+                              <Component id="labelBeratBadan1" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Component id="jPasswordFieldRetype" min="-2" pref="201" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace min="0" pref="26" max="32767" attributes="0"/>
+                      <EmptySpace min="22" pref="22" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="1" attributes="0">
+                      <Component id="buttonBack" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="buttonLogin" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="82" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace pref="6" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -84,35 +77,33 @@
                   <Component id="labelTinggiBadan" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="textFieldEmail" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="labelBeratBadan" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="textFieldPassword" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jPasswordField" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="labelBeratBadan1" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="textFieldRetypePassword" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jPasswordFieldRetype" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="radioButtonPria" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="radioButtonWanita" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="labelTinggiBadan1" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="26" max="32767" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="buttonBack" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="buttonLogin" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
+              <EmptySpace pref="23" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Component class="javax.swing.JTextField" name="textFieldPassword">
-    </Component>
     <Component class="javax.swing.JTextField" name="textFieldEmail">
     </Component>
     <Component class="javax.swing.JButton" name="buttonLogin">
@@ -202,13 +193,12 @@
         <Property name="text" type="java.lang.String" value="retype password :"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="textFieldRetypePassword">
-    </Component>
     <Component class="javax.swing.JRadioButton" name="radioButtonPria">
       <Properties>
         <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
           <ComponentRef name="buttonGroupGender"/>
         </Property>
+        <Property name="selected" type="boolean" value="true"/>
         <Property name="text" type="java.lang.String" value="Pria"/>
       </Properties>
     </Component>
@@ -224,6 +214,10 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Gender :"/>
       </Properties>
+    </Component>
+    <Component class="javax.swing.JPasswordField" name="jPasswordField">
+    </Component>
+    <Component class="javax.swing.JPasswordField" name="jPasswordFieldRetype">
     </Component>
   </SubComponents>
 </Form>

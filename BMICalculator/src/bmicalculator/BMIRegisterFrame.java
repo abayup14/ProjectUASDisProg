@@ -25,6 +25,7 @@ public class BMIRegisterFrame extends javax.swing.JFrame implements Runnable {
     Thread t;
     String email;
     String password;
+    String passwordRetype;
     String gender;
     CobaIP ipKu;
     
@@ -80,7 +81,6 @@ public class BMIRegisterFrame extends javax.swing.JFrame implements Runnable {
     private void initComponents() {
 
         buttonGroupGender = new javax.swing.ButtonGroup();
-        textFieldPassword = new javax.swing.JTextField();
         textFieldEmail = new javax.swing.JTextField();
         buttonLogin = new javax.swing.JButton();
         buttonBack = new javax.swing.JButton();
@@ -89,10 +89,11 @@ public class BMIRegisterFrame extends javax.swing.JFrame implements Runnable {
         labelTinggiBadan = new javax.swing.JLabel();
         labelBeratBadan = new javax.swing.JLabel();
         labelBeratBadan1 = new javax.swing.JLabel();
-        textFieldRetypePassword = new javax.swing.JTextField();
         radioButtonPria = new javax.swing.JRadioButton();
         radioButtonWanita = new javax.swing.JRadioButton();
         labelTinggiBadan1 = new javax.swing.JLabel();
+        jPasswordField = new javax.swing.JPasswordField();
+        jPasswordFieldRetype = new javax.swing.JPasswordField();
 
         buttonLogin.setBackground(new java.awt.Color(0, 0, 102));
         buttonLogin.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
@@ -143,6 +144,7 @@ public class BMIRegisterFrame extends javax.swing.JFrame implements Runnable {
         labelBeratBadan1.setText("retype password :");
 
         buttonGroupGender.add(radioButtonPria);
+        radioButtonPria.setSelected(true);
         radioButtonPria.setText("Pria");
 
         buttonGroupGender.add(radioButtonWanita);
@@ -156,40 +158,36 @@ public class BMIRegisterFrame extends javax.swing.JFrame implements Runnable {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(panelJudul, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
+                .addGap(72, 72, 72)
+                .addComponent(labelTinggiBadan1)
+                .addGap(68, 68, 68)
+                .addComponent(radioButtonPria)
+                .addGap(18, 18, 18)
+                .addComponent(radioButtonWanita)
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(21, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(labelBeratBadan)
-                            .addComponent(labelTinggiBadan))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(textFieldEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(textFieldPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(26, 26, 26))
-                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(buttonBack)
-                                .addGap(18, 18, 18)
-                                .addComponent(buttonLogin))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(11, 11, 11)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(labelTinggiBadan1)
-                                    .addComponent(labelBeratBadan1))
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(18, 18, 18)
-                                        .addComponent(textFieldRetypePassword, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(68, 68, 68)
-                                        .addComponent(radioButtonPria)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(radioButtonWanita)))))
-                        .addGap(0, 26, Short.MAX_VALUE)))
-                .addContainerGap(6, Short.MAX_VALUE))
+                                    .addComponent(labelBeratBadan)
+                                    .addComponent(labelTinggiBadan))
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(textFieldEmail)
+                                    .addComponent(jPasswordField, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(labelBeratBadan1)
+                                .addGap(18, 18, 18)
+                                .addComponent(jPasswordFieldRetype, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(22, 22, 22))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(buttonBack)
+                        .addGap(18, 18, 18)
+                        .addComponent(buttonLogin)
+                        .addGap(82, 82, 82))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -199,24 +197,24 @@ public class BMIRegisterFrame extends javax.swing.JFrame implements Runnable {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelTinggiBadan)
                     .addComponent(textFieldEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelBeratBadan)
-                    .addComponent(textFieldPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                    .addComponent(jPasswordField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelBeratBadan1)
-                    .addComponent(textFieldRetypePassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                    .addComponent(jPasswordFieldRetype, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(radioButtonPria)
                     .addComponent(radioButtonWanita)
                     .addComponent(labelTinggiBadan1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(buttonBack)
                     .addComponent(buttonLogin))
-                .addGap(17, 17, 17))
+                .addContainerGap(23, Short.MAX_VALUE))
         );
 
         pack();
@@ -227,14 +225,20 @@ public class BMIRegisterFrame extends javax.swing.JFrame implements Runnable {
         try {
             // TODO add your handling code here:
             this.email = textFieldEmail.getText();
-            this.password = textFieldPassword.getText();
+            
+            char[] passwordChar = jPasswordField.getPassword();
+            this.password = String.valueOf(passwordChar);
+            
+            char[] passwordCharRetype = jPasswordFieldRetype.getPassword();
+            this.passwordRetype = String.valueOf(passwordCharRetype);
+            
             if (radioButtonPria.isSelected()) {
                 this.gender = "L";
             } else if (radioButtonWanita.isSelected()) {
                 this.gender = "P";
             }
             
-            if (textFieldRetypePassword.getText().equals(textFieldPassword.getText())) {
+            if (this.passwordRetype.equals(this.password)) {
                 this.output.writeBytes("register~" + this.email + "~" + this.password + "~" + this.gender + "\n");
             } else {
                 JOptionPane.showMessageDialog(this, "Password yang anda isikan tidak sama. Silahkan ulangi.");
@@ -288,6 +292,8 @@ public class BMIRegisterFrame extends javax.swing.JFrame implements Runnable {
     private javax.swing.JButton buttonBack;
     private javax.swing.ButtonGroup buttonGroupGender;
     private javax.swing.JButton buttonLogin;
+    private javax.swing.JPasswordField jPasswordField;
+    private javax.swing.JPasswordField jPasswordFieldRetype;
     private javax.swing.JLabel labelBeratBadan;
     private javax.swing.JLabel labelBeratBadan1;
     private javax.swing.JLabel labelJudul;
@@ -297,7 +303,5 @@ public class BMIRegisterFrame extends javax.swing.JFrame implements Runnable {
     private javax.swing.JRadioButton radioButtonPria;
     private javax.swing.JRadioButton radioButtonWanita;
     private javax.swing.JTextField textFieldEmail;
-    private javax.swing.JTextField textFieldPassword;
-    private javax.swing.JTextField textFieldRetypePassword;
     // End of variables declaration//GEN-END:variables
 }

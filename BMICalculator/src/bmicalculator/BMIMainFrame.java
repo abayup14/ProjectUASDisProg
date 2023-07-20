@@ -44,6 +44,8 @@ public class BMIMainFrame extends javax.swing.JFrame {
         jOperation = new javax.swing.JMenu();
         jCalculate = new javax.swing.JMenuItem();
         jViewGraph = new javax.swing.JMenuItem();
+        jMenu1 = new javax.swing.JMenu();
+        jMenuItemChat = new javax.swing.JMenuItem();
         jExit = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -89,6 +91,18 @@ public class BMIMainFrame extends javax.swing.JFrame {
         jOperation.add(jViewGraph);
 
         jMenuBar1.add(jOperation);
+
+        jMenu1.setText("Social");
+
+        jMenuItemChat.setText("Chat");
+        jMenuItemChat.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemChatActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItemChat);
+
+        jMenuBar1.add(jMenu1);
 
         jExit.setText("Exit");
         jExit.addActionListener(new java.awt.event.ActionListener() {
@@ -144,6 +158,11 @@ public class BMIMainFrame extends javax.swing.JFrame {
         formHistoryIdeal.setVisible(true);
     }//GEN-LAST:event_jMenuItemHistoryIdealActionPerformed
 
+    private void jMenuItemChatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemChatActionPerformed
+        BMIChatGroup formChat = new BMIChatGroup(accountAktif);
+        formChat.setVisible(true);
+    }//GEN-LAST:event_jMenuItemChatActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -184,7 +203,9 @@ public class BMIMainFrame extends javax.swing.JFrame {
     private javax.swing.JMenu jAccount;
     private javax.swing.JMenuItem jCalculate;
     private javax.swing.JMenu jExit;
+    private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItemChat;
     private javax.swing.JMenuItem jMenuItemHistoryBMI;
     private javax.swing.JMenuItem jMenuItemHistoryIdeal;
     private javax.swing.JMenu jOperation;

@@ -8,8 +8,13 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Shape;
 import java.awt.geom.Ellipse2D;
+import java.io.BufferedReader;
+import java.io.DataOutputStream;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.Socket;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFileChooser;
@@ -28,13 +33,50 @@ import org.jfree.data.category.DefaultCategoryDataset;
  *
  * @author vince
  */
-public class BMIGraphicFrame extends javax.swing.JFrame {
+public class BMIGraphicFrame extends javax.swing.JFrame implements Runnable{
 
     /**
      * Creates new form BMIGraphicFrame
      */
+    Socket s;
+    BufferedReader input;
+    DataOutputStream output;
+    Thread t;
     User accountAktif;
     JFreeChart chart;
+    
+    ArrayList<Double> kumpulanBMI = new ArrayList<>();
+    ArrayList<String> kumpulanTanggal = new ArrayList<>();
+    
+    public void run() {
+        while (true) {
+            getMessage();
+        }
+    }
+    
+    private void getMessage() {
+        try {
+            String message = this.input.readLine();
+            String[] part = message.split("~");
+            
+            if(part[0].equals("grafikbmi")){ //kalau bmi
+                for (int i = 1; i < part.length; i++) {
+                    String[] partHasilBMI = part[i].split("#");
+                    kumpulanTanggal.add(partHasilBMI[0]);
+                    kumpulanBMI.add(Double.valueOf(partHasilBMI[1]));
+                }
+            }
+        } catch (IOException ex) {
+            Logger.getLogger(BMILoginFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    public void start() {
+        if (this.t == null) {
+            this.t = new Thread(this, "myThread");
+            this.t.start();
+        }
+    }
 
     private void exportChartAsImage(JFreeChart a) throws IOException {
         JFileChooser fileChooser = new JFileChooser();
@@ -60,18 +102,26 @@ public class BMIGraphicFrame extends javax.swing.JFrame {
     }
 
     public BMIGraphicFrame(User account) {
-        initComponents();
-        accountAktif = account;
+        try {
+            initComponents();
+            accountAktif = account;
+            String ip = "192.168.117.85";
+            s = new Socket(ip, 10013); //string host dan int port
+            input = new BufferedReader(new InputStreamReader(s.getInputStream()));
+            this.start();
+            output = new DataOutputStream(s.getOutputStream());
+            this.output.writeBytes("grafik~" + accountAktif.getId() + "\n");
+        } catch (IOException ex) {
+            Logger.getLogger(BMIGraphicFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
     private JFreeChart makeChart(String title, String axisLbl, String valueLbl) {
-        String data;
         DefaultCategoryDataset dataset = new DefaultCategoryDataset();
-        dataset.addValue(10, "Series 1", "One");
-        dataset.addValue(20, "Series 1", "Two");
-        dataset.addValue(30, "Series 1", "Three");
-        dataset.addValue(40, "Series 1", "Four");
-
+        for(int i = 0; i < kumpulanBMI.size(); i++){
+            dataset.addValue(kumpulanBMI.get(i), "Series 1", kumpulanTanggal.get(i));
+        }
+        
         chart = ChartFactory.createLineChart(
                 title, // chart title
                 axisLbl, // domain axis label
@@ -113,10 +163,10 @@ public class BMIGraphicFrame extends javax.swing.JFrame {
         panelJudul.setLayout(panelJudulLayout);
         panelJudulLayout.setHorizontalGroup(
             panelJudulLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelJudulLayout.createSequentialGroup()
-                .addContainerGap(135, Short.MAX_VALUE)
+            .addGroup(panelJudulLayout.createSequentialGroup()
+                .addGap(135, 135, 135)
                 .addComponent(labelJudul)
-                .addGap(130, 130, 130))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         panelJudulLayout.setVerticalGroup(
             panelJudulLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -129,6 +179,11 @@ public class BMIGraphicFrame extends javax.swing.JFrame {
         buttonBack.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
         buttonBack.setForeground(new java.awt.Color(0, 0, 102));
         buttonBack.setText("Back");
+        buttonBack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonBackActionPerformed(evt);
+            }
+        });
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), null));
@@ -197,9 +252,7 @@ public class BMIGraphicFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void buttonViewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonViewActionPerformed
-        // TODO add your handling code here:
         chart = this.makeChart("Grafik Hasil BMI", "Tanggal", "BMI");
-
         CategoryPlot plot = (CategoryPlot) chart.getPlot();
         LineAndShapeRenderer renderer = new LineAndShapeRenderer();
         renderer.setSeriesShapesVisible(0, true); // Show dots for series 1
@@ -207,7 +260,6 @@ public class BMIGraphicFrame extends javax.swing.JFrame {
         Shape circle = new Ellipse2D.Double(-3, -3, 6, 6);
         renderer.setSeriesShape(0, circle);
         plot.setRenderer(renderer);
-
         ChartPanel chartPanel = new ChartPanel(chart);
         chartPanel.setPreferredSize(jPanel1.getSize());
         jPanel1.setLayout(new BorderLayout());
@@ -216,23 +268,23 @@ public class BMIGraphicFrame extends javax.swing.JFrame {
         jPanel1.revalidate();
         jPanel1.repaint();
         //chartPanel.setPreferredSize(new java.awt.Dimension(500, 300));
-
+        
         /*JFrame frame = new JFrame("Line Chart");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.getContentPane().add(chartPanel);
-
+        
         JButton exportButton = new JButton("Export Chart");
         exportButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                try {
-                    exportChartAsImage(chart);
-                } catch (IOException ex) {
-                    Logger.getLogger(BMIGraphicFrame.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            }
+        public void actionPerformed(java.awt.event.ActionEvent evt) {
+        try {
+        exportChartAsImage(chart);
+        } catch (IOException ex) {
+        Logger.getLogger(BMIGraphicFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        }
         });
         frame.getContentPane().add(exportButton, BorderLayout.SOUTH);
-
+        
         frame.pack();
         frame.setVisible(true);*/
     }//GEN-LAST:event_buttonViewActionPerformed
@@ -245,6 +297,10 @@ public class BMIGraphicFrame extends javax.swing.JFrame {
             Logger.getLogger(BMIGraphicFrame.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_buttonExportActionPerformed
+
+    private void buttonBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonBackActionPerformed
+        this.setVisible(false);
+    }//GEN-LAST:event_buttonBackActionPerformed
 
     /**
      * @param args the command line arguments

@@ -39,7 +39,7 @@ public class BMIHistoryBMIFrame extends javax.swing.JFrame implements Runnable {
             String[] part = message.split("~");
             if (part[0].equals("historybmi")) { //kalau history bmi
                 textAreaHasil.append("HISTORY CALCULATION OF BMI: \n");
-                for (int i = 1; i <= part.length; i++) {
+                for (int i = 1; i < part.length; i++) {
                     String[] partHasilBMI = part[i].split("#");
                     textAreaHasil.append("Tanggal : " + partHasilBMI[0] + "\n"
                             + "Berat Badan : " + partHasilBMI[1] + "\n"

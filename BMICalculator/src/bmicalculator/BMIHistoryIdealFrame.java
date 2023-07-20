@@ -39,7 +39,7 @@ public class BMIHistoryIdealFrame extends javax.swing.JFrame implements Runnable
             String[] part = message.split("~");
             if (part[0].equals("historyideal")) {
                 textAreaHasil.append("HISTORY CALCULATION OF IDEAL WEIGHT: \n");
-                for (int i = 1; i <= part.length; i++) {
+                for (int i = 1; i < part.length; i++) {
                     String[] partHasilIdeal = part[i].split("#");
                     textAreaHasil.append("Tanggal : " + partHasilIdeal[0] + "\n"
                             + "Tinggi Badan : " + partHasilIdeal[1] + "\n"
