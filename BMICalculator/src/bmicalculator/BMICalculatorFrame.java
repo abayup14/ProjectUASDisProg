@@ -65,7 +65,7 @@ public class BMICalculatorFrame extends javax.swing.JFrame implements Runnable{
             accountAktif = account;
 //            ipKu = new CobaIP();
 //            String ip = ipKu.getServerIP();
-            String ip = "192.168.117.85";
+            String ip = "192.168.43.201";
             s = new Socket(ip, 10013); //string host dan int port
             input = new BufferedReader(new InputStreamReader(s.getInputStream()));
             this.start();
