@@ -51,6 +51,8 @@ public class BMILoginFrame extends javax.swing.JFrame implements Runnable{
                 jOptionPane1.showMessageDialog(this, "Berhasil Login");
                 BMIMainFrame formMain = new BMIMainFrame(u);
                 formMain.setVisible(true);
+                
+                this.dispose();
             }
             else if(part[0].equals("gagal")){ //kalau gagal
                 JOptionPane.showMessageDialog(this, "Gagal Login");

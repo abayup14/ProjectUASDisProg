@@ -9,6 +9,7 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.Socket;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -22,6 +23,7 @@ public class BMIChatGroup extends javax.swing.JFrame implements Runnable{
     DataOutputStream output;
     Thread t;
     User accountAktif;
+
     /**
      * Creates new form BMIChatGroup
      */
@@ -37,8 +39,30 @@ public class BMIChatGroup extends javax.swing.JFrame implements Runnable{
             String message = this.input.readLine();
             String[] part = message.split("~");
             
+            ArrayList<Integer> kumpulanBlockedId = new ArrayList<>();
+            kumpulanBlockedId.add(0);
+            
             if(part[0].equals("chat")){ //kalau bmi
-                jTextAreaDisplay.append(part[1] + " : " + part[2] + "\n");
+                for (int i = 4; i < part.length; i++) {
+                    kumpulanBlockedId.add(Integer.parseInt(part[i]));
+                }
+                
+                boolean cekStatus = true;
+                for (int i = 0; i < kumpulanBlockedId.size(); i++) {
+                    if (kumpulanBlockedId.get(i).equals(accountAktif.getId())) {
+                        cekStatus = false; //kalau ada di blok
+                        break;
+                    } else{
+                        cekStatus = true; //kalau aman
+                    }
+                }
+                
+                if(cekStatus == false){
+                    jTextAreaDisplay.append("You have blocked this user!\n");
+                }
+                else if(cekStatus == true){
+                    jTextAreaDisplay.append(part[2] + " : " + part[3] + "\n");
+                }
             }
             else if(part[0].equals("block")){ //kalau ideal
                 if(part[1].equals("unknown")){
