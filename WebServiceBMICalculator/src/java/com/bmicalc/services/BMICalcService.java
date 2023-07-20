@@ -6,6 +6,7 @@ package com.bmicalc.services;
 
 //import com.bmicalc.services.model.Account;
 import com.bmicalc.services.model.Account;
+import com.bmicalc.services.model.Enkripsi;
 import com.bmicalc.services.model.HistoryBMI;
 import com.bmicalc.services.model.HistoryHitungIdeal;
 import java.util.ArrayList;
@@ -22,6 +23,7 @@ public class BMICalcService {
 
     Account acc;
     ArrayList<Object> coll;
+    Enkripsi enkripsi;
 
     /**
      * This is a sample web service operation
@@ -37,11 +39,14 @@ public class BMICalcService {
     @WebMethod(operationName = "insertAccount")
     public boolean insertAccount(@WebParam(name = "email") String email, @WebParam(name = "password") String password, @WebParam(name = "jenis_kelamin") String jenis_kelamin) {
         //TODO write your implementation code here:
+        enkripsi = new Enkripsi();
         coll = new ArrayList<Object>();
         acc = new Account();
-        coll = acc.cekEmail(email);
+        String encrypt_email = enkripsi.encryptData(email);
+        String encrypt_pass = enkripsi.encryptData(password);
+        coll = acc.cekEmail(encrypt_email);
         if (coll.isEmpty()) {
-            acc = new Account(email, password, jenis_kelamin);
+            acc = new Account(encrypt_email, encrypt_pass, jenis_kelamin);
             acc.insertAccount();
             return true;
         } else {
@@ -55,8 +60,11 @@ public class BMICalcService {
     @WebMethod(operationName = "cekLogin")
     public boolean cekLogin(@WebParam(name = "email") String email, @WebParam(name = "password") String password) {
         //TODO write your implementation code here:
+        enkripsi = new Enkripsi();
         coll = new ArrayList<Object>();
-        acc = new Account(email, password);
+        String encrypt_email = enkripsi.encryptData(email);
+        String encrypt_pass = enkripsi.encryptData(password);
+        acc = new Account(encrypt_email, encrypt_pass);
         coll = acc.cekLogin();
         if (coll.isEmpty()) {
             return false;
