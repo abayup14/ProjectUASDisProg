@@ -154,7 +154,7 @@ public class BMIRegisterFrame extends javax.swing.JFrame implements Runnable {
         buttonGroupGender.add(radioButtonWanita);
         radioButtonWanita.setText("Wanita");
 
-        labelTinggiBadan1.setText("Gender :");
+        labelTinggiBadan1.setText("gender :");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);

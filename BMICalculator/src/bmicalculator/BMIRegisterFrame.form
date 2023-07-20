@@ -215,7 +215,7 @@
     </Component>
     <Component class="javax.swing.JLabel" name="labelTinggiBadan1">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Gender :"/>
+        <Property name="text" type="java.lang.String" value="gender :"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JPasswordField" name="jPasswordField">

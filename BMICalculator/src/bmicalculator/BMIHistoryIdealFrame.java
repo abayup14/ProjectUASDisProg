@@ -100,7 +100,7 @@ public class BMIHistoryIdealFrame extends javax.swing.JFrame implements Runnable
 
         labelJudul.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         labelJudul.setForeground(new java.awt.Color(255, 255, 255));
-        labelJudul.setText("CALCULATION HISTORY BMI");
+        labelJudul.setText("CALCULATION HISTORY IDEAL");
 
         javax.swing.GroupLayout panelJudulLayout = new javax.swing.GroupLayout(panelJudul);
         panelJudul.setLayout(panelJudulLayout);
@@ -109,7 +109,7 @@ public class BMIHistoryIdealFrame extends javax.swing.JFrame implements Runnable
             .addGroup(panelJudulLayout.createSequentialGroup()
                 .addGap(24, 24, 24)
                 .addComponent(labelJudul)
-                .addContainerGap(27, Short.MAX_VALUE))
+                .addContainerGap(47, Short.MAX_VALUE))
         );
         panelJudulLayout.setVerticalGroup(
             panelJudulLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

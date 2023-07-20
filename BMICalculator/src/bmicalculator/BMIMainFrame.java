@@ -38,6 +38,7 @@ public class BMIMainFrame extends javax.swing.JFrame {
     private void initComponents() {
 
         labelSelamatDatang = new javax.swing.JLabel();
+        labelSelamatDatang1 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jAccount = new javax.swing.JMenu();
         jMenuItemHistoryBMI = new javax.swing.JMenuItem();
@@ -50,7 +51,9 @@ public class BMIMainFrame extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        labelSelamatDatang.setText("Selamat datang, nama");
+        labelSelamatDatang.setText("Made By: Steven, Bayu, Vincent");
+
+        labelSelamatDatang1.setText("Selamat datang, nama");
 
         jAccount.setText("Account");
 
@@ -111,16 +114,22 @@ public class BMIMainFrame extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(15, 15, 15)
+                .addContainerGap()
+                .addComponent(labelSelamatDatang1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(317, Short.MAX_VALUE)
                 .addComponent(labelSelamatDatang)
-                .addContainerGap(352, Short.MAX_VALUE))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
+                .addComponent(labelSelamatDatang1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 120, Short.MAX_VALUE)
                 .addComponent(labelSelamatDatang)
-                .addContainerGap(142, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         pack();
@@ -198,5 +207,6 @@ public class BMIMainFrame extends javax.swing.JFrame {
     private javax.swing.JMenu jOperation;
     private javax.swing.JMenuItem jViewGraph;
     private javax.swing.JLabel labelSelamatDatang;
+    private javax.swing.JLabel labelSelamatDatang1;
     // End of variables declaration//GEN-END:variables
 }

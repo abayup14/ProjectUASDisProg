@@ -30,7 +30,7 @@ CREATE TABLE `account` (
   `password` varchar(45) NOT NULL,
   `jenis_kelamin` enum('L','P') NOT NULL,
   PRIMARY KEY (`id_account`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -39,7 +39,7 @@ CREATE TABLE `account` (
 
 LOCK TABLES `account` WRITE;
 /*!40000 ALTER TABLE `account` DISABLE KEYS */;
-INSERT INTO `account` VALUES (7,'rDz8WtCTRufgzsy9CGZjC9SzujXPT2m70LI2jj/O6Ts=','9LiUf3sQtNgPsK2kvO7MaQ==','L'),(8,'czEUN4V6Ej1jE+IhdRm/8mvMeNRe/CbqdRNQVilrhpM=','wWalMedwVxWhHnT5KWqPww==','L'),(9,'rql5sPhLL+SauPKAhkyqOg==','cxy2Fz/+Vb9T0ZilLxwIsQ==','L'),(10,'rQXP4JjYlXn5YboO0jQ1/Q==','oyfB0p2KmKSAhNB7S1klAg==','L');
+INSERT INTO `account` VALUES (7,'rDz8WtCTRufgzsy9CGZjC9SzujXPT2m70LI2jj/O6Ts=','9LiUf3sQtNgPsK2kvO7MaQ==','L'),(8,'czEUN4V6Ej1jE+IhdRm/8mvMeNRe/CbqdRNQVilrhpM=','wWalMedwVxWhHnT5KWqPww==','L'),(9,'rql5sPhLL+SauPKAhkyqOg==','cxy2Fz/+Vb9T0ZilLxwIsQ==','L'),(10,'rQXP4JjYlXn5YboO0jQ1/Q==','oyfB0p2KmKSAhNB7S1klAg==','L'),(11,'7tWrcAOlSUp2O1yXMEgt+w==','buaXZILA5GNaXwRQysjUDw==','L');
 /*!40000 ALTER TABLE `account` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -138,4 +138,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-07-20 18:06:27
+-- Dump completed on 2023-07-21  5:20:54
