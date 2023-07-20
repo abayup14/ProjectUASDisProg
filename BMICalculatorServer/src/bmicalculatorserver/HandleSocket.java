@@ -47,8 +47,6 @@ public class HandleSocket extends Thread {
         String[] part = message.split("~");
         try {
             if (part[0].equals("login")) {
-                //u = new User();
-                //u = u.CekLogin(part[1], part[2]);
                 boolean cekLogin = cekLogin(part[1], part[2]);
                 if (cekLogin == true) {
                     output.writeBytes("berhasil~" + dataToString(part[1], part[2]) + "\n");
