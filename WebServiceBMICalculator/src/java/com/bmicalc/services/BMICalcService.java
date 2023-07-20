@@ -102,14 +102,18 @@ public class BMICalcService {
     @WebMethod(operationName = "dataToString")
     public String dataToString(@WebParam(name = "email") String email, @WebParam(name = "password") String password) {
         //TODO write your implementation code here:
-        acc = new Account();
-        if (this.cekLogin(email, password) == true) {
-            ArrayList<Object> coll = acc.cekLogin();
+        enkripsi = new Enkripsi();
+        String data = "";
+        String encrypt_email = enkripsi.encryptData(email);
+        String encrypt_pass = enkripsi.encryptData(password);
+        acc = new Account(encrypt_email, encrypt_pass);
+        ArrayList<Object> coll = acc.cekLogin();
+        if (!coll.isEmpty()) {
             acc = (Account) coll.get(0);
-            String data = acc.getId() + "~" + acc.getEmail() + "~" + acc.getPassword() + "~" + acc.getJenis_kelamin();
-            return data;
+            String decrypt_email = enkripsi.decryptData(encrypt_email);
+            data = acc.getId() + "~" + decrypt_email + "~" + acc.getPassword() + "~" + acc.getJenis_kelamin();
         }
-        return null;
+        return data;
     }
 
     /**
@@ -195,5 +199,35 @@ public class BMICalcService {
             }
         }
         return "grafikbmi~" + hasil + "\n";
+    }
+
+    /**
+     * Web service operation
+     */
+    @WebMethod(operationName = "blockAccount")
+    public String blockAccount(@WebParam(name = "acc_id_1") int acc_id_1, @WebParam(name = "email") String email) {
+        //TODO write your implementation code here:
+        acc = new Account(acc_id_1);
+        boolean cek = acc.blockAccount(email);
+        if (cek == true) {
+            return "berhasil";
+        } else {
+            return "unknown";
+        }
+    }
+
+    /**
+     * Web service operation
+     */
+    @WebMethod(operationName = "listIdBlock")
+    public String listIdBlock(@WebParam(name = "acc_id_user1") int acc_id_user1) {
+        //TODO write your implementation code here:
+        String hasil = "";
+        acc = new Account(acc_id_user1);
+        ArrayList<Integer> list_block = acc.cekBlock();
+        for (int blk : list_block) {
+            hasil += String.valueOf(blk) + "~";
+        }
+        return hasil;
     }
 }

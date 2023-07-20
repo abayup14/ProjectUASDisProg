@@ -18,6 +18,7 @@ public class Account extends MyModel {
     private String password;
     private String jenis_kelamin;
     ArrayList<Object> coll;
+    Enkripsi enk;
 
     public int getId() {
         return id;
@@ -42,7 +43,7 @@ public class Account extends MyModel {
     public void setPassword(String password) {
         this.password = password;
     }
-    
+
     public String getJenis_kelamin() {
         return jenis_kelamin;
     }
@@ -50,7 +51,7 @@ public class Account extends MyModel {
     public void setJenis_kelamin(String jenis_kelamin) {
         this.jenis_kelamin = jenis_kelamin;
     }
-    
+
     public Account() {
         this.id = 1;
         this.email = "";
@@ -58,11 +59,15 @@ public class Account extends MyModel {
         this.jenis_kelamin = "";
     }
 
+    public Account(int acc_id) {
+        this.id = acc_id;
+    }
+
     public Account(String email, String password) {
         this.email = email;
         this.password = password;
     }
-    
+
     public Account(String email, String password, String jenis_kelamin) {
         this.email = email;
         this.password = password;
@@ -131,5 +136,50 @@ public class Account extends MyModel {
         }
 
         return coll;
+    }
+
+    public boolean blockAccount(String email) {
+        enk = new Enkripsi();
+        boolean cekStatus = false;
+        try {
+            PreparedStatement sql1 = (PreparedStatement) MyModel.conn.prepareStatement("SELECT id_account from account where email=?");
+            sql1.setString(1, enk.encryptData(email));
+            this.result = sql1.executeQuery();
+            while (this.result.next()) {
+                if (this.result.getString("id_account").equals("")) {
+                    cekStatus = false;
+                } else {
+                    int acc_id_block = this.result.getInt("id_account");
+                    PreparedStatement sql2 = (PreparedStatement) MyModel.conn.prepareStatement("INSERT INTO cek_blok(account_id_user1, account_id_user2, status) values(?, ?, ?)");
+                    sql2.setInt(1, this.id);
+                    sql2.setInt(2, acc_id_block);
+                    sql2.setString(3, "Block");
+                    sql2.executeUpdate();
+                    sql2.close();
+                    cekStatus = true;
+                }
+            }
+        } catch (Exception e) {
+            System.out.println("Error di blockAccount : " + e);
+        }
+
+        return cekStatus;
+    }
+
+    public ArrayList<Integer> cekBlock() {
+        ArrayList<Integer> list_block = new ArrayList<Integer>();
+        try {
+            PreparedStatement sql = (PreparedStatement) MyModel.conn.prepareStatement("SELECT account_id_user1 from cek_blok where account_id_user2=? AND status=?");
+            sql.setInt(1, this.id);
+            sql.setString(2, "Block");
+            this.result = sql.executeQuery();
+            while (this.result.next()) {
+                int acc_block = this.result.getInt("account_id_user1");
+                list_block.add(acc_block);
+            }
+        } catch (Exception e) {
+            System.out.println("Error di cekBlock : " + e);
+        }
+        return list_block;
     }
 }

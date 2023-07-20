@@ -70,7 +70,9 @@ public class Enkripsi {
     
     public static void main(String[] args) {
         Enkripsi en = new Enkripsi();
-        String data = en.encryptData("Halo");
+        String data = en.encryptData("baya");
         System.out.println(data);
+        String dec = en.decryptData(data);
+        System.out.println(dec);
     }
 }

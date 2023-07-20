@@ -43,7 +43,12 @@ public class FormServer extends javax.swing.JFrame implements Runnable{
     public void ShowChat(String message) {
         textAreaServer.append(message + "\n");
     }
-
+    
+    public void broadcast(String message) {
+        for (HandleSocket client : clients) {
+            client.SendMessage(message);
+        }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

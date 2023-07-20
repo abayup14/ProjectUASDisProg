@@ -1,5 +1,9 @@
 <?xml version='1.0' encoding='UTF-8'?><!-- Published by JAX-WS RI (http://jax-ws.java.net). RI's version is Metro/2.4.3 (RELEASE-2.4.3-ad3323c; 2019-01-21T17:46:06+0000) JAXWS-RI/2.3.2 JAXWS-API/2.3.2 JAXB-RI/2.3.2 JAXB-API/2.3.2 git-revision#unknown. --><xs:schema xmlns:tns="http://services.bmicalc.com/" xmlns:xs="http://www.w3.org/2001/XMLSchema" version="1.0" targetNamespace="http://services.bmicalc.com/">
 
+<xs:element name="blockAccount" type="tns:blockAccount"/>
+
+<xs:element name="blockAccountResponse" type="tns:blockAccountResponse"/>
+
 <xs:element name="cekLogin" type="tns:cekLogin"/>
 
 <xs:element name="cekLoginResponse" type="tns:cekLoginResponse"/>
@@ -7,6 +11,10 @@
 <xs:element name="dataToString" type="tns:dataToString"/>
 
 <xs:element name="dataToStringResponse" type="tns:dataToStringResponse"/>
+
+<xs:element name="dataUntukGrafik" type="tns:dataUntukGrafik"/>
+
+<xs:element name="dataUntukGrafikResponse" type="tns:dataUntukGrafikResponse"/>
 
 <xs:element name="hitungBMI" type="tns:hitungBMI"/>
 
@@ -28,6 +36,10 @@
 
 <xs:element name="insertDataIdealResponse" type="tns:insertDataIdealResponse"/>
 
+<xs:element name="listIdBlock" type="tns:listIdBlock"/>
+
+<xs:element name="listIdBlockResponse" type="tns:listIdBlockResponse"/>
+
 <xs:element name="viewListHistoryBMI" type="tns:viewListHistoryBMI"/>
 
 <xs:element name="viewListHistoryBMIResponse" type="tns:viewListHistoryBMIResponse"/>
@@ -36,14 +48,13 @@
 
 <xs:element name="viewListHistoryIdealResponse" type="tns:viewListHistoryIdealResponse"/>
 
-<xs:complexType name="hitungBMI">
+<xs:complexType name="viewListHistoryIdeal">
 <xs:sequence>
-<xs:element name="tinggi" type="xs:double"/>
-<xs:element name="berat" type="xs:double"/>
+<xs:element name="acc_id" type="xs:int"/>
 </xs:sequence>
 </xs:complexType>
 
-<xs:complexType name="hitungBMIResponse">
+<xs:complexType name="viewListHistoryIdealResponse">
 <xs:sequence>
 <xs:element name="return" type="xs:string" minOccurs="0"/>
 </xs:sequence>
@@ -62,13 +73,14 @@
 </xs:sequence>
 </xs:complexType>
 
-<xs:complexType name="viewListHistoryIdeal">
+<xs:complexType name="hitungBMI">
 <xs:sequence>
-<xs:element name="acc_id" type="xs:int"/>
+<xs:element name="tinggi" type="xs:double"/>
+<xs:element name="berat" type="xs:double"/>
 </xs:sequence>
 </xs:complexType>
 
-<xs:complexType name="viewListHistoryIdealResponse">
+<xs:complexType name="hitungBMIResponse">
 <xs:sequence>
 <xs:element name="return" type="xs:string" minOccurs="0"/>
 </xs:sequence>
@@ -85,6 +97,43 @@
 <xs:complexType name="insertAccountResponse">
 <xs:sequence>
 <xs:element name="return" type="xs:boolean"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="dataUntukGrafik">
+<xs:sequence>
+<xs:element name="acc_id" type="xs:int"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="dataUntukGrafikResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="listIdBlock">
+<xs:sequence>
+<xs:element name="acc_id_user1" type="xs:int"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="listIdBlockResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="blockAccount">
+<xs:sequence>
+<xs:element name="acc_id_1" type="xs:int"/>
+<xs:element name="email" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="blockAccountResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:string" minOccurs="0"/>
 </xs:sequence>
 </xs:complexType>
 
@@ -127,6 +176,19 @@
 </xs:sequence>
 </xs:complexType>
 
+<xs:complexType name="hitungBeratIdeal">
+<xs:sequence>
+<xs:element name="tinggi" type="xs:double"/>
+<xs:element name="acc_id" type="xs:int"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="hitungBeratIdealResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
 <xs:complexType name="insertDataBMI">
 <xs:sequence>
 <xs:element name="berat_badan" type="xs:double"/>
@@ -139,19 +201,6 @@
 <xs:complexType name="insertDataBMIResponse">
 <xs:sequence>
 <xs:element name="return" type="xs:boolean"/>
-</xs:sequence>
-</xs:complexType>
-
-<xs:complexType name="hitungBeratIdeal">
-<xs:sequence>
-<xs:element name="tinggi" type="xs:double"/>
-<xs:element name="acc_id" type="xs:int"/>
-</xs:sequence>
-</xs:complexType>
-
-<xs:complexType name="hitungBeratIdealResponse">
-<xs:sequence>
-<xs:element name="return" type="xs:string" minOccurs="0"/>
 </xs:sequence>
 </xs:complexType>
 </xs:schema>
