@@ -4,12 +4,15 @@
  */
 package bmicalculatorserver;
 
+import java.awt.Dimension;
+import java.awt.Toolkit;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JFrame;
 
 /**
  *
@@ -35,6 +38,7 @@ public class FormServer extends javax.swing.JFrame implements Runnable{
                 t = new Thread(this, "myserver");
                 t.start();
             }
+            centerFormOnScreen(this);
         } catch (IOException ex) {
             Logger.getLogger(FormServer.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -48,6 +52,22 @@ public class FormServer extends javax.swing.JFrame implements Runnable{
         for (HandleSocket client : clients) {
             client.SendMessage(message);
         }
+    }
+    
+    public void centerFormOnScreen(JFrame frame) {
+        // Get the dimensions of the screen
+        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        int screenWidth = screenSize.width;
+        int screenHeight = screenSize.height;
+
+        // Calculate the X and Y coordinates for the form to appear in the center
+        int formWidth = frame.getWidth();
+        int formHeight = frame.getHeight();
+        int x = (screenWidth - formWidth) / 2;
+        int y = (screenHeight - formHeight) / 2;
+
+        // Set the form's location to the calculated X and Y coordinates
+        frame.setLocation(x, y);
     }
     /**
      * This method is called from within the constructor to initialize the form.
